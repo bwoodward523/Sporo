@@ -116,6 +116,8 @@ offset = Vector2(-25.2738, -9.18033)
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.165, 0)
+scale = Vector2(1.16, 1.16)
 shape = SubResource("CapsuleShape2D_fba2d")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -123,3 +125,5 @@ libraries = {
 "": SubResource("AnimationLibrary_7mfy0")
 }
 speed_scale = 2.0
+
+[node name="Area2D" type="Area2D" parent="."]
