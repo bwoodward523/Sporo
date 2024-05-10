@@ -1,24 +1,125 @@
-[gd_scene load_steps=5 format=3 uid="uid://dn6uq6347k7k8"]
+[gd_scene load_steps=9 format=3 uid="uid://whd11j441bhe"]
 
-[ext_resource type="Script" path="res://Scenes/player.gd" id="1_7a0hd"]
-[ext_resource type="Texture2D" uid="uid://m81oyjg0p6o2" path="res://BootyNinja.png" id="2_0mu3q"]
-[ext_resource type="Texture2D" uid="uid://c72qd3p7md3qe" path="res://AR.png" id="3_sotbq"]
+[ext_resource type="Texture2D" uid="uid://2q5lrp74xdxl" path="res://Assets/MainBulletSpriteSheet.png" id="2_rr0v0"]
+[ext_resource type="Texture2D" uid="uid://c72qd3p7md3qe" path="res://Assets/AR.png" id="3_0f8ul"]
+
+[sub_resource type="GDScript" id="GDScript_2vypb"]
+script/source = "extends CharacterBody2D
+@onready var _animation_player = $AnimationPlayer
+const SPEED = 450
+var canShoot = false
+var dirFace = 1
+func _physics_process(delta):
+	var direction = Input.get_vector(\"moveLeft\", \"moveRight\", \"moveUp\", \"moveDown\")
+
+
+	canShoot = Input.is_action_just_pressed(\"shoot\")
+	if(Input.is_key_pressed(KEY_ESCAPE)):
+		get_tree().change_scene_to_file(\"res://Menu.tscn\")
+	if(canShoot):
+		print(\"WooHoo we shootin\")
+	
+	velocity = direction * SPEED
+	
+	if Input.is_action_pressed(\"moveRight\"):
+		_animation_player.play(\"walk\")
+		$Sprite2D.flip_h = false
+		$Sprite2D/Rifle.flip_h = true
+	elif Input.is_action_pressed(\"moveLeft\"):
+		_animation_player.play(\"walk\")
+		$Sprite2D.flip_h = true
+		$Sprite2D/Rifle.flip_h = false
+	else:
+		_animation_player.play(\"RESET\")
+	if direction:
+		if velocity.x > 0:
+			#$CharacterBody2D.set_scale
+			print(\"we move right\")
+			
+			#scale.x = scale*-1.0
+			#$Rifle.move_local_x(-transform1, true)
+		elif velocity.x < 0:
+			print(\"we move left\")
+			
+			#$Sprite2D.flip_h = false
+			#scale.x = 1
+			#$Rifle.move_local_x(transform1, true)
+	
+	move_and_slide()
+	pass
+	
+"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fba2d"]
 radius = 7.0
 height = 42.0
 
+[sub_resource type="Animation" id="Animation_mlbch"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 6]
+}
+
+[sub_resource type="Animation" id="Animation_l28nw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="Animation" id="Animation_xm3ld"]
+resource_name = "idle"
+length = 0.1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7mfy0"]
+_data = {
+"RESET": SubResource("Animation_l28nw"),
+"idle": SubResource("Animation_xm3ld"),
+"walk": SubResource("Animation_mlbch")
+}
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 scale = Vector2(1.525, 1.525)
-script = ExtResource("1_7a0hd")
+script = SubResource("GDScript_2vypb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(1.8125, 1.8125)
-texture = ExtResource("2_0mu3q")
+texture = ExtResource("2_rr0v0")
+hframes = 7
+frame = 6
+
+[node name="Rifle" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(3.97965, 2.17072)
+scale = Vector2(0.808847, 0.551724)
+texture = ExtResource("3_0f8ul")
+centered = false
+offset = Vector2(-25.2738, -9.18033)
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_fba2d")
 
-[node name="Rifle" type="Sprite2D" parent="."]
-position = Vector2(-23.3333, 0.666667)
-texture = ExtResource("3_sotbq")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7mfy0")
+}
+speed_scale = 2.0
