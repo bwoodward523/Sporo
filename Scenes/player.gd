@@ -1,29 +1,51 @@
 extends CharacterBody2D
+
+@onready var playerProjectile = load("res://Scenes/projectile.tscn")
+@onready var main = get_tree().get_current_scene()
+
+@onready var _animation_player = $AnimationPlayer
 const SPEED = 450
 var canShoot = false
 var dirFace = 1
+
+
 func _physics_process(delta):
 	var direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
 
 
 	canShoot = Input.is_action_just_pressed("shoot")
+	if(Input.is_key_pressed(KEY_ESCAPE)):
+		get_tree().change_scene_to_file("res://Menu.tscn")
 	if(canShoot):
-		print("WooHoo we shootin")
+		playerShoot()
 	
-	var transform1= $Rifle.get_transform()
 	velocity = direction * SPEED
+	
+	if Input.is_action_pressed("moveRight"):
+		_animation_player.play("walk")
+		$Sprite2D.flip_h = false
+		$Sprite2D/Rifle.flip_h = true
+	elif Input.is_action_pressed("moveLeft"):
+		_animation_player.play("walk")
+		$Sprite2D.flip_h = true
+		$Sprite2D/Rifle.flip_h = false
+	else:
+		_animation_player.play("RESET")
 	if direction:
 		if velocity.x > 0:
-			#$CharacterBody2D.set_scale
 			print("we move right")
-			#scale.x = scale*-1.0
-			#$Rifle.move_local_x(-transform1, true)
 		elif velocity.x < 0:
 			print("we move left")
-			#$Sprite2D.flip_h = false
-			#scale.x = 1
-			#$Rifle.move_local_x(transform1, true)
 	
 	move_and_slide()
 	pass
+	
+func playerShoot():
+	var instance = playerProjectile.instantiate()
+	var bulletDirection = (get_global_mouse_position() - position).normalized()
+
+	instance.dir = bulletDirection
+	instance.spawnPos = Vector2(global_position.x + 5, global_position.y)
+	instance.spawnRot = rotation
+	main.add_child(instance)
 	
