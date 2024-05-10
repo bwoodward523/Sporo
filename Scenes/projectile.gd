@@ -23,7 +23,7 @@ func _on_timer_timeout():
 
 
 func _on_area_2d_body_entered(body):
-	if body.name == "Enemy": #this is the name of the parent enemy node
+	if body.name.contains("Enemy"):  #this is the start of the name of the parent enemy node
 		print("hit enemy")
 		var hp = body.get_node("HealthComponent")
 		hp.deductHealth()

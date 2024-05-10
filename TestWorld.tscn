@@ -11,4 +11,16 @@ script = ExtResource("1_qom2t")
 position = Vector2(600, 400)
 
 [node name="Enemy" parent="." instance=ExtResource("3_6j36t")]
-position = Vector2(220.73, 300)
+position = Vector2(263, 423)
+
+[node name="Enemy2" parent="." instance=ExtResource("3_6j36t")]
+position = Vector2(170, 410)
+
+[node name="Enemy3" parent="." instance=ExtResource("3_6j36t")]
+position = Vector2(318, 456)
+
+[node name="Enemy4" parent="." instance=ExtResource("3_6j36t")]
+position = Vector2(341, 355)
+
+[node name="Enemy5" parent="." instance=ExtResource("3_6j36t")]
+position = Vector2(237, 371)
