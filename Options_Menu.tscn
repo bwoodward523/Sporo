@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://di1oa51l1vgi3"]
+
+[ext_resource type="Script" path="res://Options_Menu.gd" id="1_m50vf"]
+
+[node name="Menu" type="Control"]
+layout_direction = 1
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_m50vf")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = -64.0
+offset_top = -51.0
+offset_right = 66.0
+offset_bottom = 50.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Volume" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Volume"
+
+[node name="Fullscreen" type="CheckButton" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Fullscreen"
+
+[node name="Back to Main Menu" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Return to Main Menu"
+
+[connection signal="toggled" from="MarginContainer/VBoxContainer/Fullscreen" to="." method="_on_fullscreen_toggled"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Back to Main Menu" to="." method="_on_back_to_main_menu_pressed"]
