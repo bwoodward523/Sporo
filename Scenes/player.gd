@@ -19,6 +19,7 @@ func _physics_process(delta):
 			#scale.x = scale*-1.0
 			#$Rifle.move_local_x(-transform1, true)
 		elif velocity.x < 0:
+			print("we move left")
 			#$Sprite2D.flip_h = false
 			#scale.x = 1
 			#$Rifle.move_local_x(transform1, true)
