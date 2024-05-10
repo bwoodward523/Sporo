@@ -33,9 +33,11 @@ func _physics_process(delta):
 		_animation_player.play("RESET")
 	if direction:
 		if velocity.x > 0:
-			print("we move right")
+			pass
+			#print("we move right")
 		elif velocity.x < 0:
-			print("we move left")
+			pass
+			#print("we move left")
 	
 	move_and_slide()
 	pass
