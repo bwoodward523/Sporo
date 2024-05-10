@@ -127,3 +127,5 @@ libraries = {
 speed_scale = 2.0
 
 [node name="Area2D" type="Area2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
