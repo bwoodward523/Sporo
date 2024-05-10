@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://m81oyjg0p6o2"
-path="res://.godot/imported/BootyNinja.png-b4306db2b9794bed471cf04524fc666a.ctex"
+uid="uid://bc22wv6xcfa4l"
+path="res://.godot/imported/MainBullet.png-296e14c1091243ef27006d19dc313089.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://BootyNinja.png"
-dest_files=["res://.godot/imported/BootyNinja.png-b4306db2b9794bed471cf04524fc666a.ctex"]
+source_file="res://Assets/MainBullet.png"
+dest_files=["res://.godot/imported/MainBullet.png-296e14c1091243ef27006d19dc313089.ctex"]
 
 [params]
 
