@@ -13,7 +13,7 @@ func _physics_process(delta):
 	var direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
 
 
-	canShoot = Input.is_action_just_pressed("shoot")
+	canShoot = Input.is_action_pressed("shoot")
 	if(Input.is_key_pressed(KEY_ESCAPE)):
 		get_tree().change_scene_to_file("res://Menu.tscn")
 	if(canShoot):
@@ -43,9 +43,9 @@ func _physics_process(delta):
 func playerShoot():
 	var instance = playerProjectile.instantiate()
 	var bulletDirection = (get_global_mouse_position() - position).normalized()
-
 	instance.dir = bulletDirection
-	instance.spawnPos = Vector2(global_position.x + 5, global_position.y)
+	instance.spawnPos = Vector2(global_position.x, global_position.y)
 	instance.spawnRot = rotation
+	instance.zdex = z_index -1
 	main.add_child(instance)
 	
