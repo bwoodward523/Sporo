@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://dhmsoifjhyut7"]
+[gd_scene load_steps=3 format=3 uid="uid://dhmsoifjhyut7"]
 
-[ext_resource type="Texture2D" uid="uid://bahx35r2f6ec1" path="res://Assets/testtile.png" id="1_bcerp"]
+[ext_resource type="Script" path="res://main.gd" id="1_qom2t"]
 [ext_resource type="PackedScene" uid="uid://whd11j441bhe" path="res://Scenes/player.tscn" id="2_qtbt2"]
 [ext_resource type="Texture2D" uid="uid://cr34q3fvdsj8i" path="res://Assets/lava.png" id="2_rob4c"]
 [ext_resource type="Script" path="res://TileMap.gd" id="3_nbbm3"]
@@ -46,6 +46,7 @@ sources/0 = SubResource("TileSetAtlasSource_opvs7")
 sources/1 = SubResource("TileSetAtlasSource_pan5r")
 
 [node name="main" type="Node2D"]
+script = ExtResource("1_qom2t")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_r4gy3")

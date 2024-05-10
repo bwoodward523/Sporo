@@ -1,5 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://whd11j441bhe"]
 
+[ext_resource type="Script" path="res://Scenes/player.gd" id="1_vaacn"]
 [ext_resource type="Texture2D" uid="uid://2q5lrp74xdxl" path="res://Assets/MainBulletSpriteSheet.png" id="2_rr0v0"]
 [ext_resource type="Texture2D" uid="uid://c72qd3p7md3qe" path="res://Assets/AR.png" id="3_0f8ul"]
 
@@ -49,7 +50,7 @@ func _physics_process(delta):
 	move_and_slide()
 	pass
 	
-"
+
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fba2d"]
 radius = 7.0
@@ -100,7 +101,7 @@ _data = {
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 scale = Vector2(1.525, 1.525)
-script = SubResource("GDScript_2vypb")
+script = ExtResource("1_vaacn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(1.8125, 1.8125)
