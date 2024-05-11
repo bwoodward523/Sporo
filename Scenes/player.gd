@@ -13,7 +13,7 @@ func _ready():
 	$HealthComponent.health = 10
 	
 func _physics_process(delta):
-	print($HealthComponent.health)
+	#print($HealthComponent.health)
 	
 	var direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
 
@@ -62,6 +62,13 @@ func _on_area_2d_body_entered(body):
 	print(body.name)
 	if body.name.contains("Enemy"):
 		$HealthComponent.deductHealth()
+		print("HI")
+		body.queue_free() #destroy enemy
 		if $HealthComponent.isDead:
-			queue_free()
+			visible = false
+		
 	
+
+
+func _on_area_2d_area_entered(area):
+	print(area.name)

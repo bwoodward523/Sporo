@@ -15,7 +15,7 @@ func _ready():
 func _physics_process(delta):
 	position += dir * delta * SPEED
 	$Sprite2D.rotation = $Sprite2D.rotation + 5 * delta
-	move_and_slide()
+	#move_and_slide()
 
 
 func _on_timer_timeout():

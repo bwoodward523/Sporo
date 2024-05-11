@@ -1,21 +1,93 @@
-[gd_scene load_steps=5 format=3 uid="uid://ydps0kym737e"]
+[gd_scene load_steps=7 format=3 uid="uid://ydps0kym737e"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_j1xkc"]
-[ext_resource type="Texture2D" uid="uid://bc22wv6xcfa4l" path="res://Assets/MainBullet.png" id="2_hou2s"]
+[ext_resource type="Texture2D" uid="uid://htr4lvmqwcjx" path="res://Assets/Enemy1.png" id="2_gkncm"]
 [ext_resource type="PackedScene" uid="uid://cpu2psp3r768g" path="res://Scenes/health_component.tscn" id="3_uegvw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wpvdv"]
+radius = 8.5
+height = 35.0
+
+[sub_resource type="Animation" id="Animation_o1eqb"]
+resource_name = "changeColorThenCharge"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 2, 2.2, 2.4, 2.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.727678, 0, 0.154335, 0.454902), Color(1, 1, 1, 1), Color(0.727678, 0, 0.154335, 0.454902), Color(1, 1, 1, 1), Color(0.727678, 0, 0.154335, 0.454902), Color(0.727678, 0, 0.154335, 0.454902), Color(0.0823529, 0.4, 0.423529, 0.745098), Color(0.0823529, 0.4, 0.423529, 0.709804)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 2, 2.2, 2.4, 2.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(2, 1), Vector2(2, 2), Vector2(2, 1), Vector2(2, 2), Vector2(2, 1), Vector2(2, 1), Vector2(2, 2), Vector2(2, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 2, 2.2, 2.4, 2.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -17), Vector2(0, 0), Vector2(0, -17), Vector2(0, 0), Vector2(0, -17), Vector2(0, -17), Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 2, 2.2, 2.4, 2.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -17), Vector2(0, 0), Vector2(0, -17), Vector2(0, 0), Vector2(0, -17), Vector2(0, -17), Vector2(0, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oqme3"]
+_data = {
+"changeColorThenCharge": SubResource("Animation_o1eqb")
+}
 
 [node name="Enemy" type="CharacterBody2D"]
+scale = Vector2(2, 2)
 collision_layer = 4
-collision_mask = 4
+collision_mask = 5
 script = ExtResource("1_j1xkc")
+SPEED = 100
+DETECTION_RANGE = 400
+CHARGE_SPEED = 600
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_wpvdv")
+debug_color = Color(4.23551e-06, 0.616156, 0.595245, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1, 0)
-texture = ExtResource("2_hou2s")
+position = Vector2(0, 1)
+texture = ExtResource("2_gkncm")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_uegvw")]
+MAXHEALTH = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_oqme3")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
