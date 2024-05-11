@@ -1,55 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://whd11j441bhe"]
 
+[ext_resource type="Script" path="res://Scenes/player.gd" id="1_200gu"]
 [ext_resource type="Texture2D" uid="uid://2q5lrp74xdxl" path="res://Assets/MainBulletSpriteSheet.png" id="2_rr0v0"]
 [ext_resource type="Texture2D" uid="uid://c72qd3p7md3qe" path="res://Assets/AR.png" id="3_0f8ul"]
-
-[sub_resource type="GDScript" id="GDScript_2vypb"]
-script/source = "extends CharacterBody2D
-@onready var _animation_player = $AnimationPlayer
-const SPEED = 450
-var canShoot = false
-var dirFace = 1
-func _physics_process(delta):
-	var direction = Input.get_vector(\"moveLeft\", \"moveRight\", \"moveUp\", \"moveDown\")
-
-
-	canShoot = Input.is_action_just_pressed(\"shoot\")
-	if(Input.is_key_pressed(KEY_ESCAPE)):
-		get_tree().change_scene_to_file(\"res://Menu.tscn\")
-	if(canShoot):
-		print(\"WooHoo we shootin\")
-	
-	velocity = direction * SPEED
-	if Input.is_action_pressed(\"moveUp\"):
-		_animation_player.play(\"walk\")
-	if Input.is_action_pressed(\"moveRight\"):
-		_animation_player.play(\"walk\")
-		$Sprite2D.flip_h = false
-		$Sprite2D/Rifle.flip_h = true
-	elif Input.is_action_pressed(\"moveLeft\"):
-		_animation_player.play(\"walk\")
-		$Sprite2D.flip_h = true
-		$Sprite2D/Rifle.flip_h = false
-	else:
-		_animation_player.play(\"RESET\")
-	if direction:
-		if velocity.x > 0:
-			#$CharacterBody2D.set_scale
-			print(\"we move right\")
-			
-			#scale.x = scale*-1.0
-			#$Rifle.move_local_x(-transform1, true)
-		elif velocity.x < 0:
-			print(\"we move left\")
-			
-			#$Sprite2D.flip_h = false
-			#scale.x = 1
-			#$Rifle.move_local_x(transform1, true)
-	
-	move_and_slide()
-	pass
-	
-"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fba2d"]
 radius = 7.0
@@ -100,9 +53,12 @@ _data = {
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 scale = Vector2(1.525, 1.525)
-script = SubResource("GDScript_2vypb")
+script = ExtResource("1_200gu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+z_index = 1
 scale = Vector2(1.8125, 1.8125)
 texture = ExtResource("2_rr0v0")
 hframes = 7
