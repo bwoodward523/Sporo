@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://whd11j441bhe"]
 
-[ext_resource type="Script" path="res://Scenes/player.gd" id="1_vaacn"]
+[ext_resource type="Script" path="res://Scenes/player.gd" id="1_200gu"]
 [ext_resource type="Texture2D" uid="uid://2q5lrp74xdxl" path="res://Assets/MainBulletSpriteSheet.png" id="2_rr0v0"]
 [ext_resource type="Texture2D" uid="uid://c72qd3p7md3qe" path="res://Assets/AR.png" id="3_0f8ul"]
 
@@ -53,9 +53,12 @@ _data = {
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 scale = Vector2(1.525, 1.525)
-script = ExtResource("1_vaacn")
+script = ExtResource("1_200gu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+z_index = 1
 scale = Vector2(1.8125, 1.8125)
 texture = ExtResource("2_rr0v0")
 hframes = 7
@@ -70,7 +73,7 @@ offset = Vector2(-25.2738, -9.18033)
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.165, 0)
+position = Vector2(-1.31148, 4.59016)
 scale = Vector2(1.16, 1.16)
 shape = SubResource("CapsuleShape2D_fba2d")
 
