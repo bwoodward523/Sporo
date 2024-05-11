@@ -3,7 +3,7 @@ extends Node2D
 
 @export var MAXHEALTH = 5
 @onready var health = MAXHEALTH
-var isDead = false
+@onready var isDead = false
 
 @onready var parent = get_parent() 
 

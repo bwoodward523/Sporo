@@ -27,6 +27,6 @@ func _on_area_2d_body_entered(body):
 		print("hit enemy")
 		var hp = body.get_node("HealthComponent")
 		hp.deductHealth()
-		print("enemy hp: ")
-		print(hp.health)
+		#print("enemy hp: ")
+		#print(hp.health)
 	queue_free()
