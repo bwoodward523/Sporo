@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dhmsoifjhyut7"]
+[gd_scene load_steps=5 format=3 uid="uid://dhmsoifjhyut7"]
 
 [ext_resource type="PackedScene" uid="uid://cv2rejn7ecfth" path="res://Scenes/tile_map.tscn" id="1_70dvb"]
 [ext_resource type="PackedScene" uid="uid://whd11j441bhe" path="res://Scenes/player.tscn" id="2_qtbt2"]
 [ext_resource type="PackedScene" uid="uid://buolqc48nptej" path="res://Scenes/enemy.tscn" id="3_6j36t"]
+[ext_resource type="PackedScene" uid="uid://b7oes3w40giek" path="res://Scenes/command_input.tscn" id="4_2mw6b"]
 
 [node name="main" type="Node2D"]
 
@@ -25,3 +26,5 @@ position = Vector2(341, 355)
 
 [node name="Enemy5" parent="." instance=ExtResource("3_6j36t")]
 position = Vector2(237, 371)
+
+[node name="CommandInput" parent="." instance=ExtResource("4_2mw6b")]
