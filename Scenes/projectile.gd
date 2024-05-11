@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var SPEED = 100
+@export var SPEED = 200
 
 var dir: Vector2
 var spawnPos: Vector2
@@ -24,7 +24,7 @@ func _on_timer_timeout():
 
 func _on_area_2d_body_entered(body):
 	if body.name.contains("Enemy"):  #this is the start of the name of the parent enemy node
-		print("hit enemy")
+		#print("hit enemy")
 		var hp = body.get_node("HealthComponent")
 		hp.deductHealth()
 		#print("enemy hp: ")

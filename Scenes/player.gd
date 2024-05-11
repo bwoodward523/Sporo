@@ -9,7 +9,12 @@ var canShoot = false
 var dirFace = 1
 
 
+func _ready():
+	$HealthComponent.health = 10
+	
 func _physics_process(delta):
+	print($HealthComponent.health)
+	
 	var direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
 
 
@@ -50,4 +55,13 @@ func playerShoot():
 	instance.spawnRot = rotation
 	instance.zdex = z_index -1
 	main.add_child(instance)
+	
+
+
+func _on_area_2d_body_entered(body):
+	print(body.name)
+	if body.name.contains("Enemy"):
+		$HealthComponent.deductHealth()
+		if $HealthComponent.isDead:
+			queue_free()
 	
