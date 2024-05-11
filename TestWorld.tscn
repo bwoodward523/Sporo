@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dhmsoifjhyut7"]
+[gd_scene load_steps=9 format=3 uid="uid://dhmsoifjhyut7"]
 
 [ext_resource type="Texture2D" uid="uid://bahx35r2f6ec1" path="res://Assets/testtile.png" id="1_bcerp"]
 [ext_resource type="PackedScene" uid="uid://whd11j441bhe" path="res://Scenes/player.tscn" id="2_qtbt2"]
@@ -55,3 +55,18 @@ script = ExtResource("3_nbbm3")
 
 [node name="player" parent="." instance=ExtResource("2_qtbt2")]
 position = Vector2(600, 400)
+
+[node name="Enemy" parent="." instance=ExtResource("3_6j36t")]
+position = Vector2(263, 423)
+
+[node name="Enemy2" parent="." instance=ExtResource("3_6j36t")]
+position = Vector2(170, 410)
+
+[node name="Enemy3" parent="." instance=ExtResource("3_6j36t")]
+position = Vector2(318, 456)
+
+[node name="Enemy4" parent="." instance=ExtResource("3_6j36t")]
+position = Vector2(341, 355)
+
+[node name="Enemy5" parent="." instance=ExtResource("3_6j36t")]
+position = Vector2(237, 371)
