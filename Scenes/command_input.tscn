@@ -21,3 +21,6 @@ offset_bottom = 23.0
 script = ExtResource("1_kykks")
 
 [node name="InventoryGui" parent="CanvasLayer" instance=ExtResource("2_mevhe")]
+
+[connection signal="closed" from="CanvasLayer/InventoryGui" to="CanvasLayer" method="_on_inventory_gui_closed"]
+[connection signal="opened" from="CanvasLayer/InventoryGui" to="CanvasLayer" method="_on_inventory_gui_opened"]
