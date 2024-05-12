@@ -27,7 +27,7 @@ func checkForAttack():
 	if position.distance_to(player.position) <= DETECTION_RANGE:
 		$AnimationPlayer.play("changeColorThenCharge")
 		stopMovement = true
-		#set_collision_mask_value(3, false) #Disable collision with other enemies because homie is homing
+		set_collision_mask_value(3, false) #Disable collision with other enemies because homie is homing
 
 
 func _on_animation_player_animation_finished(anim_name):

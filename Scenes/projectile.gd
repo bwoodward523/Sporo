@@ -16,6 +16,13 @@ func _physics_process(delta):
 	position += dir * delta * SPEED
 	$Sprite2D.rotation = $Sprite2D.rotation + 5 * delta
 	#move_and_slide()
+	if abs(rotation_degrees) >= 90: #This kinda works. goal is for gun to face a dir that feels right
+		$Sprite2D.flip_v = true
+	else:
+		$Sprite2D.flip_v = false
+		
+	if abs(rotation_degrees) >= 180:
+		rotation_degrees *= -1
 
 
 func _on_timer_timeout():
