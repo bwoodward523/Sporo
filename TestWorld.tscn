@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://dhmsoifjhyut7"]
 
-[ext_resource type="PackedScene" path="res://Scenes/tile_map.tscn" id="1_70dvb"]
+[ext_resource type="PackedScene" uid="uid://cv2rejn7ecfth" path="res://Scenes/tile_map.tscn" id="1_70dvb"]
 [ext_resource type="PackedScene" uid="uid://whd11j441bhe" path="res://Scenes/player.tscn" id="2_qtbt2"]
 [ext_resource type="PackedScene" uid="uid://ydps0kym737e" path="res://Scenes/enemy.tscn" id="3_6j36t"]
 [ext_resource type="PackedScene" uid="uid://ckap5eabxuiku" path="res://Scenes/enemy_spawner.tscn" id="4_1wl62"]
-[ext_resource type="PackedScene" path="res://Scenes/command_input.tscn" id="4_2mw6b"]
+[ext_resource type="PackedScene" uid="uid://b7oes3w40giek" path="res://Scenes/command_input.tscn" id="4_2mw6b"]
 
 [node name="main" type="Node2D"]
 
