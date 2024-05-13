@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://ydps0kym737e"]
+[gd_scene load_steps=9 format=3 uid="uid://ydps0kym737e"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_j1xkc"]
 [ext_resource type="Texture2D" uid="uid://htr4lvmqwcjx" path="res://Assets/Enemy1.png" id="2_gkncm"]
+[ext_resource type="Resource" uid="uid://cslalod3l863d" path="res://Enemies/Repo/grunt.tres" id="2_xem1n"]
 [ext_resource type="PackedScene" uid="uid://cpu2psp3r768g" path="res://Scenes/health_component.tscn" id="3_uegvw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wpvdv"]
@@ -18,10 +19,10 @@ tracks/0/path = NodePath("Sprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 2, 2.2, 2.4, 2.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.727678, 0, 0.154335, 0.454902), Color(1, 1, 1, 1), Color(0.727678, 0, 0.154335, 0.454902), Color(1, 1, 1, 1), Color(0.727678, 0, 0.154335, 0.454902), Color(0.727678, 0, 0.154335, 0.454902), Color(0.0823529, 0.4, 0.423529, 0.745098), Color(0.0823529, 0.4, 0.423529, 0.709804)]
+"values": [Color(1, 1, 1, 1), Color(0, 0.213787, 0.550364, 1), Color(1, 1, 1, 1), Color(0.00437932, 0.254476, 0.984282, 1), Color(1, 1, 1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -30,10 +31,10 @@ tracks/1/path = NodePath(".:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 2, 2.2, 2.4, 2.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(2, 2), Vector2(2, 1), Vector2(2, 2), Vector2(2, 1), Vector2(2, 2), Vector2(2, 1), Vector2(2, 1), Vector2(2, 2), Vector2(2, 2)]
+"values": [Vector2(2, 2), Vector2(2, 1), Vector2(2, 2), Vector2(2, 1), Vector2(2, 2)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -42,10 +43,10 @@ tracks/2/path = NodePath("Sprite2D:offset")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 2, 2.2, 2.4, 2.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, -17), Vector2(0, 0), Vector2(0, -17), Vector2(0, 0), Vector2(0, -17), Vector2(0, -17), Vector2(0, 0), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(0, -17), Vector2(0, 0), Vector2(0, -17), Vector2(0, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -60,9 +61,27 @@ tracks/3/keys = {
 "values": [Vector2(0, 0), Vector2(0, -17), Vector2(0, 0), Vector2(0, -17), Vector2(0, 0), Vector2(0, -17), Vector2(0, -17), Vector2(0, 0), Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_7nnmu"]
+resource_name = "gruntHurt"
+length = 0.3
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.3),
+"transitions": PackedFloat32Array(1, 0.133973, 3.13834),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.501961, 0, 0.133333, 1), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oqme3"]
 _data = {
-"changeColorThenCharge": SubResource("Animation_o1eqb")
+"changeColorThenCharge": SubResource("Animation_o1eqb"),
+"gruntHurt": SubResource("Animation_7nnmu")
 }
 
 [node name="Enemy" type="CharacterBody2D"]
@@ -70,8 +89,8 @@ scale = Vector2(2, 2)
 collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_j1xkc")
-SPEED = 400
 DETECTION_RANGE = 500
+enemy = ExtResource("2_xem1n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_wpvdv")
@@ -82,7 +101,6 @@ position = Vector2(0, 1)
 texture = ExtResource("2_gkncm")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_uegvw")]
-MAXHEALTH = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

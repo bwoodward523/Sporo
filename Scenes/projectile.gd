@@ -42,7 +42,8 @@ func _on_area_2d_body_entered(body):
 		var hp = body.get_node("HealthComponent")
 		for i in damage:
 			hp.deductHealth()
-		
+		body.isHurt = true
+		body._play_hurt()
 		#print("enemy hp: ")
 		#print(hp.health)
 	queue_free()

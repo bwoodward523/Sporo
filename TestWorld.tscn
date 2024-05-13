@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhmsoifjhyut7"]
+[gd_scene load_steps=9 format=3 uid="uid://dhmsoifjhyut7"]
 
 [ext_resource type="PackedScene" path="res://Scenes/tile_map.tscn" id="1_70dvb"]
 [ext_resource type="Script" path="res://TestWorld.gd" id="1_wd6si"]
@@ -6,6 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://ydps0kym737e" path="res://Scenes/enemy.tscn" id="3_6j36t"]
 [ext_resource type="PackedScene" uid="uid://ckap5eabxuiku" path="res://Scenes/enemy_spawner.tscn" id="4_1wl62"]
 [ext_resource type="PackedScene" uid="uid://b7oes3w40giek" path="res://Scenes/command_input.tscn" id="4_2mw6b"]
+[ext_resource type="Texture2D" uid="uid://d0po3x2wa2jmp" path="res://Assets/raindropforsister.png" id="7_7nxts"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pm81r"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(0, 98, 0)
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_wd6si")
@@ -33,3 +40,11 @@ position = Vector2(341, 355)
 position = Vector2(237, 371)
 
 [node name="CommandInput" parent="." instance=ExtResource("4_2mw6b")]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+visible = false
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_pm81r")
+texture = ExtResource("7_7nxts")
+lifetime = 2.0
+fixed_fps = 25
