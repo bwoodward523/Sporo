@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var item2 : Resource
 @export var item3 : Resource
 
+
 @onready var _animation_player = $AnimationPlayer
 @onready var inventory = $InventoryGui
 

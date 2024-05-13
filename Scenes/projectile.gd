@@ -16,7 +16,7 @@ func _ready():
 	$Sprite2D.set_texture(sprite)
 	
 func _physics_process(delta):
-	position += dir * delta * speed
+	velocity = dir * delta * speed
 	$Sprite2D.rotation = $Sprite2D.rotation + 5 * delta
 	#move_and_slide()
 	if abs(rotation_degrees) >= 90: #This kinda works. goal is for gun to face a dir that feels right
@@ -27,7 +27,7 @@ func _physics_process(delta):
 	if abs(rotation_degrees) >= 180:
 		rotation_degrees *= -1
 	_distance_to_destroy_projectile()
-
+	move_and_collide(velocity)
 #func _on_timer_timeout():
 	#queue_free()
 
