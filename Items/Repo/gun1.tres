@@ -5,9 +5,10 @@
 
 [resource]
 script = ExtResource("1_xyk4w")
-DAMAGE = 2
-FIRE_RATE = 3
+DAMAGE = 10
+FIRE_RATE = 0.05
 MAX_AMMO = 200
+PROJECTILE_SPEED = 1400.0
 ITEM_NAME = "Assault Rifle"
 ITEM_TEXTURE = ExtResource("1_rjr02")
 QUANTITY = 1

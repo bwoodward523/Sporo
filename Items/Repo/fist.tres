@@ -6,8 +6,9 @@
 [resource]
 script = ExtResource("1_ynaix")
 DAMAGE = 1
-FIRE_RATE = 5
+FIRE_RATE = 1.0
 MAX_AMMO = -1
+PROJECTILE_SPEED = 1.0
 ITEM_NAME = "Fist"
 ITEM_TEXTURE = ExtResource("1_hojye")
 QUANTITY = 0

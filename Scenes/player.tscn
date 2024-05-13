@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://0i4nxircwafu" path="res://Items/Repo/gun1.tres" id="2_1vchb"]
 [ext_resource type="Texture2D" uid="uid://2q5lrp74xdxl" path="res://Assets/MainBulletSpriteSheet.png" id="2_rr0v0"]
 [ext_resource type="Resource" uid="uid://d2jg3o7ug4xpo" path="res://Items/Repo/fist.tres" id="2_wr8ff"]
-[ext_resource type="PackedScene" uid="uid://b6lpalucwsy41" path="res://Scenes/rifle.tscn" id="3_8keq0"]
+[ext_resource type="PackedScene" uid="uid://thjtpkg3w2xm" path="res://Scenes/rifle.tscn" id="3_8keq0"]
 [ext_resource type="PackedScene" uid="uid://cpu2psp3r768g" path="res://Scenes/health_component.tscn" id="4_dswhc"]
 [ext_resource type="Script" path="res://Scenes/HealthDisplay.gd" id="5_t3i60"]
 [ext_resource type="PackedScene" uid="uid://ck7geeut0uvi6" path="res://inventory_gui.tscn" id="7_87di0"]
@@ -62,6 +62,7 @@ collision_mask = 4
 script = ExtResource("1_200gu")
 item1 = ExtResource("2_wr8ff")
 item2 = ExtResource("2_1vchb")
+SPEED = 800
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.31148, 4.59016)
@@ -77,7 +78,8 @@ texture = ExtResource("2_rr0v0")
 hframes = 7
 frame = 6
 
-[node name="CharacterBody2D" parent="Sprite2D" instance=ExtResource("3_8keq0")]
+[node name="Weapon" parent="Sprite2D" instance=ExtResource("3_8keq0")]
+position = Vector2(-0.361786, 6.51215)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
