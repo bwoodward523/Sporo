@@ -2,15 +2,18 @@ extends CharacterBody2D
 
 
 
+@export var item1 : Resource
+@export var item2 : Resource
+@export var item3 : Resource
+
 @onready var _animation_player = $AnimationPlayer
+@onready var inventory = $InventoryGui
+
 @export var SPEED = 450
 var canShoot = false
 var dirFace = 1
 
 
-func _ready():
-	pass
-	
 func _physics_process(delta):
 	#print($HealthComponent.health)
 	
@@ -68,6 +71,13 @@ func detectEnemy():
 			#Check if player is dead
 			checkDeath()
 			
+
+func _input(event):
+	if event.is_action_pressed("toggle_inventory"):
+		if inventory.isOpen:
+			inventory.close()
+		else:
+			inventory.open()
 
 func checkDeath():
 	if $HealthComponent.isDead:

@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://oh5wtp1yij50"]
+[gd_scene load_steps=3 format=3 uid="uid://oh5wtp1yij50"]
 
+[ext_resource type="Script" path="res://slot.gd" id="1_1ik4c"]
 [ext_resource type="Texture2D" uid="uid://ddk3fad046ok1" path="res://Assets/inventorycell.png" id="1_dl2sc"]
 
 [node name="Slot" type="Panel"]
@@ -7,7 +8,12 @@ self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(65, 64)
 offset_right = 65.0
 offset_bottom = 64.0
+script = ExtResource("1_1ik4c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_dl2sc")
 centered = false
+
+[node name="Contains" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+offset = Vector2(20, 20)
