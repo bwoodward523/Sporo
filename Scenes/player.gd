@@ -15,10 +15,7 @@ var dirFace = 1
 
 
 func _physics_process(delta):
-	#print($HealthComponent.health)
-	
 	var direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
-
 	if(Input.is_key_pressed(KEY_ESCAPE)):
 		get_tree().change_scene_to_file("res://Menu.tscn")
 	
@@ -28,49 +25,52 @@ func _physics_process(delta):
 	if Input.is_action_pressed("moveRight"):
 		_animation_player.play("walk")
 		$Sprite2D.flip_h = false
-	#if Input.is_action_just_pressed("moveRight"):
-		#$Sprite2D/Rifle.position.x *= -1
+
 	elif Input.is_action_pressed("moveLeft"):
 		_animation_player.play("walk")
 		$Sprite2D.flip_h = true
-	#if Input.is_action_just_pressed("moveLeft"):
-		#$Sprite2D/Rifle.position.x *= -1
+
 	else:
 		_animation_player.play("RESET")
 	if direction:
 		if velocity.x > 0:
 			pass
-			#print("we move right")
+
 		elif velocity.x < 0:
 			pass
-			#print("we move left")
+
 	
 	move_and_slide()
-	detectEnemy()
+	detect_enemy()
 	pass
 	
-#func playerShoot():
-	#var instance = playerProjectile.instantiate()
-	#var bulletDirection = (get_global_mouse_position() - position).normalized()
-	#instance.dir = bulletDirection
-	#instance.spawnPos = Vector2(global_position.x, global_position.y)
-	#instance.spawnRot = rotation
-	#instance.zdex = z_index -1
-	#main.add_child(instance)
-	
 
-func detectEnemy():
+func detect_enemy():
+	
+	var collisionList: Array
+	#make array of all names of collisions
 	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		print("I collided with: ", collision.get_collider().name)
+		collisionList.append(get_slide_collision(i).get_collider().name)
+		
+	var collisionListNames = delete_duplicate_collisions(collisionList)
+	for i in collisionListNames:
+		print("I collided with: ", i)
 		#Check to see if we collided with an enemy
-		if collision.get_collider().name.contains("Enemy"):
-			collision.get_collider().queue_free()
+		if i.contains("Enemy"):
+			for k in get_slide_collision_count():
+				var collision = get_slide_collision(k)
+				collision.get_collider().queue_free()
 			$HealthComponent.deductHealth()
 			print("PLAYER HP: ", $HealthComponent.health)
 			#Check if player is dead
-			checkDeath()
+			check_death()
 			
+func delete_duplicate_collisions(collisions: Array):
+	var unique: Array = []
+	for item in collisions:
+		if !unique.has(item):
+			unique.append(item)
+	return unique
 
 func _input(event):
 	if event.is_action_pressed("toggle_inventory"):
@@ -79,8 +79,11 @@ func _input(event):
 		else:
 			inventory.open()
 
-func checkDeath():
+func check_death():
 	if $HealthComponent.isDead:
 		visible = false
+		print($HealthComponent.isDead)
+		if is_inside_tree():
+			get_tree().change_scene_to_file("res://Scenes/end_screen.tscn")
 
 

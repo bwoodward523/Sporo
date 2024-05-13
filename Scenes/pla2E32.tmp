@@ -1,12 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://whd11j441bhe"]
+[gd_scene load_steps=10 format=3 uid="uid://whd11j441bhe"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_200gu"]
-[ext_resource type="Resource" uid="uid://0i4nxircwafu" path="res://Items/Repo/gun1.tres" id="2_1vchb"]
 [ext_resource type="Texture2D" uid="uid://2q5lrp74xdxl" path="res://Assets/MainBulletSpriteSheet.png" id="2_rr0v0"]
-[ext_resource type="PackedScene" uid="uid://b6lpalucwsy41" path="res://Scenes/rifle.tscn" id="3_8keq0"]
+[ext_resource type="PackedScene" uid="uid://thjtpkg3w2xm" path="res://Scenes/rifle.tscn" id="3_8m3rh"]
 [ext_resource type="PackedScene" uid="uid://cpu2psp3r768g" path="res://Scenes/health_component.tscn" id="4_dswhc"]
-[ext_resource type="Script" path="res://Scenes/HealthDisplay.gd" id="5_t3i60"]
-[ext_resource type="PackedScene" uid="uid://ck7geeut0uvi6" path="res://inventory_gui.tscn" id="7_87di0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fba2d"]
 radius = 7.0
@@ -59,7 +56,6 @@ _data = {
 scale = Vector2(1.525, 1.525)
 collision_mask = 4
 script = ExtResource("1_200gu")
-item1 = ExtResource("2_1vchb")
 SPEED = 800
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -76,7 +72,8 @@ texture = ExtResource("2_rr0v0")
 hframes = 7
 frame = 6
 
-[node name="CharacterBody2D" parent="Sprite2D" instance=ExtResource("3_8keq0")]
+[node name="Rifle" parent="Sprite2D" instance=ExtResource("3_8m3rh")]
+position = Vector2(-0.361787, 6.51215)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -95,19 +92,7 @@ shape = SubResource("CapsuleShape2D_fba2d")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="HealthComponent" parent="." instance=ExtResource("4_dswhc")]
-MAXHEALTH = 2000
-
-[node name="HealthDisplay" type="Label" parent="HealthComponent"]
-light_mask = 4
-visibility_layer = 4
-z_index = 2
-offset_left = -378.0
-offset_top = -184.0
-offset_right = -334.0
-offset_bottom = -161.0
-script = ExtResource("5_t3i60")
-
-[node name="InventoryGui" parent="." instance=ExtResource("7_87di0")]
+MAXHEALTH = 10
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
