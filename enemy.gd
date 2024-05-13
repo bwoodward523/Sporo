@@ -37,3 +37,7 @@ func _on_animation_player_animation_finished(anim_name):
 		behaviorState = "Charging"
 		look_at(player.position)
 		rotation_degrees += 90
+
+
+func _on_lifespan_timeout():
+	queue_free()

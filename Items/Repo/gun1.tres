@@ -1,14 +1,19 @@
-[gd_resource type="Resource" script_class="WEAPON_ITEM" load_steps=3 format=3 uid="uid://0i4nxircwafu"]
+[gd_resource type="Resource" script_class="WEAPON_ITEM" load_steps=4 format=3 uid="uid://0i4nxircwafu"]
 
 [ext_resource type="Texture2D" uid="uid://c72qd3p7md3qe" path="res://Assets/AR.png" id="1_rjr02"]
 [ext_resource type="Script" path="res://Items/Classes/weapon_item_class.gd" id="1_xyk4w"]
+[ext_resource type="Texture2D" uid="uid://m81oyjg0p6o2" path="res://Assets/BootyNinja.png" id="2_aun7d"]
 
 [resource]
 script = ExtResource("1_xyk4w")
-DAMAGE = 10
+DAMAGE = 5
 FIRE_RATE = 0.05
 MAX_AMMO = 200
 PROJECTILE_SPEED = 1400.0
+PROJECTILE_TEXTURE = ExtResource("2_aun7d")
+SHOTS_PER_SHOT = 1
+SPREAD_WIDTH = 0.0
+MAX_BULLET_DISTANCE = 500.0
 ITEM_NAME = "Assault Rifle"
 ITEM_TEXTURE = ExtResource("1_rjr02")
 QUANTITY = 1

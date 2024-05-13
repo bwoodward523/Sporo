@@ -89,4 +89,9 @@ libraries = {
 "": SubResource("AnimationLibrary_oqme3")
 }
 
+[node name="Lifespan" type="Timer" parent="."]
+wait_time = 15.0
+autostart = true
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="Lifespan" to="." method="_on_lifespan_timeout"]

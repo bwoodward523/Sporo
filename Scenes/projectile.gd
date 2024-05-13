@@ -6,11 +6,14 @@ var spawnPos: Vector2
 var spawnRot: float
 var zdex: int
 var damage: int
+var sprite: Texture
+var maxDistance: float 
 
 func _ready():
 	global_position = spawnPos
 	global_rotation = spawnRot
 	z_index = zdex
+	$Sprite2D.set_texture(sprite)
 	
 func _physics_process(delta):
 	position += dir * delta * speed
@@ -23,13 +26,15 @@ func _physics_process(delta):
 		
 	if abs(rotation_degrees) >= 180:
 		rotation_degrees *= -1
+	_distance_to_destroy_projectile()
 
-
-func _on_timer_timeout():
-	queue_free()
+#func _on_timer_timeout():
+	#queue_free()
 
 func _distance_to_destroy_projectile():
-	pass
+	var distanceTraveled = spawnPos.distance_to(global_position)
+	if distanceTraveled > maxDistance:
+		queue_free()
 
 func _on_area_2d_body_entered(body):
 	if body.name.contains("Enemy"):  #this is the start of the name of the parent enemy node

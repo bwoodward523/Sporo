@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://thjtpkg3w2xm"]
+
+[ext_resource type="Texture2D" uid="uid://c72qd3p7md3qe" path="res://Assets/AR.png" id="1_qopo1"]
+[ext_resource type="Script" path="res://Scenes/rifle.gd" id="2_4bwlb"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_002ul"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("2_4bwlb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_002ul")
+disabled = true
+
+[node name="Rifle" type="Sprite2D" parent="."]
+position = Vector2(8, -4)
+scale = Vector2(0.808847, 0.551724)
+texture = ExtResource("1_qopo1")
+centered = false
+offset = Vector2(-25.2738, -9.18033)
+flip_h = true
+
+[node name="Barrel" type="Node2D" parent="Rifle"]
+position = Vector2(6.4, 6.225)
+
+[node name="FireRate" type="Timer" parent="."]
+wait_time = 0.948
+one_shot = true
+
+[connection signal="timeout" from="FireRate" to="." method="_on_fire_rate_timeout"]
