@@ -51,3 +51,5 @@ layout_mode = 2
 
 [node name="Slot3" parent="NinePatchRect/GridContainer" instance=ExtResource("2_5sms7")]
 layout_mode = 2
+
+[connection signal="pressed" from="NinePatchRect/GridContainer/Slot2" to="." method="_on_slot_2_pressed"]

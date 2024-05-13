@@ -12,3 +12,4 @@ func close():
 	visible = false
 	isOpen = false
 	closed.emit()
+

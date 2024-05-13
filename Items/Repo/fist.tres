@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="WEAPON_ITEM" load_steps=3 format=3 uid="uid://d2jg3o7ug4xpo"]
+
+[ext_resource type="Texture2D" uid="uid://dtfjh5q30dtd8" path="res://Assets/fist.png" id="1_hojye"]
+[ext_resource type="Script" path="res://Items/Classes/weapon_item_class.gd" id="1_ynaix"]
+
+[resource]
+script = ExtResource("1_ynaix")
+DAMAGE = 1
+FIRE_RATE = 5
+MAX_AMMO = -1
+ITEM_NAME = "Fist"
+ITEM_TEXTURE = ExtResource("1_hojye")
+QUANTITY = 0
+HOVER_TEXT = ""

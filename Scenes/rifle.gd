@@ -3,10 +3,15 @@ extends CharacterBody2D
 @onready var main = get_tree().get_current_scene()
 @onready var player = get_parent().get_parent()
 @onready var barrel = get_node("Rifle/Barrel")
+@onready var rifle = get_node("Rifle")
 
-
+func _ready():
+	print(typeof(rifle.texture), " boggas1")
+	print(typeof(player.item1.ITEM_TEXTURE), " boggas2")
+	rifle.texture = player.item1.ITEM_TEXTURE
+	if (player.item1.ITEM_NAME == "Fist"):
+		rifle.visible = false
 func _physics_process(delta):
-	
 	if Input.is_action_pressed("shoot"):
 		playerShoot()
 	#rotate gun towards mouse
