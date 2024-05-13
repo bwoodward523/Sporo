@@ -56,7 +56,7 @@ _data = {
 "walk": SubResource("Animation_mlbch")
 }
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D2" type="CharacterBody2D"]
 scale = Vector2(1.525, 1.525)
 collision_mask = 4
 script = ExtResource("1_200gu")
@@ -104,6 +104,7 @@ MAXHEALTH = 10
 light_mask = 4
 visibility_layer = 4
 z_index = 2
+texture_filter = 4
 offset_left = -378.0
 offset_top = -184.0
 offset_right = -334.0

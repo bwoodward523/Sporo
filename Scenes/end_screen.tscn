@@ -36,14 +36,16 @@ text = "Options"
 layout_mode = 2
 text = "Quit to Desktop"
 
-[node name="TextEdit" type="TextEdit" parent="."]
+[node name="TextEdit" type="Label" parent="."]
 layout_mode = 0
-offset_left = -67.0
-offset_top = -150.0
-offset_right = 69.0
-offset_bottom = -72.0
+offset_left = -65.0
+offset_top = -129.0
+offset_right = 71.0
+offset_bottom = -51.0
 text = "UR DED KID
 "
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
