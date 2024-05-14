@@ -8,11 +8,13 @@ var zdex: int
 var damage: int
 var sprite: Texture
 var maxDistance: float 
+var scale1: Vector2
 
 func _ready():
 	global_position = spawnPos
 	global_rotation = spawnRot
 	z_index = zdex
+	scale = scale1
 	$Sprite2D.set_texture(sprite)
 	
 func _physics_process(delta):

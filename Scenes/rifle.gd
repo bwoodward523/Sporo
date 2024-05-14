@@ -19,10 +19,9 @@ func _ready():
 	if (player.item1.ITEM_NAME == "Fist"):
 		rifle.visible = false
 	#Check to see if weapon has spread
-	if selectedItem.SPREAD_WIDTH != 0:
-			hasSpread = true
-			
+
 func _physics_process(delta):
+	selectedItem = player.item1
 	if Input.is_action_pressed("shoot"):
 		if canShoot:
 			if ammoCount > 0:
@@ -44,6 +43,7 @@ func playerShoot():
 	for i in selectedItem.SHOTS_PER_SHOT:
 		
 		var instance = playerProjectile.instantiate()
+		instance.scale1 = selectedItem.PROJECTILE_SIZE
 		instance.dir = _assign_bullet_direction(i)
 		instance.speed = selectedItem.PROJECTILE_SPEED
 		instance.sprite = selectedItem.PROJECTILE_TEXTURE
@@ -61,9 +61,13 @@ func playerShoot():
 func _on_fire_rate_timeout():
 	#enable shooting
 	canShoot = true
+
 func _assign_bullet_direction(bulletNumber: int):
+	if selectedItem.SPREAD_WIDTH != 0:
+			hasSpread = true
 	var bulletDirection = (get_global_mouse_position() - player.position).normalized()
 	var returnDir: Vector2
+	print(selectedItem.SPREAD_WIDTH," and ",selectedItem.SHOTS_PER_SHOT)
 	if hasSpread:
 		returnDir=  bulletDirection.rotated(deg_to_rad(bulletNumber*selectedItem.SPREAD_WIDTH - (selectedItem.SHOTS_PER_SHOT/2 * selectedItem.SPREAD_WIDTH)))
 	else:

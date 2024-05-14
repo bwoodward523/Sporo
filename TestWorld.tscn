@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dhmsoifjhyut7"]
 
-[ext_resource type="PackedScene" path="res://Scenes/tile_map.tscn" id="1_70dvb"]
+[ext_resource type="PackedScene" uid="uid://cv2rejn7ecfth" path="res://Scenes/tile_map.tscn" id="1_70dvb"]
 [ext_resource type="Script" path="res://TestWorld.gd" id="1_wd6si"]
 [ext_resource type="PackedScene" uid="uid://whd11j441bhe" path="res://Scenes/player.tscn" id="2_qtbt2"]
 [ext_resource type="PackedScene" uid="uid://ydps0kym737e" path="res://Scenes/enemy.tscn" id="3_6j36t"]
@@ -26,23 +26,18 @@ position = Vector2(600, 400)
 
 [node name="Enemy" parent="." instance=ExtResource("3_6j36t")]
 position = Vector2(263, 423)
-CHARGE_SPEED = 1000
 
 [node name="Enemy2" parent="." instance=ExtResource("3_6j36t")]
 position = Vector2(170, 410)
-CHARGE_SPEED = 1000
 
 [node name="Enemy3" parent="." instance=ExtResource("3_6j36t")]
 position = Vector2(318, 456)
-CHARGE_SPEED = 1000
 
 [node name="Enemy4" parent="." instance=ExtResource("3_6j36t")]
 position = Vector2(341, 355)
-CHARGE_SPEED = 1000
 
 [node name="Enemy5" parent="." instance=ExtResource("3_6j36t")]
 position = Vector2(237, 371)
-CHARGE_SPEED = 1000
 
 [node name="CommandInput" parent="." instance=ExtResource("4_2mw6b")]
 
