@@ -25,7 +25,11 @@ func _physics_process(delta):
 	selectedItem = player.Active_Item
 	ammoCount = selectedItem.MAX_AMMO
 	print(selectedItem.ITEM_NAME, " is the current selected item")
-	
+	if (selectedItem.ITEM_NAME == "Fist"):
+		rifle.visible = false
+	else:
+		rifle.texture = selectedItem.ITEM_TEXTURE
+		rifle.visible = true
 	if Input.is_action_pressed("shoot"):
 		if canShoot:
 			if ammoCount > 0:
@@ -71,11 +75,7 @@ func _on_fire_rate_timeout():
 func _assign_bullet_direction(bulletNumber: int):
 	if selectedItem.SPREAD_WIDTH != 0:
 			hasSpread = true
-	if (selectedItem.ITEM_NAME == "Fist"):
-		rifle.visible = false
-	else:
-		rifle.texture = selectedItem.ITEM_TEXTURE
-		rifle.visible = true
+	
 	var bulletDirection = (get_global_mouse_position() - player.position).normalized()
 	var returnDir: Vector2
 	print(selectedItem.SPREAD_WIDTH," and ",selectedItem.SHOTS_PER_SHOT)
