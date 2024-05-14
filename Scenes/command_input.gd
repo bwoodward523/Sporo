@@ -22,6 +22,7 @@ func _process(delta):
 	if (player.item3 != null):
 		get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot3/Contains").texture = player.item3.ITEM_TEXTURE
 		get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot3").item = player.item3
+
 func onSlotClicked(slot):
 	print(slot.name)
 	var tempSlot1 = player.item1

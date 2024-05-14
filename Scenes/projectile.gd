@@ -19,7 +19,6 @@ func _ready():
 	scale = scale1
 	$Sprite2D.set_texture(sprite)
 	
-	$Sprite2D.set_texture(sprite)
 	look_at(get_global_mouse_position())
 	rotation_degrees += startRotation
 func _physics_process(delta):
