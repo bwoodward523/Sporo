@@ -11,13 +11,13 @@ var canShoot = true
 var ammoCount: int
 var bulletsPerShot: int
 func _ready():
-	selectedItem = player.item2
+	selectedItem = player.item1
 	ammoCount = selectedItem.MAX_AMMO
 	print(typeof(rifle.texture), " boggas1")
 	print(typeof(player.item1.ITEM_TEXTURE), " boggas2")
 	rifle.texture = selectedItem.ITEM_TEXTURE
-	#if (player.item1.ITEM_NAME == "Fist"):
-		#rifle.visible = false
+	if (player.item1.ITEM_NAME == "Fist"):
+		rifle.visible = false
 	#Check to see if weapon has spread
 	if selectedItem.SPREAD_WIDTH != 0:
 			hasSpread = true
