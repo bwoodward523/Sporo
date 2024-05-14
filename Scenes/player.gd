@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var item1 : Resource
 @export var item2 : Resource
 @export var item3 : Resource
+@export var Active_Item : Resource
 
 
 @onready var _animation_player = $AnimationPlayer
@@ -13,6 +14,7 @@ extends CharacterBody2D
 @export var SPEED = 450
 var canShoot = false
 var dirFace = 1
+
 
 
 func _physics_process(delta):
