@@ -13,13 +13,33 @@ func connectSlots():
 		slot.pressed.connect(callable)
 
 func _process(delta):
+	if Input.is_action_pressed("item_one"):
+		player.Active_Item = get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot").item
+		print("New Item Selected: ", player.Active_Item.ITEM_NAME)
+	if Input.is_action_pressed("item_two") :
+		player.Active_Item = get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot2").item
+		print("New Item Selected: ", player.Active_Item.ITEM_NAME)
+	if Input.is_action_pressed("item_three"):
+		player.Active_Item = get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot3").item
+		print("New Item Selected: ", player.Active_Item.ITEM_NAME)
+	
 	if (player.item1 != null):
 		get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot/Contains").texture = player.item1.ITEM_TEXTURE
+		get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot").item = player.item1
 	if (player.item2 != null):
 		get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot2/Contains").texture = player.item2.ITEM_TEXTURE
+		get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot2").item = player.item2
 	if (player.item3 != null):
 		get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot3/Contains").texture = player.item3.ITEM_TEXTURE
+		get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot3").item = player.item3
 
 func onSlotClicked(slot):
-	pass
-	
+	print(slot.name)
+	var tempSlot1 = player.item1
+	var tempSlot2 = slot.item
+	player.item1 = tempSlot2
+	slot.item =  tempSlot1
+	if(slot.name == "Slot2"):
+		player.item2 = tempSlot1
+	if(slot.name == "Slot3"):
+		player.item3 = tempSlot1

@@ -1,11 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://thjtpkg3w2xm"]
+[gd_scene load_steps=4 format=3 uid="uid://b6lpalucwsy41"]
 
 [ext_resource type="Texture2D" uid="uid://c72qd3p7md3qe" path="res://Assets/AR.png" id="1_qopo1"]
 [ext_resource type="Script" path="res://Scenes/rifle.gd" id="2_4bwlb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_002ul"]
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D3" type="CharacterBody2D"]
 script = ExtResource("2_4bwlb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

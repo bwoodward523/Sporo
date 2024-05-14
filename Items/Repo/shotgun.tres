@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WEAPON_ITEM" load_steps=4 format=3 uid="uid://bqgo5kg8nucsh"]
+[gd_resource type="Resource" script_class="WEAPON_ITEM" load_steps=4 format=3 uid="uid://de25gdr8or2yg"]
 
 [ext_resource type="Script" path="res://Items/Classes/weapon_item_class.gd" id="1_fg2yj"]
 [ext_resource type="Texture2D" uid="uid://cxgxr3qjrxxw8" path="res://Assets/shotgun.png" id="1_ir2r6"]
@@ -6,16 +6,17 @@
 
 [resource]
 script = ExtResource("1_fg2yj")
-DAMAGE = 1
-FIRE_RATE = 0.4
+DAMAGE = 2
+FIRE_RATE = 0.3
 MAX_AMMO = 99999
-PROJECTILE_SPEED = 500.0
+PROJECTILE_SPEED = 1000.0
 PROJECTILE_TEXTURE = ExtResource("2_e4pno")
-SHOTS_PER_SHOT = 36
+SHOTS_PER_SHOT = 8
 SPREAD_WIDTH = 10.0
 MAX_BULLET_DISTANCE = 500.0
+PROJECTILE_SIZE = Vector2(1.5, 1.5)
 PROJECTILE_ROTATION = 0.0
-PROJECTILE_ROTATION_RATE = 1.0
+PROJECTILE_ROTATION_RATE = 0.0
 ITEM_NAME = "Shotgun"
 ITEM_TEXTURE = ExtResource("1_ir2r6")
 QUANTITY = 1

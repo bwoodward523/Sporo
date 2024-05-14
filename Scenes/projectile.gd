@@ -8,6 +8,7 @@ var zdex: int
 var damage: int
 var sprite: Texture
 var maxDistance: float 
+var scale1: Vector2
 var startRotation: float
 var rotationRate: float
 
@@ -15,8 +16,9 @@ func _ready():
 	global_position = spawnPos
 	global_rotation = spawnRot
 	z_index = zdex
-	
+	scale = scale1
 	$Sprite2D.set_texture(sprite)
+	
 	look_at(get_global_mouse_position())
 	rotation_degrees += startRotation
 func _physics_process(delta):

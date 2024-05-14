@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WEAPON_ITEM" load_steps=4 format=3 uid="uid://gtg5k0en2rdk"]
+[gd_resource type="Resource" script_class="WEAPON_ITEM" load_steps=4 format=3 uid="uid://b87ewfwd3ap01"]
 
 [ext_resource type="Texture2D" uid="uid://biyp08a14wegw" path="res://Assets/watergun.png" id="1_1xcuj"]
 [ext_resource type="Script" path="res://Items/Classes/weapon_item_class.gd" id="1_hcr3p"]
@@ -14,8 +14,9 @@ PROJECTILE_TEXTURE = ExtResource("2_yr480")
 SHOTS_PER_SHOT = 5
 SPREAD_WIDTH = 3.0
 MAX_BULLET_DISTANCE = 600.0
+PROJECTILE_SIZE = Vector2(1, 1)
 PROJECTILE_ROTATION = 0.0
-PROJECTILE_ROTATION_RATE = 1.0
+PROJECTILE_ROTATION_RATE = 0.0
 ITEM_NAME = "WaterGun"
 ITEM_TEXTURE = ExtResource("1_1xcuj")
 QUANTITY = 0

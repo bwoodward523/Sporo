@@ -11,18 +11,21 @@ var canShoot = true
 var ammoCount: int
 var bulletsPerShot: int
 func _ready():
-	selectedItem = player.item1
+	selectedItem = player.Active_Item
 	ammoCount = selectedItem.MAX_AMMO
-	print(typeof(rifle.texture), " boggas1")
-	print(typeof(player.item1.ITEM_TEXTURE), " boggas2")
+	print(selectedItem.ITEM_NAME, " is the current selected item")
 	rifle.texture = selectedItem.ITEM_TEXTURE
-	if (player.item1.ITEM_NAME == "Fist"):
+	if (selectedItem.ITEM_NAME == "Fist"):
 		rifle.visible = false
+	else:
+		rifle.visible = true
 	#Check to see if weapon has spread
-	if selectedItem.SPREAD_WIDTH != 0:
-			hasSpread = true
-			
+
 func _physics_process(delta):
+	selectedItem = player.Active_Item
+	ammoCount = selectedItem.MAX_AMMO
+	print(selectedItem.ITEM_NAME, " is the current selected item")
+	
 	if Input.is_action_pressed("shoot"):
 		if canShoot:
 			if ammoCount > 0:
@@ -44,6 +47,7 @@ func playerShoot():
 	for i in selectedItem.SHOTS_PER_SHOT:
 		
 		var instance = playerProjectile.instantiate()
+		instance.scale1 = selectedItem.PROJECTILE_SIZE
 		instance.dir = _assign_bullet_direction(i)
 		instance.speed = selectedItem.PROJECTILE_SPEED
 		instance.sprite = selectedItem.PROJECTILE_TEXTURE
@@ -63,9 +67,18 @@ func playerShoot():
 func _on_fire_rate_timeout():
 	#enable shooting
 	canShoot = true
+
 func _assign_bullet_direction(bulletNumber: int):
+	if selectedItem.SPREAD_WIDTH != 0:
+			hasSpread = true
+	if (selectedItem.ITEM_NAME == "Fist"):
+		rifle.visible = false
+	else:
+		rifle.texture = selectedItem.ITEM_TEXTURE
+		rifle.visible = true
 	var bulletDirection = (get_global_mouse_position() - player.position).normalized()
 	var returnDir: Vector2
+	print(selectedItem.SPREAD_WIDTH," and ",selectedItem.SHOTS_PER_SHOT)
 	if hasSpread:
 		returnDir = bulletDirection.rotated(deg_to_rad(bulletNumber*selectedItem.SPREAD_WIDTH - (selectedItem.SHOTS_PER_SHOT/2 * selectedItem.SPREAD_WIDTH)))
 	else:
