@@ -62,23 +62,6 @@ tracks/3/keys = {
 "values": [Vector2(0, 0), Vector2(0, -17), Vector2(0, 0), Vector2(0, -17), Vector2(0, 0), Vector2(0, -17), Vector2(0, -17), Vector2(0, 0), Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_7nnmu"]
-resource_name = "gruntHurt"
-length = 0.3
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.08, 0.3),
-"transitions": PackedFloat32Array(1, 0.133973, 3.13834),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.501961, 0, 0.133333, 1), Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_2q3dt"]
 resource_name = "gruntDeath"
 length = 0.2
@@ -118,6 +101,23 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 2.2974),
 "update": 0,
 "values": [Color(1, 1, 1, 0.933333), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7nnmu"]
+resource_name = "gruntHurt"
+length = 0.3
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.3),
+"transitions": PackedFloat32Array(1, 0.133973, 3.13834),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.501961, 0, 0.133333, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oqme3"]
