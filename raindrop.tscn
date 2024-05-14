@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://hs6p3tv4vaa7"]
+[gd_scene load_steps=4 format=3 uid="uid://djawv72l2iqik"]
 
 [ext_resource type="Texture2D" uid="uid://d0po3x2wa2jmp" path="res://Assets/raindropforsister.png" id="1_60bg4"]
 [ext_resource type="Script" path="res://raindrop.gd" id="1_vvafk"]

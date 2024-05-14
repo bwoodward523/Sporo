@@ -50,6 +50,6 @@ func _on_area_2d_body_entered(body):
 			hp.deductHealth()
 		body.isHurt = true
 		body._play_hurt()
-		#print("enemy hp: ")
-		#print(hp.health)
+		print("enemy hp: ", hp.health)
+
 	queue_free()

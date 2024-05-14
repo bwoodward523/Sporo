@@ -1,6 +1,7 @@
 extends Node2D
 #@onready var enemy = get_parent().get_node("Enemy")
 @onready var enemy = load("res://Scenes/enemy.tscn")
+@onready var enemyMage = load("res://Scenes/enemymage.tscn")
 @onready var main = get_tree().get_current_scene()
 @onready var player = get_parent().get_node("player")
 @onready var camera = player.get_node("Camera2D")
@@ -14,7 +15,10 @@ func _on_timer_timeout():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 	
-	enemyInstance = enemy.instantiate()
+	if rng.randi_range(1,2) == 2:
+		enemyInstance = enemy.instantiate()
+	else:
+		enemyInstance = enemyMage.instantiate()
 	dirSpawn = rng.randi_range(1,4) #set which side of screen enemy comes from
 	if dirSpawn == 1: #left
 		var randHeight = rng.randi_range(player.position.y - rightEnd.y/2, player.position.y + rightEnd.y/2)

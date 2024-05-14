@@ -19,15 +19,15 @@ var isHurt = false
 var particleVel: Vector2
 func _ready():
 	#Assign resource values
-	$Sprite2D.set_texture(enemy.ENEMY_TEXTURE)
 	$HealthComponent.health = enemy.ENEMY_HEALTH
 	SPEED = enemy.ENEMY_SPEED
 	DETECTION_RANGE = enemy.ENEMY_DETECTION_RANGE
-	attackAnimation = enemy.ENEMY_ATTACK_ANIMATION
-	hurtAnimation = enemy.ENEMY_HURT_ANIMATION
+	#attackAnimation = enemy.ENEMY_ATTACK_ANIMATION
+	#hurtAnimation = enemy.ENEMY_HURT_ANIMATION
 	deathAnimation = enemy.ENEMY_DEATH_ANIMATION
 
 func _physics_process(delta):
+	#print($HealthComponent.health, "I am: ", name)
 	if $AnimationPlayer.current_animation != deathAnimation:
 		if behaviorState == "Searching":
 			dir = (player.position - position).normalized()
@@ -39,25 +39,27 @@ func _physics_process(delta):
 		if behaviorState == "Charging":
 			move_and_collide(velocity * delta) #velocity is defined when the animation is finished
 		if $HealthComponent.isDead:
+			print("im ded")
 			var rng = RandomNumberGenerator.new()
 			rng.randomize()
 			if rng.randi_range(1,2) == 2:
 				scale.x = -scale.x
-			$AnimationPlayer.play(deathAnimation)
 			$AnimationPlayer.clear_queue()
+			$AnimationPlayer.play(deathAnimation)
+
 			$CollisionShape2D.disabled = true
-			rotation_degrees = 0
 			
 		
 func checkForAttack():
 	if position.distance_to(player.position) <= DETECTION_RANGE:
-		$AnimationPlayer.play(attackAnimation)
+		#$AnimationPlayer.play(attackAnimation)
 		stopMovement = true
 		set_collision_mask_value(3, false) #Disable collision with other enemies because homie is homing
 
 func _play_hurt():
 	if isHurt:
-		$AnimationPlayer.play(hurtAnimation)
+		isHurt = false
+		#$AnimationPlayer.play(hurtAnimation)
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == attackAnimation:
