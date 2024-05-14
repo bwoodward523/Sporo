@@ -48,6 +48,8 @@ func playerShoot():
 		instance.speed = selectedItem.PROJECTILE_SPEED
 		instance.sprite = selectedItem.PROJECTILE_TEXTURE
 		instance.damage = selectedItem.DAMAGE
+		instance.startRotation = selectedItem.PROJECTILE_ROTATION
+		instance.rotationRate = selectedItem.PROJECTILE_ROTATION_RATE
 		instance.maxDistance = selectedItem.MAX_BULLET_DISTANCE
 		instance.spawnPos = Vector2(barrel.global_position.x, barrel.global_position.y)
 		instance.spawnRot = rotation
@@ -69,7 +71,7 @@ func _assign_bullet_direction(bulletNumber: int):
 	var returnDir: Vector2
 	print(selectedItem.SPREAD_WIDTH," and ",selectedItem.SHOTS_PER_SHOT)
 	if hasSpread:
-		returnDir=  bulletDirection.rotated(deg_to_rad(bulletNumber*selectedItem.SPREAD_WIDTH - (selectedItem.SHOTS_PER_SHOT/2 * selectedItem.SPREAD_WIDTH)))
+		returnDir = bulletDirection.rotated(deg_to_rad(bulletNumber*selectedItem.SPREAD_WIDTH - (selectedItem.SHOTS_PER_SHOT/2 * selectedItem.SPREAD_WIDTH)))
 	else:
 		returnDir = bulletDirection
 	return returnDir
