@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7oes3w40giek"]
+
+[ext_resource type="Script" path="res://Scenes/command_input.gd" id="1_am1jm"]
+[ext_resource type="Script" path="res://Scenes/FPSMeter.gd" id="1_kykks"]
+[ext_resource type="Script" path="res://Scenes/CanvasLayer.gd" id="1_m1cbs"]
+[ext_resource type="PackedScene" uid="uid://ck7geeut0uvi6" path="res://inventory_gui.tscn" id="2_mevhe"]
+
+[node name="CommandInput" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_am1jm")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("1_m1cbs")
+
+[node name="FPSMeter" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("1_kykks")
+
+[node name="InventoryGui" parent="CanvasLayer" instance=ExtResource("2_mevhe")]

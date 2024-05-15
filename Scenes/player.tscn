@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://whd11j441bhe"]
+[gd_scene load_steps=16 format=3 uid="uid://whd11j441bhe"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_200gu"]
 [ext_resource type="Texture2D" uid="uid://2q5lrp74xdxl" path="res://Assets/MainBulletSpriteSheet.png" id="2_rr0v0"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://bqgo5kg8nucsh" path="res://Items/Repo/shotgun.tres" id="4_gdjwl"]
 [ext_resource type="Script" path="res://Scenes/HealthDisplay.gd" id="5_t3i60"]
 [ext_resource type="PackedScene" uid="uid://ck7geeut0uvi6" path="res://inventory_gui.tscn" id="7_87di0"]
+[ext_resource type="Script" path="res://inventory_gui1.gd" id="10_663x2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fba2d"]
 radius = 7.0
@@ -115,6 +116,16 @@ offset_bottom = -161.0
 script = ExtResource("5_t3i60")
 
 [node name="InventoryGui" parent="." instance=ExtResource("7_87di0")]
+visible = false
+anchors_preset = -1
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = -178.0
+offset_top = 30.0
+offset_right = -178.0
+offset_bottom = 30.0
+grow_horizontal = 1
+script = ExtResource("10_663x2")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
