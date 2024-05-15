@@ -23,7 +23,7 @@ func _ready():
 	$HealthComponent.health = enemy.ENEMY_HEALTH
 	SPEED = enemy.ENEMY_SPEED
 	DETECTION_RANGE = enemy.ENEMY_DETECTION_RANGE
-	attackAnimation = enemy.ENEMY_ATTACK_ANIMATION
+	attackAnimation = enemy.ENEMY_ATTACK_ANIMATIONS[0]
 	hurtAnimation = enemy.ENEMY_HURT_ANIMATION
 	deathAnimation = enemy.ENEMY_DEATH_ANIMATION
 
@@ -73,6 +73,8 @@ func _on_animation_player_animation_finished(anim_name):
 		velocity = Vector2(0,0)
 		queue_free()
 		
+func take_damage():
+	$HealthComponent.deductHealth()
 
 func _on_lifespan_timeout():
 	queue_free()

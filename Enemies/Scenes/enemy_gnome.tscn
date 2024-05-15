@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://btx8tq1nq6eua"]
+
+[ext_resource type="Texture2D" uid="uid://kr7ltncnw4g2" path="res://Assets/mageenemyspritesheet.png" id="1_rfmoc"]
+[ext_resource type="Script" path="res://Enemies/Scenes/enemy_gnome.gd" id="1_u6pn4"]
+[ext_resource type="Resource" uid="uid://chmopco6afwyr" path="res://Enemies/Repo/enemy_gnome.tres" id="2_gsosu"]
+[ext_resource type="PackedScene" uid="uid://cpu2psp3r768g" path="res://Scenes/health_component.tscn" id="2_koktx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t7buv"]
+
+[node name="EnemyGnome" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_u6pn4")
+enemy = ExtResource("2_gsosu")
+fleeRange = 300.0
+shotsUntilMultiply = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_t7buv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+texture = ExtResource("1_rfmoc")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_koktx")]
+MAXHEALTH = 5
+
+[node name="FireRate" type="Timer" parent="."]
+wait_time = 0.695
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_t7buv")
+
+[node name="TimeToMultiply" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="FireRate" to="." method="_on_fire_rate_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="TimeToMultiply" to="." method="_on_time_to_multiply_timeout"]

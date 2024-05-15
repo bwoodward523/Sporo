@@ -44,10 +44,13 @@ func _distance_to_destroy_projectile():
 
 func _on_area_2d_body_entered(body):
 	if body.name.contains("Enemy"):  #this is the start of the name of the parent enemy node
-		#print("hit enemy")
+		print("hit enemy")
 		var hp = body.get_node("HealthComponent")
 		for i in damage:
-			hp.deductHealth()
+			if body.has_method("take_damage"):
+				body.take_damage()
+			else:
+				hp.deductHealth()	
 		body.isHurt = true
 		body._play_hurt()
 		print("enemy hp: ", hp.health)

@@ -57,7 +57,7 @@ _data = {
 "walk": SubResource("Animation_mlbch")
 }
 
-[node name="CharacterBody2D2" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D"]
 scale = Vector2(1.525, 1.525)
 collision_mask = 4
 script = ExtResource("1_200gu")
