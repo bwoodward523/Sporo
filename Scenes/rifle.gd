@@ -13,7 +13,6 @@ var bulletsPerShot: int
 func _ready():
 	selectedItem = player.Active_Item
 	ammoCount = selectedItem.MAX_AMMO
-	print(selectedItem.ITEM_NAME, " is the current selected item")
 	rifle.texture = selectedItem.ITEM_TEXTURE
 	if (selectedItem.ITEM_NAME == "Fist"):
 		rifle.visible = false
@@ -24,7 +23,6 @@ func _ready():
 func _physics_process(delta):
 	selectedItem = player.Active_Item
 	ammoCount = selectedItem.MAX_AMMO
-	print(selectedItem.ITEM_NAME, " is the current selected item")
 	if (selectedItem.ITEM_NAME == "Fist"):
 		rifle.visible = false
 	else:
@@ -78,7 +76,6 @@ func _assign_bullet_direction(bulletNumber: int):
 	
 	var bulletDirection = (get_global_mouse_position() - player.position).normalized()
 	var returnDir: Vector2
-	print(selectedItem.SPREAD_WIDTH," and ",selectedItem.SHOTS_PER_SHOT)
 	if hasSpread:
 		returnDir = bulletDirection.rotated(deg_to_rad(bulletNumber*selectedItem.SPREAD_WIDTH - (selectedItem.SHOTS_PER_SHOT/2 * selectedItem.SPREAD_WIDTH)))
 	else:

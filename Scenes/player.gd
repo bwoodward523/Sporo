@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-
+signal switching
 
 @export var item1 : Resource
 @export var item2 : Resource
@@ -9,7 +9,8 @@ extends CharacterBody2D
 
 
 @onready var _animation_player = $AnimationPlayer
-@onready var inventory = $InventoryGui
+#@onready var inventory = get_parent().get_node("CommandInput/CanvasLayer/InventoryGui")
+@onready var inventory = get_node("InventoryGui")
 
 @export var SPEED = 450
 var canShoot = false
@@ -32,7 +33,10 @@ func _physics_process(delta):
 	elif Input.is_action_pressed("moveLeft"):
 		_animation_player.play("walk")
 		$Sprite2D.flip_h = true
-
+	elif Input.is_action_pressed("moveDown"):
+		_animation_player.play("walk")
+	elif Input.is_action_pressed("moveUp"):
+		_animation_player.play("walk")
 	else:
 		_animation_player.play("RESET")
 	if direction:
@@ -44,11 +48,11 @@ func _physics_process(delta):
 
 	
 	move_and_slide()
-	detect_enemy()
+	detect_enemy(delta)
 	pass
 	
 
-func detect_enemy():
+func detect_enemy(delta):
 	
 	var collisionList: Array
 	#make array of all names of collisions
@@ -68,6 +72,9 @@ func detect_enemy():
 			#Check if player is dead
 			check_death()
 			
+		if i.contains("levelswitch"):
+			emit_signal("switching")
+
 func delete_duplicate_collisions(collisions: Array):
 	var unique: Array = []
 	for item in collisions:

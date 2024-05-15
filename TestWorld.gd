@@ -1,6 +1,6 @@
 extends Node2D
 @onready var raindrop = load("res://raindrop.tscn")
-@onready var player = get_node("player")
+@onready var player = get_parent().get_node("player")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$GPUParticles2D.position
