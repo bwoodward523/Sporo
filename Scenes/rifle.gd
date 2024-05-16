@@ -20,6 +20,8 @@ func switch_weapon():
 	else:
 		rifle.visible = true
 	print(ammoCount)
+	if ammoCount > 0:
+		canShoot = true
 func _ready():
 	selectedItem = player.Active_Item
 	ammoCount = selectedItem.MAX_AMMO

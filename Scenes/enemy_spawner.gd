@@ -2,6 +2,7 @@ extends Node2D
 #@onready var enemy = get_parent().get_node("Enemy")
 @onready var enemy = preload("res://Scenes/enemy.tscn")
 @onready var enemyGnome = preload("res://Enemies/Scenes/enemy_gnome.tscn")
+@onready var enemySummoner = preload("res://Enemies/Scenes/batSummoner.tscn")
 #@onready var enemyMage = load("res://Scenes/enemymage.tscn")
 @onready var main = get_tree().get_current_scene()
 @onready var player = get_parent().get_node("player")
@@ -18,6 +19,8 @@ func _on_timer_timeout():
 	
 	if rng.randi_range(1,10) == 1:
 		enemyInstance = enemyGnome.instantiate()
+	elif rng.randi_range(1,10) == 2:
+		enemyInstance = enemySummoner.instantiate()
 	elif canSpawnGnome:
 		enemyInstance = enemy.instantiate()
 	if enemyInstance != null:

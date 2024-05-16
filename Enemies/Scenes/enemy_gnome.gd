@@ -62,7 +62,7 @@ func drop_item():
 	item.add_to_group("items")
 func death():
 	if doOnce:
-		print("popped gnome")
+		#print("popped gnome")
 		if randi_range(0,3) == 2:
 			drop_item()
 		if rng.randi_range(1,2) == 2:
