@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var player = get_parent().get_node("player")
 @onready var bullet1 = enemy.PROJECTILE_TYPE[0]
 @onready var enemyScene = load("res://Enemies/Scenes/enemy_gnome.tscn")
-
+@onready var enemySpawner = get_parent().get_node("EnemySpawner")
 var behaviorState = "Searching"
 var isHurt: bool
 @onready var detectionRange = enemy.ENEMY_DETECTION_RANGE
@@ -12,17 +12,18 @@ var isHurt: bool
 var fromParentGnome = false
 var canMultiply = false
 var shotCount = 0
+var doOnce = true
 @export var shotsUntilMultiply: int
 var randomDirFunny
+var rng = RandomNumberGenerator.new()
 
 func _ready():
-	var rng = RandomNumberGenerator.new()
+	rng = RandomNumberGenerator.new()
 	rng.randomize()
 	randomDirFunny= Vector2(rng.randi_range(-30,30), rng.randi_range(-30,30))
 
 func _physics_process(delta):
 	manage_states()
-	print(velocity.x)
 	if velocity.x > 0:
 		$Sprite2D.flip_h = false
 	else:
@@ -50,11 +51,19 @@ func _physics_process(delta):
 	if $HealthComponent.isDead:
 		death()
 func death():
-	print("popped gnome")
-	queue_free()
+	if doOnce:
+		print("popped gnome")
+		if rng.randi_range(1,2) == 2:
+			scale.x = -scale.x
+		$AnimationPlayer.play("gnomeDeath")
+		$AnimationPlayer.clear_queue()
+		$CollisionShape2D.disabled = true
+		doOnce = false
+	
 	
 func take_damage():
 	$HealthComponent.deductHealth()
+	$AnimationPlayer.play("gnomeHurt")
 func shoot():
 	var bulletInstance = bullet1.instantiate()
 	bulletInstance.position = position
@@ -94,5 +103,11 @@ func multiply_self():
 
 
 func _on_time_to_multiply_timeout():
-	if behaviorState == "Attacking" or behaviorState == "Fleeing":
-		canMultiply = true
+	if enemySpawner.canSpawnGnome:
+		if behaviorState == "Attacking" or behaviorState == "Fleeing":
+			canMultiply = true
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "gnomeDeath":
+		queue_free()

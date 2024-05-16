@@ -16,10 +16,10 @@ func _on_timer_timeout():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 	
-	if rng.randi_range(1,2) == 2:
-		enemyInstance = enemy.instantiate()
-	elif canSpawnGnome:
+	if rng.randi_range(1,10) == 1:
 		enemyInstance = enemyGnome.instantiate()
+	elif canSpawnGnome:
+		enemyInstance = enemy.instantiate()
 	if enemyInstance != null:
 		dirSpawn = rng.randi_range(1,4) #set which side of screen enemy comes from
 		if dirSpawn == 1: #left
@@ -49,7 +49,7 @@ func _on_count_gnomes_timeout():
 		if gnome.name.contains("Gnome"):
 			gnomeCount += 1
 	print("numba of gnomes", gnomeCount)
-	if gnomeCount > 1:
+	if gnomeCount > 10:
 		canSpawnGnome = false
 	else:
 		canSpawnGnome = true

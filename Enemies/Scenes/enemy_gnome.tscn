@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://btx8tq1nq6eua"]
+[gd_scene load_steps=9 format=3 uid="uid://btx8tq1nq6eua"]
 
 [ext_resource type="Script" path="res://Enemies/Scenes/enemy_gnome.gd" id="1_u6pn4"]
 [ext_resource type="Resource" uid="uid://chmopco6afwyr" path="res://Enemies/Repo/enemy_gnome.tres" id="2_gsosu"]
@@ -6,6 +6,71 @@
 [ext_resource type="Texture2D" uid="uid://flwuchuwu0dg" path="res://Assets/gGnome.png" id="3_e0oju"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t7buv"]
+radius = 7.0
+
+[sub_resource type="Animation" id="Animation_0288c"]
+resource_name = "gnomeHurt"
+length = 0.16
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.16),
+"transitions": PackedFloat32Array(1, 0.203063, 3.24901),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.742022, 0, 0.234243, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_e767v"]
+resource_name = "gnomeDeath"
+length = 0.2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 3.24901),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 14263.1),
+"update": 0,
+"values": [Vector2(0, -4), Vector2(12, -4), Vector2(30, 8)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.5708]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6xvds"]
+_data = {
+"gnomeDeath": SubResource("Animation_e767v"),
+"gnomeHurt": SubResource("Animation_0288c")
+}
 
 [node name="EnemyGnome" type="CharacterBody2D"]
 scale = Vector2(2, 3)
@@ -17,6 +82,8 @@ fleeRange = 300.0
 shotsUntilMultiply = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -2)
+scale = Vector2(0.725, 2.04)
 shape = SubResource("CircleShape2D_t7buv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -29,20 +96,28 @@ region_rect = Rect2(0, 0, 32, 32)
 MAXHEALTH = 5
 
 [node name="FireRate" type="Timer" parent="."]
-wait_time = 0.695
+wait_time = 0.2
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, -2)
+scale = Vector2(0.725, 2.04)
 shape = SubResource("CircleShape2D_t7buv")
 
 [node name="TimeToMultiply" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 10.0
 autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6xvds")
+}
 
 [connection signal="timeout" from="FireRate" to="." method="_on_fire_rate_timeout"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="TimeToMultiply" to="." method="_on_time_to_multiply_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
