@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://dhmsoifjhyut7"]
+[gd_scene load_steps=9 format=3 uid="uid://dhmsoifjhyut7"]
 
-[ext_resource type="PackedScene" uid="uid://cw4mekeakilt0" path="res://Scenes/tile_map.tscn" id="1_70dvb"]
+[ext_resource type="PackedScene" uid="uid://cv2rejn7ecfth" path="res://Scenes/tile_map.tscn" id="1_70dvb"]
 [ext_resource type="Script" path="res://TestWorld.gd" id="1_wd6si"]
 [ext_resource type="PackedScene" uid="uid://whd11j441bhe" path="res://Scenes/player.tscn" id="3_mh2yx"]
 [ext_resource type="PackedScene" uid="uid://ckap5eabxuiku" path="res://Scenes/enemy_spawner.tscn" id="4_1wl62"]
 [ext_resource type="PackedScene" uid="uid://b7oes3w40giek" path="res://Scenes/command_input.tscn" id="4_2mw6b"]
 [ext_resource type="Texture2D" uid="uid://d0po3x2wa2jmp" path="res://Assets/raindropforsister.png" id="7_7nxts"]
+[ext_resource type="PackedScene" uid="uid://b8wdbkawwttw" path="res://Scenes/coin.tscn" id="7_181rs"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pm81r"]
 particle_flag_disable_z = true
@@ -32,5 +33,4 @@ texture = ExtResource("7_7nxts")
 lifetime = 2.0
 fixed_fps = 25
 
-[node name="EnemyGnome" parent="." instance=ExtResource("7_b72ik")]
-position = Vector2(500, 0)
+[node name="Coin" parent="." instance=ExtResource("7_181rs")]

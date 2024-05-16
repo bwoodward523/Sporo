@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://kr7ltncnw4g2" path="res://Assets/mageenemyspritesheet.png" id="1_rfmoc"]
 [ext_resource type="Script" path="res://Enemies/Scenes/enemy_gnome.gd" id="1_u6pn4"]
-[ext_resource type="Resource" uid="uid://chmopco6afwyr" path="res://Enemies/Repo/enemy_gnome.tres" id="2_gsosu"]
+[ext_resource type="Resource" path="res://Enemies/Repo/enemy_gnome.tres" id="2_gsosu"]
 [ext_resource type="PackedScene" uid="uid://cpu2psp3r768g" path="res://Scenes/health_component.tscn" id="2_koktx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t7buv"]

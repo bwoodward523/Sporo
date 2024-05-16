@@ -50,10 +50,12 @@ func _physics_process(delta):
 			$AnimationPlayer.clear_queue()
 			$CollisionShape2D.disabled = true
 			rotation_degrees = 0
-			drop_item()
+			if randi_range(0,3) == 2:
+				drop_item()
 func drop_item():
 	var item = item_scene.instantiate()
 	item.position = position
+	item.item_type = 0
 	main.call_deferred("add_child", item)
 	item.add_to_group("items")
 
