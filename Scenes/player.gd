@@ -48,11 +48,11 @@ func _physics_process(delta):
 
 	
 	move_and_slide()
-	detect_enemy(delta)
+	detect_enemy()
 	pass
 	
 
-func detect_enemy(delta):
+func detect_enemy():
 	
 	var collisionList: Array
 	#make array of all names of collisions
@@ -66,15 +66,26 @@ func detect_enemy(delta):
 		if i.contains("Enemy"):
 			for k in get_slide_collision_count():
 				var collision = get_slide_collision(k)
-				collision.get_collider().queue_free()
+				if collision.get_collider().has_method("take_damage"):
+					#collision.get_collider().take_damage()
+					collision.get_collider().queue_free()
+					#play collision explosion anim or something 
+				else:
+					print("implement take_damage function on player collision")
+				
 			$HealthComponent.deductHealth()
 			print("PLAYER HP: ", $HealthComponent.health)
 			#Check if player is dead
 			check_death()
-			
 		if i.contains("levelswitch"):
 			emit_signal("switching")
 
+			
+func take_damage():
+	$HealthComponent.deductHealth()
+	print("PLAYER HP: ", $HealthComponent.health)
+	check_death()
+		
 func delete_duplicate_collisions(collisions: Array):
 	var unique: Array = []
 	for item in collisions:

@@ -1,10 +1,12 @@
 extends Node2D
 #@onready var enemy = get_parent().get_node("Enemy")
 @onready var enemy = load("res://Scenes/enemy.tscn")
+@onready var enemyGnome = load("res://Enemies/Scenes/enemy_gnome.tscn")
+#@onready var enemyMage = load("res://Scenes/enemymage.tscn")
 @onready var main = get_tree().get_current_scene()
 @onready var player = get_parent().get_node("player")
 @onready var camera = player.get_node("Camera2D")
-
+var canSpawnGnome = true
 var enemyInstance
 var dirSpawn: int #(1 left) (2 right) (3 up) 4(down)
 func _on_timer_timeout():
@@ -14,7 +16,10 @@ func _on_timer_timeout():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 	
-	enemyInstance = enemy.instantiate()
+	if rng.randi_range(1,2) == 2:
+		enemyInstance = enemy.instantiate()
+	elif canSpawnGnome:
+		enemyInstance = enemyGnome.instantiate()
 	dirSpawn = rng.randi_range(1,4) #set which side of screen enemy comes from
 	if dirSpawn == 1: #left
 		var randHeight = rng.randi_range(player.position.y - rightEnd.y/2, player.position.y + rightEnd.y/2)
@@ -32,3 +37,18 @@ func _on_timer_timeout():
 	
 	
 	main.add_child(enemyInstance,true)
+
+func _on_count_gnomes_timeout():
+	var gnomeCount = 0
+	var world = get_parent()
+	var gnomeList: Array[PackedScene]
+	
+
+	for gnome in world.get_children():
+		if gnome.name.contains("Gnome"):
+			gnomeCount += 1
+	print("numba of gnomes", gnomeCount)
+	if gnomeCount > 50:
+		canSpawnGnome = false
+	else:
+		canSpawnGnome = true

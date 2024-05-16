@@ -13,6 +13,7 @@ var bulletsPerShot: int
 func _ready():
 	selectedItem = player.Active_Item
 	ammoCount = selectedItem.MAX_AMMO
+	#print(selectedItem.ITEM_NAME, " is the current selected item")
 	rifle.texture = selectedItem.ITEM_TEXTURE
 	if (selectedItem.ITEM_NAME == "Fist"):
 		rifle.visible = false
@@ -22,7 +23,7 @@ func _ready():
 
 func _physics_process(delta):
 	selectedItem = player.Active_Item
-	ammoCount = selectedItem.MAX_AMMO
+	#ammoCount = selectedItem.MAX_AMMO
 	if (selectedItem.ITEM_NAME == "Fist"):
 		rifle.visible = false
 	else:

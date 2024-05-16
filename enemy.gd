@@ -1,7 +1,7 @@
 extends CharacterBody2D
 #@export var SPEED = 200
 var SPEED
-@export var DETECTION_RANGE = 100
+var DETECTION_RANGE
 @export var CHARGE_SPEED = 1000
 @export var enemy: Resource
 @onready var main = get_node("/root/main")
@@ -26,7 +26,7 @@ func _ready():
 	$HealthComponent.health = enemy.ENEMY_HEALTH
 	SPEED = enemy.ENEMY_SPEED
 	DETECTION_RANGE = enemy.ENEMY_DETECTION_RANGE
-	attackAnimation = enemy.ENEMY_ATTACK_ANIMATION
+	attackAnimation = enemy.ENEMY_ATTACK_ANIMATIONS[0]
 	hurtAnimation = enemy.ENEMY_HURT_ANIMATION
 	deathAnimation = enemy.ENEMY_DEATH_ANIMATION
 
@@ -42,6 +42,10 @@ func _physics_process(delta):
 		if behaviorState == "Charging":
 			move_and_collide(velocity * delta) #velocity is defined when the animation is finished
 		if $HealthComponent.isDead:
+			var rng = RandomNumberGenerator.new()
+			rng.randomize()
+			if rng.randi_range(1,2) == 2:
+				scale.x = -scale.x
 			$AnimationPlayer.play(deathAnimation)
 			$AnimationPlayer.clear_queue()
 			$CollisionShape2D.disabled = true
@@ -77,6 +81,8 @@ func _on_animation_player_animation_finished(anim_name):
 		velocity = Vector2(0,0)
 		queue_free()
 		
+func take_damage():
+	$HealthComponent.deductHealth()
 
 func _on_lifespan_timeout():
 	queue_free()

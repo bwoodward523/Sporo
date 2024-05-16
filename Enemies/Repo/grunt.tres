@@ -7,9 +7,9 @@
 resource_name = "Grunt"
 script = ExtResource("2_046gw")
 ENEMY_TEXTURE = ExtResource("1_yi7oi")
-ENEMY_ATTACK_ANIMATION = "changeColorThenCharge"
 ENEMY_DEATH_ANIMATION = "gruntDeath"
 ENEMY_HURT_ANIMATION = "gruntHurt"
-ENEMY_SPEED = 400.0
-ENEMY_DETECTION_RANGE = 400.0
+ENEMY_SPEED = 200.0
+ENEMY_DETECTION_RANGE = 200.0
 ENEMY_HEALTH = 10
+ENEMY_ATTACK_ANIMATIONS = Array[String](["changeColorThenCharge"])

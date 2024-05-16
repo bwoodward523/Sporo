@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ENEMY" load_steps=2 format=3 uid="uid://pqg6xsn6v6xl"]
+
+[ext_resource type="Script" path="res://Enemies/Classes/enemy_class.gd" id="1_wggnj"]
+
+[resource]
+script = ExtResource("1_wggnj")
+ENEMY_ATTACK_ANIMATION = ""
+ENEMY_DEATH_ANIMATION = "mageDeath"
+ENEMY_HURT_ANIMATION = ""
+ENEMY_SPEED = 500.0
+ENEMY_DETECTION_RANGE = 100.0
+ENEMY_HEALTH = 10
