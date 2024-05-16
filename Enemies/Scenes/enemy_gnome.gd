@@ -1,7 +1,10 @@
 extends CharacterBody2D
 
 @export var enemy: Resource
+@onready var main = get_node("/root/main")
 @onready var player = get_parent().get_node("player")
+
+var item_scene := preload("res://Scenes/coin.tscn")
 @onready var bullet1 = enemy.PROJECTILE_TYPE[0]
 @onready var enemyScene = load("res://Enemies/Scenes/enemy_gnome.tscn")
 @onready var enemySpawner = get_parent().get_node("EnemySpawner")
@@ -49,7 +52,16 @@ func _physics_process(delta):
 		
 
 	if $HealthComponent.isDead:
+		if randi_range(0,3) == 2:
+				drop_item()
 		death()
+
+func drop_item():
+	var item = item_scene.instantiate()
+	item.position = position
+	item.item_type = 0
+	main.call_deferred("add_child", item)
+	item.add_to_group("items")
 func death():
 	if doOnce:
 		print("popped gnome")

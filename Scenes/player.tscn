@@ -1,14 +1,15 @@
-[gd_scene load_steps=16 format=3 uid="uid://whd11j441bhe"]
+[gd_scene load_steps=17 format=3 uid="uid://whd11j441bhe"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_200gu"]
 [ext_resource type="Texture2D" uid="uid://2q5lrp74xdxl" path="res://Assets/MainBulletSpriteSheet.png" id="2_rr0v0"]
 [ext_resource type="Resource" uid="uid://d2jg3o7ug4xpo" path="res://Items/Repo/fist.tres" id="2_wr8ff"]
-[ext_resource type="PackedScene" uid="uid://thjtpkg3w2xm" path="res://Scenes/rifle.tscn" id="3_8keq0"]
-[ext_resource type="Resource" uid="uid://gtg5k0en2rdk" path="res://Items/Repo/watergun.tres" id="3_uiba2"]
+[ext_resource type="PackedScene" uid="uid://b6lpalucwsy41" path="res://Scenes/rifle.tscn" id="3_8keq0"]
+[ext_resource type="Resource" uid="uid://b87ewfwd3ap01" path="res://Items/Repo/watergun.tres" id="3_uiba2"]
 [ext_resource type="PackedScene" uid="uid://cpu2psp3r768g" path="res://Scenes/health_component.tscn" id="4_dswhc"]
-[ext_resource type="Resource" uid="uid://bqgo5kg8nucsh" path="res://Items/Repo/shotgun.tres" id="4_gdjwl"]
+[ext_resource type="Resource" uid="uid://de25gdr8or2yg" path="res://Items/Repo/shotgun.tres" id="4_gdjwl"]
 [ext_resource type="Script" path="res://Scenes/HealthDisplay.gd" id="5_t3i60"]
 [ext_resource type="PackedScene" uid="uid://ck7geeut0uvi6" path="res://inventory_gui.tscn" id="7_87di0"]
+[ext_resource type="Script" path="res://Scenes/Balance.gd" id="9_fuj7g"]
 [ext_resource type="Script" path="res://inventory_gui1.gd" id="10_663x2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fba2d"]
@@ -58,7 +59,7 @@ _data = {
 "walk": SubResource("Animation_mlbch")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="CharacterBody2D2" type="CharacterBody2D"]
 scale = Vector2(1.525, 1.525)
 collision_mask = 4
 script = ExtResource("1_200gu")
@@ -110,10 +111,10 @@ light_mask = 4
 visibility_layer = 4
 z_index = 2
 texture_filter = 4
-offset_left = -378.0
-offset_top = -184.0
-offset_right = -334.0
-offset_bottom = -161.0
+offset_left = -539.672
+offset_top = -268.852
+offset_right = -495.672
+offset_bottom = -245.852
 script = ExtResource("5_t3i60")
 
 [node name="InventoryGui" parent="." instance=ExtResource("7_87di0")]
@@ -127,6 +128,17 @@ offset_right = -178.0
 offset_bottom = 30.0
 grow_horizontal = 1
 script = ExtResource("10_663x2")
+
+[node name="Balance" type="Label" parent="."]
+light_mask = 4
+visibility_layer = 4
+z_index = 2
+texture_filter = 4
+offset_left = -539.672
+offset_top = -247.213
+offset_right = -495.672
+offset_bottom = -224.213
+script = ExtResource("9_fuj7g")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://btx8tq1nq6eua"]
 
 [ext_resource type="Script" path="res://Enemies/Scenes/enemy_gnome.gd" id="1_u6pn4"]
-[ext_resource type="Resource" uid="uid://chmopco6afwyr" path="res://Enemies/Repo/enemy_gnome.tres" id="2_gsosu"]
+[ext_resource type="Resource" path="res://Enemies/Repo/enemy_gnome.tres" id="2_gsosu"]
 [ext_resource type="PackedScene" uid="uid://cpu2psp3r768g" path="res://Scenes/health_component.tscn" id="2_koktx"]
 [ext_resource type="Texture2D" uid="uid://flwuchuwu0dg" path="res://Assets/gGnome.png" id="3_e0oju"]
 
