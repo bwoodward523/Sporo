@@ -4,7 +4,7 @@ var item_type : int # 0: coin
 
 @onready var player = get_parent().get_node("player")
 var coin_img = preload("res://Assets/tempcoin.png")
-var heart_img = preload("res://Assets/heart.png")
+var heart_img = preload("res://Assets/heartdrop.png")
 var dir: Vector2
 var range := Vector2(150,150)
 var SPEED = 750
