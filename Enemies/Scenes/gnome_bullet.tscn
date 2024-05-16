@@ -17,8 +17,9 @@ shape = SubResource("CircleShape2D_cukol")
 texture = ExtResource("2_gjb4h")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, 0.5)
 texture = ExtResource("2_gjb4h")
-texture_scale = 1.2
+texture_scale = 2.0
 
 [node name="Lifetime" type="Timer" parent="."]
 wait_time = 10.0

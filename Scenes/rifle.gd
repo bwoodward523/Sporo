@@ -1,5 +1,5 @@
 extends CharacterBody2D
-@onready var playerProjectile = load("res://Scenes/projectile.tscn")
+@onready var playerProjectile = preload("res://Scenes/projectile.tscn")
 @onready var main = get_tree().get_current_scene()
 @onready var player = get_parent().get_parent()
 @onready var barrel = get_node("Rifle/Barrel")
