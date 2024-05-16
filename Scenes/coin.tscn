@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8wdbkawwttw"]
+[gd_scene load_steps=5 format=3 uid="uid://b8wdbkawwttw"]
 
 [ext_resource type="Texture2D" uid="uid://c2u8bbn5s3rvn" path="res://Assets/tempcoin.png" id="1_bsjdk"]
 [ext_resource type="Script" path="res://Scenes/coin.gd" id="1_jum5s"]
+[ext_resource type="AudioStream" uid="uid://ce63r3jeytj23" path="res://Assets/Sounds/pickupCoin.wav" id="3_26jy7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ofmbc"]
 size = Vector2(33, 34)
@@ -15,5 +16,10 @@ texture = ExtResource("1_bsjdk")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 1)
 shape = SubResource("RectangleShape2D_ofmbc")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_26jy7")
+volume_db = 1.0
+autoplay = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

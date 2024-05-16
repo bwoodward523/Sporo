@@ -25,3 +25,4 @@ func _on_body_entered(body):
 		print("Coin picked up")
 	#delete item
 	queue_free()
+	$AudioStreamPlayer2D.play()
