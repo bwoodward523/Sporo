@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dorixvfr3ngvq"]
+[gd_scene load_steps=5 format=3 uid="uid://dorixvfr3ngvq"]
 
 [ext_resource type="Script" path="res://Scenes/projectile.gd" id="1_juprn"]
+[ext_resource type="Texture2D" uid="uid://p4tmyj72ng0e" path="res://Assets/gunraindropbullet.png" id="2_edph6"]
 [ext_resource type="Texture2D" uid="uid://m81oyjg0p6o2" path="res://Assets/BootyNinja.png" id="2_xep3h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u1lfw"]
@@ -10,10 +11,7 @@ radius = 9.0
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_juprn")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_u1lfw")
-disabled = true
+waterBullet = ExtResource("2_edph6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(5.96046e-08, -2)
@@ -26,5 +24,8 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_u1lfw")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture_scale = 1.35
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

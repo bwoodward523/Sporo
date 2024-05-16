@@ -73,11 +73,14 @@ func multiply_self():
 	rng.randomize()
 	enemyGnomeInstance.position = Vector2(position.x + rng.randi_range(-20,20) , position.y +rng.randi_range(-20,20))
 	enemyGnomeInstance.fromParentGnome = true
-	#enemyGnomeInstance.$RigidBody2D.apply_force(Vector2(position.x + rng.randi_range(-10,10) , position.y +rng.randi_range(-10,10)))
-	get_parent().add_child(enemyGnomeInstance)
+	enemyGnomeInstance.z_index = z_index -1
+
+	get_parent().add_child(enemyGnomeInstance, true)
+	
 
 
 
 
 func _on_time_to_multiply_timeout():
-	canMultiply = true
+	if behaviorState == "Attacking" or behaviorState == "Fleeing":
+		canMultiply = true

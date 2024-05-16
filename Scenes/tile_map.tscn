@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cv2rejn7ecfth"]
+[gd_scene load_steps=5 format=3 uid="uid://cw4mekeakilt0"]
 
 [ext_resource type="Texture2D" uid="uid://cll3fu17ads7a" path="res://Assets/TileMapSpriteSheet.png" id="1_kq45g"]
 [ext_resource type="Script" path="res://Scenes/TileMap.gd" id="3_qwf4j"]

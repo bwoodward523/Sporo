@@ -1,7 +1,7 @@
 extends CharacterBody2D
 #@export var SPEED = 200
 var SPEED
-@export var DETECTION_RANGE = 100
+var DETECTION_RANGE
 @export var CHARGE_SPEED = 1000
 @export var enemy: Resource
 @onready var player = get_parent().get_node("player")

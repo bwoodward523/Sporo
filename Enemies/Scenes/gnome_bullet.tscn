@@ -1,17 +1,28 @@
 [gd_scene load_steps=4 format=3 uid="uid://dtg5d86lb3lk1"]
 
 [ext_resource type="Script" path="res://gnome_bullet.gd" id="1_gw6ca"]
-[ext_resource type="Texture2D" uid="uid://d0rcfh7c3ykjx" path="res://Assets/magebulletpng.png" id="2_x7smr"]
+[ext_resource type="Texture2D" uid="uid://c1f07xf4dr8af" path="res://Assets/bulletGnome.png" id="2_gjb4h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cukol"]
+radius = 5.7717
 
 [node name="Bullet" type="Area2D"]
+scale = Vector2(2, 2)
 script = ExtResource("1_gw6ca")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_cukol")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_x7smr")
+texture = ExtResource("2_gjb4h")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = ExtResource("2_gjb4h")
+texture_scale = 1.2
+
+[node name="Lifetime" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Lifetime" to="." method="_on_lifetime_timeout"]

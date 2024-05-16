@@ -48,11 +48,11 @@ func _physics_process(delta):
 
 	
 	move_and_slide()
-	detect_enemy(delta)
+	detect_enemy()
 	pass
 	
 
-func detect_enemy(delta):
+func detect_enemy():
 	
 	var collisionList: Array
 	#make array of all names of collisions
