@@ -4,7 +4,10 @@ var SPEED
 @export var DETECTION_RANGE = 100
 @export var CHARGE_SPEED = 1000
 @export var enemy: Resource
+@onready var main = get_node("/root/main")
 @onready var player = get_parent().get_node("player")
+
+var item_scene := preload("res://Scenes/coin.tscn")
 
 var behaviorState = "Searching"
 var stopMovement = false
@@ -43,8 +46,13 @@ func _physics_process(delta):
 			$AnimationPlayer.clear_queue()
 			$CollisionShape2D.disabled = true
 			rotation_degrees = 0
-			
-		
+			drop_item()
+func drop_item():
+	var item = item_scene.instantiate()
+	item.position = position
+	main.call_deferred("add_child", item)
+	item.add_to_group("items")
+
 func checkForAttack():
 	if position.distance_to(player.position) <= DETECTION_RANGE:
 		$AnimationPlayer.play(attackAnimation)

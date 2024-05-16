@@ -100,6 +100,7 @@ scale = Vector2(1.16, 1.16)
 shape = SubResource("CapsuleShape2D_fba2d")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.7, 0.7)
 
 [node name="HealthComponent" parent="." instance=ExtResource("4_dswhc")]
 MAXHEALTH = 10

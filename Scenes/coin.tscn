@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8wdbkawwttw"]
+
+[ext_resource type="Texture2D" uid="uid://c2u8bbn5s3rvn" path="res://Assets/tempcoin.png" id="1_bsjdk"]
+[ext_resource type="Script" path="res://Scenes/coin.gd" id="1_jum5s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ofmbc"]
+size = Vector2(33, 34)
+
+[node name="Coin" type="Area2D"]
+collision_mask = 4
+script = ExtResource("1_jum5s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_bsjdk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 1)
+shape = SubResource("RectangleShape2D_ofmbc")

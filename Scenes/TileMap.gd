@@ -3,8 +3,8 @@ extends TileMap
 var moisture = FastNoiseLite.new()
 var temperature = FastNoiseLite.new()
 var altitude = FastNoiseLite.new()
-var width = 20
-var height = 20
+var width = 30
+var height = 30
 @onready var player = get_parent().get_node("player")
 
 func _ready():
