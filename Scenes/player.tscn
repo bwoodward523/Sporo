@@ -5,8 +5,8 @@
 [ext_resource type="Resource" uid="uid://d2jg3o7ug4xpo" path="res://Items/Repo/fist.tres" id="2_wr8ff"]
 [ext_resource type="PackedScene" uid="uid://b6lpalucwsy41" path="res://Scenes/rifle.tscn" id="3_8keq0"]
 [ext_resource type="Resource" uid="uid://b87ewfwd3ap01" path="res://Items/Repo/watergun.tres" id="3_uiba2"]
+[ext_resource type="Resource" uid="uid://bn7sarfipfy0c" path="res://Items/Repo/bowlingcannon.tres" id="4_1h0t5"]
 [ext_resource type="PackedScene" uid="uid://cpu2psp3r768g" path="res://Scenes/health_component.tscn" id="4_dswhc"]
-[ext_resource type="Resource" uid="uid://de25gdr8or2yg" path="res://Items/Repo/shotgun.tres" id="4_gdjwl"]
 [ext_resource type="Script" path="res://Scenes/HealthDisplay.gd" id="5_t3i60"]
 [ext_resource type="PackedScene" uid="uid://ck7geeut0uvi6" path="res://inventory_gui.tscn" id="7_87di0"]
 [ext_resource type="Script" path="res://Scenes/Balance.gd" id="9_fuj7g"]
@@ -65,7 +65,7 @@ collision_mask = 4
 script = ExtResource("1_200gu")
 item1 = ExtResource("2_wr8ff")
 item2 = ExtResource("3_uiba2")
-item3 = ExtResource("4_gdjwl")
+item3 = ExtResource("4_1h0t5")
 Active_Item = ExtResource("2_wr8ff")
 SPEED = 800
 
