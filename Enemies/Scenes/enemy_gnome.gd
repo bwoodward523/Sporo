@@ -6,7 +6,7 @@ extends CharacterBody2D
 
 var item_scene := preload("res://Scenes/coin.tscn")
 @onready var bullet1 = enemy.PROJECTILE_TYPE[0]
-@onready var enemyScene = load("res://Enemies/Scenes/enemy_gnome.tscn")
+@onready var enemyScene = preload("res://Enemies/Scenes/enemy_gnome.tscn")
 @onready var enemySpawner = get_parent().get_node("EnemySpawner")
 var behaviorState = "Searching"
 var isHurt: bool

@@ -1,7 +1,7 @@
 extends Node2D
 #@onready var enemy = get_parent().get_node("Enemy")
-@onready var enemy = load("res://Scenes/enemy.tscn")
-@onready var enemyGnome = load("res://Enemies/Scenes/enemy_gnome.tscn")
+@onready var enemy = preload("res://Scenes/enemy.tscn")
+@onready var enemyGnome = preload("res://Enemies/Scenes/enemy_gnome.tscn")
 #@onready var enemyMage = load("res://Scenes/enemymage.tscn")
 @onready var main = get_tree().get_current_scene()
 @onready var player = get_parent().get_node("player")
