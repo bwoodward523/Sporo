@@ -136,7 +136,7 @@ scale = Vector2(2, 2)
 collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_j1xkc")
-CHARGE_SPEED = 1500
+CHARGE_SPEED = 800
 enemy = ExtResource("2_xem1n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

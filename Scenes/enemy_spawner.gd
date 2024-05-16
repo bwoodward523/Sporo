@@ -20,21 +20,22 @@ func _on_timer_timeout():
 		enemyInstance = enemy.instantiate()
 	elif canSpawnGnome:
 		enemyInstance = enemyGnome.instantiate()
-	dirSpawn = rng.randi_range(1,4) #set which side of screen enemy comes from
-	if dirSpawn == 1: #left
-		var randHeight = rng.randi_range(player.position.y - rightEnd.y/2, player.position.y + rightEnd.y/2)
-		enemyInstance.position = Vector2(player.position.x - rightEnd.x/2, randHeight)
-	if dirSpawn == 2: # right
-		var randHeight = rng.randi_range(player.position.y - rightEnd.y/2, player.position.y + rightEnd.y/2)
-		enemyInstance.position = Vector2(player.position.x + rightEnd.x/2, randHeight)
-	if dirSpawn == 3: # come from above
-		var randWidth = rng.randi_range(player.position.x - rightEnd.x/2, player.position.x + rightEnd.x/2)
-		enemyInstance.position = Vector2(randWidth, player.position.y - rightEnd.y/2)
-	if dirSpawn == 4: # come from below
-		var randWidth = rng.randi_range(player.position.x - rightEnd.x/2, player.position.x + rightEnd.x/2)
-		enemyInstance.position = Vector2(randWidth, player.position.y + rightEnd.y/2)
-	#print(player.position)
-	
+	if enemyInstance != null:
+		dirSpawn = rng.randi_range(1,4) #set which side of screen enemy comes from
+		if dirSpawn == 1: #left
+			var randHeight = rng.randi_range(player.position.y - rightEnd.y/2, player.position.y + rightEnd.y/2)
+			enemyInstance.position = Vector2(player.position.x - rightEnd.x/2, randHeight)
+		if dirSpawn == 2: # right
+			var randHeight = rng.randi_range(player.position.y - rightEnd.y/2, player.position.y + rightEnd.y/2)
+			enemyInstance.position = Vector2(player.position.x + rightEnd.x/2, randHeight)
+		if dirSpawn == 3: # come from above
+			var randWidth = rng.randi_range(player.position.x - rightEnd.x/2, player.position.x + rightEnd.x/2)
+			enemyInstance.position = Vector2(randWidth, player.position.y - rightEnd.y/2)
+		if dirSpawn == 4: # come from below
+			var randWidth = rng.randi_range(player.position.x - rightEnd.x/2, player.position.x + rightEnd.x/2)
+			enemyInstance.position = Vector2(randWidth, player.position.y + rightEnd.y/2)
+		#print(player.position)
+		
 	
 	main.add_child(enemyInstance,true)
 
@@ -48,7 +49,7 @@ func _on_count_gnomes_timeout():
 		if gnome.name.contains("Gnome"):
 			gnomeCount += 1
 	print("numba of gnomes", gnomeCount)
-	if gnomeCount > 50:
+	if gnomeCount > 1:
 		canSpawnGnome = false
 	else:
 		canSpawnGnome = true

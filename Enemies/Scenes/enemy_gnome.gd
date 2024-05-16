@@ -13,22 +13,34 @@ var fromParentGnome = false
 var canMultiply = false
 var shotCount = 0
 @export var shotsUntilMultiply: int
+var randomDirFunny
+
+func _ready():
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	randomDirFunny= Vector2(rng.randi_range(-30,30), rng.randi_range(-30,30))
 
 func _physics_process(delta):
 	manage_states()
-	#print(behaviorState)
+	print(velocity.x)
+	if velocity.x > 0:
+		$Sprite2D.flip_h = false
+	else:
+		$Sprite2D.flip_h = true
 	if behaviorState == "Searching":
 		velocity = (player.position - position).normalized() * enemy.ENEMY_SPEED
 		move_and_collide(velocity * delta)
 		$FireRate.stop()
 	if behaviorState == "Attacking":
 		#enable timer cooldown
+		velocity = randomDirFunny.normalized() * enemy.ENEMY_SPEED 
+		move_and_collide(velocity * delta)
 		if $FireRate.time_left == 0:
 			$FireRate.start()
 	
 	if behaviorState == "Fleeing":
 		#opposite direction from searching
-		velocity = -(player.position - position).normalized() * enemy.ENEMY_SPEED
+		velocity = (-(player.position - position).normalized()) * enemy.ENEMY_SPEED
 		move_and_collide(velocity * delta)
 
 	if canMultiply:
