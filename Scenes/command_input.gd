@@ -5,6 +5,7 @@ extends Control
 
 func _ready():
 	connectSlots()
+	
 
 func connectSlots():
 	for slot in slots:
@@ -12,26 +13,7 @@ func connectSlots():
 		callable = callable.bind(slot)
 		slot.pressed.connect(callable)
 
-func _process(delta):
-	if Input.is_action_pressed("item_one"):
-		player.Active_Item = get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot").item
-		print("New Item Selected: ", player.Active_Item.ITEM_NAME)
-	if Input.is_action_pressed("item_two") :
-		player.Active_Item = get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot2").item
-		print("New Item Selected: ", player.Active_Item.ITEM_NAME)
-	if Input.is_action_pressed("item_three"):
-		player.Active_Item = get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot3").item
-		print("New Item Selected: ", player.Active_Item.ITEM_NAME)
-	
-	if (player.item1 != null):
-		get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot/Contains").texture = player.item1.ITEM_TEXTURE
-		get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot").item = player.item1
-	if (player.item2 != null):
-		get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot2/Contains").texture = player.item2.ITEM_TEXTURE
-		get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot2").item = player.item2
-	if (player.item3 != null):
-		get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot3/Contains").texture = player.item3.ITEM_TEXTURE
-		get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot3").item = player.item3
+
 
 func onSlotClicked(slot):
 	print(slot.name)
@@ -43,3 +25,30 @@ func onSlotClicked(slot):
 		player.item2 = tempSlot1
 	if(slot.name == "Slot3"):
 		player.item3 = tempSlot1
+
+
+func _input(event):
+	if event is InputEventKey and Input.is_action_pressed("item_one"):
+		player.Active_Item = get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot").item
+		print("New Item Selected: ", player.Active_Item.ITEM_NAME)
+		player.get_node("Sprite2D").get_child(0).switch_weapon()
+	if event is InputEventKey and Input.is_action_pressed("item_two"):
+		player.Active_Item = get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot2").item
+		print("New Item Selected: ", player.Active_Item.ITEM_NAME)
+		player.get_node("Sprite2D").get_child(0).switch_weapon()
+	if event is InputEventKey and Input.is_action_pressed("item_three"):	
+		player.Active_Item = get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot3").item
+		print("New Item Selected: ", player.Active_Item.ITEM_NAME)
+		player.get_node("Sprite2D").get_child(0).switch_weapon()
+	#Update weapon parameters to match selected weapon	
+	
+	
+	if (player.item1 != null):
+		get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot/Contains").texture = player.item1.ITEM_TEXTURE
+		get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot").item = player.item1
+	if (player.item2 != null):
+		get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot2/Contains").texture = player.item2.ITEM_TEXTURE
+		get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot2").item = player.item2
+	if (player.item3 != null):
+		get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot3/Contains").texture = player.item3.ITEM_TEXTURE
+		get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot3").item = player.item3

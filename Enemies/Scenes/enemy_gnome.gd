@@ -64,7 +64,7 @@ func death():
 	if doOnce:
 		print("popped gnome")
 		if randi_range(0,3) == 2:
-				drop_item()
+			drop_item()
 		if rng.randi_range(1,2) == 2:
 			scale.x = -scale.x
 		$AnimationPlayer.play("gnomeDeath")

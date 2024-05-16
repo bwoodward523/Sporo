@@ -21,7 +21,7 @@ offset = Vector2(-25.2738, -9.18033)
 flip_h = true
 
 [node name="Barrel" type="Node2D" parent="Rifle"]
-position = Vector2(6.4, 6.225)
+position = Vector2(6.18164, 5.4375)
 
 [node name="FireRate" type="Timer" parent="."]
 wait_time = 0.948
