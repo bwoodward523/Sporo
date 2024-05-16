@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 signal switching
 
+@export var health : int
 @export var balance : int
 @export var item1 : Resource
 @export var item2 : Resource
@@ -12,12 +13,14 @@ signal switching
 @onready var _animation_player = $AnimationPlayer
 #@onready var inventory = get_parent().get_node("CommandInput/CanvasLayer/InventoryGui")
 @onready var inventory = get_node("InventoryGui")
+@onready var isDead = false
 
 @export var SPEED = 450
 var canShoot = false
 var dirFace = 1
 
-
+func _ready():
+	self.health = 10
 
 func _physics_process(delta):
 	var direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
@@ -75,8 +78,8 @@ func detect_enemy():
 				else:
 					print("implement take_damage function on player collision")
 				
-			$HealthComponent.deductHealth()
-			print("PLAYER HP: ", $HealthComponent.health)
+			deductHealth()
+			print("PLAYER HP: ", health)
 			#Check if player is dead
 			check_death()
 		if i.contains("levelswitch"):
@@ -84,8 +87,8 @@ func detect_enemy():
 
 			
 func take_damage():
-	$HealthComponent.deductHealth()
-	print("PLAYER HP: ", $HealthComponent.health)
+	deductHealth()
+	print("PLAYER HP: ", health)
 	check_death()
 		
 func delete_duplicate_collisions(collisions: Array):
@@ -102,10 +105,15 @@ func _input(event):
 		else:
 			inventory.open()
 
+func deductHealth():
+	health -= 1
+	if health <= 0:
+		isDead = true
+
 func check_death():
-	if $HealthComponent.isDead:
+	if isDead:
 		visible = false
-		print($HealthComponent.isDead)
+		print(isDead)
 		if is_inside_tree():
 			get_tree().change_scene_to_file("res://Scenes/end_screen.tscn")
 

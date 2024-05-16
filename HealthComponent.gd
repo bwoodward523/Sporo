@@ -1,7 +1,6 @@
 extends Node2D
 
-
-@export var MAXHEALTH = 2
+@onready var MAXHEALTH = 2
 @onready var health = MAXHEALTH
 @onready var isDead = false
 
