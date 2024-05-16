@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://thjtpkg3w2xm" path="res://Scenes/rifle.tscn" id="3_8keq0"]
 [ext_resource type="Resource" uid="uid://gtg5k0en2rdk" path="res://Items/Repo/watergun.tres" id="3_uiba2"]
 [ext_resource type="PackedScene" uid="uid://cpu2psp3r768g" path="res://Scenes/health_component.tscn" id="4_dswhc"]
-[ext_resource type="Resource" uid="uid://bqgo5kg8nucsh" path="res://Items/Repo/shotgun.tres" id="4_gdjwl"]
+[ext_resource type="Resource" uid="uid://0i4nxircwafu" path="res://Items/Repo/gun1.tres" id="4_tj8f8"]
 [ext_resource type="Script" path="res://Scenes/HealthDisplay.gd" id="5_t3i60"]
 [ext_resource type="PackedScene" uid="uid://ck7geeut0uvi6" path="res://inventory_gui.tscn" id="7_87di0"]
 [ext_resource type="Script" path="res://Scenes/Balance.gd" id="9_fuj7g"]
@@ -65,7 +65,7 @@ collision_mask = 4
 script = ExtResource("1_200gu")
 item1 = ExtResource("2_wr8ff")
 item2 = ExtResource("3_uiba2")
-item3 = ExtResource("4_gdjwl")
+item3 = ExtResource("4_tj8f8")
 Active_Item = ExtResource("2_wr8ff")
 SPEED = 600
 

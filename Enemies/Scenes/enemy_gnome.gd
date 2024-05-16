@@ -52,8 +52,6 @@ func _physics_process(delta):
 		
 
 	if $HealthComponent.isDead:
-		if randi_range(0,3) == 2:
-				drop_item()
 		death()
 
 func drop_item():
@@ -65,6 +63,8 @@ func drop_item():
 func death():
 	if doOnce:
 		print("popped gnome")
+		if randi_range(0,3) == 2:
+			drop_item()
 		if rng.randi_range(1,2) == 2:
 			scale.x = -scale.x
 		$AnimationPlayer.play("gnomeDeath")

@@ -34,3 +34,5 @@ lifetime = 2.0
 fixed_fps = 25
 
 [node name="Coin" parent="." instance=ExtResource("7_181rs")]
+
+[connection signal="gui_input" from="CommandInput" to="CommandInput" method="_on_gui_input"]
