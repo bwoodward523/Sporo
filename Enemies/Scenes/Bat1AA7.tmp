@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://0083x7i7r7y4"]
+
+[ext_resource type="Texture2D" uid="uid://c2k7h6tftg6lf" path="res://Assets/batspritesheet.png" id="1_0go81"]
+[ext_resource type="Script" path="res://Enemies/Scenes/BatBullet.gd" id="1_ek7gm"]
+[ext_resource type="Texture2D" uid="uid://chu2acdknc5l3" path="res://Assets/batlight.png" id="2_xdmum"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2km3l"]
+radius = 8.5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fp0b0"]
+atlas = ExtResource("1_0go81")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_er4q3"]
+atlas = ExtResource("1_0go81")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3ygw"]
+atlas = ExtResource("1_0go81")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kvo45"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fp0b0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_er4q3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3ygw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c75e1"]
+radius = 14.0
+
+[node name="EnemyBat" type="Node2D"]
+script = ExtResource("1_ek7gm")
+
+[node name="BatDamageArea" type="Area2D" parent="."]
+scale = Vector2(2, 2)
+
+[node name="DealDamageBox" type="CollisionShape2D" parent="BatDamageArea"]
+shape = SubResource("CircleShape2D_2km3l")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_kvo45")
+autoplay = "default"
+frame_progress = 0.467444
+speed_scale = 1.5
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+scale = Vector2(2, 2)
+color = Color(0.174352, 2.1731e-05, 0.174904, 1)
+texture = ExtResource("2_xdmum")
+
+[node name="BatTakeDamageArea" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="TakeDamageBox" type="CollisionShape2D" parent="BatTakeDamageArea"]
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_c75e1")
+
+[connection signal="area_entered" from="BatTakeDamageArea" to="." method="_on_bat_take_damage_area_area_entered"]

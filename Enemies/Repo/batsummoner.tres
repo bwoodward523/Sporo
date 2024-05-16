@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="RANGED_ENEMY" load_steps=2 format=3 uid="uid://bcldddai10py0"]
+
+[ext_resource type="Script" path="res://Enemies/Classes/ranged_enemy_class.gd" id="1_dfsse"]
+
+[resource]
+script = ExtResource("1_dfsse")
+PROJECTILE_TYPE = Array[PackedScene]([])
+ENEMY_DEATH_ANIMATION = ""
+ENEMY_HURT_ANIMATION = ""
+ENEMY_SPEED = 0.0
+ENEMY_DETECTION_RANGE = 0.0
+ENEMY_HEALTH = 0
+ENEMY_ATTACK_ANIMATIONS = Array[String]([])
