@@ -77,6 +77,7 @@ func playerShoot():
 		instance.zdex = z_index -1
 		main.add_child(instance)
 		ammoCount -= 1
+		player.Active_Item.MAX_AMMO -= 1
 	#Wait for firerate cooldown
 	canShoot = false
 	$FireRate.start(selectedItem.FIRE_RATE)
