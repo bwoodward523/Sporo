@@ -1,10 +1,11 @@
 extends Node2D
 
 @onready var MAXHEALTH = 2
-@onready var health = MAXHEALTH
+@onready var health:int
 @onready var isDead = false
 
 @onready var parent = get_parent() 
+
 
 func deductHealth():
 	health -= 1

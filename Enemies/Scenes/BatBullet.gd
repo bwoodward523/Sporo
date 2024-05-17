@@ -22,12 +22,10 @@ func _on_bat_take_damage_area_area_entered(area):
 	if !area.name == "BatTakeDamageArea":
 		area.get_parent().queue_free()
 		death()
-		
 
 func death():
 	$BatTakeDamageArea.set_collision_mask_value(2,false)
 	$BatDamageArea.set_collision_mask_value(1, false)
-	#$BatTakeDamageArea/TakeDamageBox.disabled = true
 	$AnimationPlayer.play("batDeath")
 	dir = Vector2(0,0)
 

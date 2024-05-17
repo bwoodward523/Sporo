@@ -102,7 +102,7 @@ _data = {
 collision_layer = 8
 collision_mask = 8
 script = ExtResource("1_ek7gm")
-batSpeed = 100
+batSpeed = 175
 knockbackForce = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -154,8 +154,8 @@ _data = {
 
 [node name="EnemySummoner" type="CharacterBody2D"]
 scale = Vector2(2, 2)
-collision_layer = 4
-collision_mask = 4
+collision_layer = 20
+collision_mask = 16
 script = ExtResource("1_ayx3x")
 enemy = ExtResource("2_buuah")
 maxBatsInWorld = 100

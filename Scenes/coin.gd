@@ -28,6 +28,10 @@ func _on_body_entered(body):
 	if item_type == 1:
 		player.health += 1
 		print("Health picked up")
-	#delete item
-	queue_free()
+
 	$AudioStreamPlayer2D.play()
+
+
+func _on_audio_stream_player_2d_finished():
+		#delete item
+	queue_free()

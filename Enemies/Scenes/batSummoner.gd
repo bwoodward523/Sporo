@@ -25,10 +25,10 @@ func death():
 			drop_item()
 		if rng.randi_range(1,2) == 2:
 			scale.x = -scale.x
-		$AnimationPlayer.clear_queue()
-		$AnimationPlayer.play("summonerDeath")	
-		$CollisionShape2D.disabled = true
-		$AreaHurtBox/CollisionShape2D.disabled =true
+	$AnimationPlayer.clear_queue()
+	$AnimationPlayer.play("summonerDeath")	
+	$CollisionShape2D.disabled = true
+	$AreaHurtBox/CollisionShape2D.disabled =true
 
 func drop_item():
 	var item = item_scene.instantiate()
