@@ -105,7 +105,7 @@ func shoot():
 	for i in shotsPerShot:
 		var bulletInstance = bullet1.instantiate()
 		bulletInstance.position = position
-		bulletInstance.bulletSpeed = projectileSpeed*.6
+		bulletInstance.bulletSpeed = projectileSpeed*.5
 		bulletInstance.sprite1 = enemy.ENEMY_TEXTURE
 		var predictionDirection = interceptionDirection(player.position, position, player.velocity, projectileSpeed)
 		#predictionDirection += player.velocity.normalized()

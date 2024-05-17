@@ -133,8 +133,7 @@ gravity = Vector3(0, 98, 0)
 
 [node name="Enemy" type="CharacterBody2D"]
 scale = Vector2(1.5, 1.5)
-collision_layer = 4
-collision_mask = 5
+collision_layer = 36
 script = ExtResource("1_j1xkc")
 CHARGE_SPEED = 800
 enemy = ExtResource("2_xem1n")

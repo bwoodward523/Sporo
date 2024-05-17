@@ -151,7 +151,7 @@ scale = Vector2(0.725, 2.04)
 shape = SubResource("CircleShape2D_t7buv")
 
 [node name="TimeToMultiply" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 4.0
 autostart = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
