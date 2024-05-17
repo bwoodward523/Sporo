@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://c1f07xf4dr8af" path="res://Assets/bulletGnome.png" id="2_gjb4h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cukol"]
-radius = 5.7717
+radius = 4.0
 
-[node name="Bullet" type="Area2D"]
+[node name="Bullet" type="Area2D" groups=["enemyBullet"]]
 scale = Vector2(2, 2)
 script = ExtResource("1_gw6ca")
 
@@ -25,5 +25,6 @@ texture_scale = 2.0
 wait_time = 10.0
 autostart = true
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Lifetime" to="." method="_on_lifetime_timeout"]
