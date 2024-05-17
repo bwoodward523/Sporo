@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="WEAPON_ITEM" load_steps=4 format=3 uid="uid://bn7sarfipfy0c"]
+
+[ext_resource type="Texture2D" uid="uid://djjg7sqa0pgvb" path="res://Assets/bowlingcannon.png" id="1_drrpb"]
+[ext_resource type="Script" path="res://Items/Classes/weapon_item_class.gd" id="1_n4r5l"]
+[ext_resource type="Texture2D" uid="uid://bhkl8mjinsko3" path="res://Assets/bullet.png" id="2_qw2s2"]
+
+[resource]
+script = ExtResource("1_n4r5l")
+DAMAGE = 10
+FIRE_RATE = 0.5
+MAX_AMMO = 123123123
+PROJECTILE_SPEED = 1000.0
+PROJECTILE_TEXTURE = ExtResource("2_qw2s2")
+SHOTS_PER_SHOT = 1
+SPREAD_WIDTH = 0.0
+MAX_BULLET_DISTANCE = 600.0
+PROJECTILE_SIZE = Vector2(2, 2)
+PROJECTILE_ROTATION = 0.0
+PROJECTILE_ROTATION_RATE = 3.0
+ITEM_NAME = ""
+ITEM_TEXTURE = ExtResource("1_drrpb")
+QUANTITY = 0
+HOVER_TEXT = ""

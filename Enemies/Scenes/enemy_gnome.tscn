@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://btx8tq1nq6eua"]
+[gd_scene load_steps=10 format=3 uid="uid://btx8tq1nq6eua"]
 
 [ext_resource type="Script" path="res://Enemies/Scenes/enemy_gnome.gd" id="1_u6pn4"]
 [ext_resource type="Resource" uid="uid://chmopco6afwyr" path="res://Enemies/Repo/enemy_gnome.tres" id="2_gsosu"]
 [ext_resource type="PackedScene" uid="uid://cpu2psp3r768g" path="res://Scenes/health_component.tscn" id="2_koktx"]
 [ext_resource type="Texture2D" uid="uid://flwuchuwu0dg" path="res://Assets/gGnome.png" id="3_e0oju"]
+[ext_resource type="Script" path="res://HealthComponent.gd" id="5_spu4s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t7buv"]
 radius = 7.0
@@ -93,7 +94,7 @@ region_enabled = true
 region_rect = Rect2(0, 0, 32, 32)
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_koktx")]
-MAXHEALTH = 5
+script = ExtResource("5_spu4s")
 
 [node name="FireRate" type="Timer" parent="."]
 wait_time = 0.2

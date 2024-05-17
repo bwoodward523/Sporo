@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Items/Classes/weapon_item_class.gd" id="1_fg2yj"]
 [ext_resource type="Texture2D" uid="uid://cxgxr3qjrxxw8" path="res://Assets/shotgun.png" id="1_ir2r6"]
-[ext_resource type="Texture2D" uid="uid://bugh287mh04pl" path="res://Assets/heart.png" id="2_1yh6y"]
+[ext_resource type="Texture2D" uid="uid://bhkl8mjinsko3" path="res://Assets/bullet.png" id="2_c2wsw"]
 
 [resource]
 script = ExtResource("1_fg2yj")
@@ -10,9 +10,9 @@ DAMAGE = 1
 FIRE_RATE = 0.8
 MAX_AMMO = 99999
 PROJECTILE_SPEED = 1000.0
-PROJECTILE_TEXTURE = ExtResource("2_1yh6y")
-SHOTS_PER_SHOT = 6
-SPREAD_WIDTH = 4.0
+PROJECTILE_TEXTURE = ExtResource("2_c2wsw")
+SHOTS_PER_SHOT = 8
+SPREAD_WIDTH = 10.0
 MAX_BULLET_DISTANCE = 500.0
 PROJECTILE_SIZE = Vector2(3, 3)
 PROJECTILE_ROTATION = 0.0

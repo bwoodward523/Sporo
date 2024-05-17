@@ -1,12 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://whd11j441bhe"]
+[gd_scene load_steps=16 format=3 uid="uid://whd11j441bhe"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_200gu"]
 [ext_resource type="Texture2D" uid="uid://2q5lrp74xdxl" path="res://Assets/MainBulletSpriteSheet.png" id="2_rr0v0"]
 [ext_resource type="Resource" uid="uid://d2jg3o7ug4xpo" path="res://Items/Repo/fist.tres" id="2_wr8ff"]
 [ext_resource type="PackedScene" uid="uid://thjtpkg3w2xm" path="res://Scenes/rifle.tscn" id="3_8keq0"]
 [ext_resource type="Resource" uid="uid://gtg5k0en2rdk" path="res://Items/Repo/watergun.tres" id="3_uiba2"]
-[ext_resource type="PackedScene" uid="uid://cpu2psp3r768g" path="res://Scenes/health_component.tscn" id="4_dswhc"]
-[ext_resource type="Resource" uid="uid://0i4nxircwafu" path="res://Items/Repo/gun1.tres" id="4_tj8f8"]
+[ext_resource type="Resource" uid="uid://bn7sarfipfy0c" path="res://Items/Repo/bowlingcannon.tres" id="4_1h0t5"]
 [ext_resource type="Script" path="res://Scenes/HealthDisplay.gd" id="5_t3i60"]
 [ext_resource type="PackedScene" uid="uid://ck7geeut0uvi6" path="res://inventory_gui.tscn" id="7_87di0"]
 [ext_resource type="Script" path="res://Scenes/Balance.gd" id="9_fuj7g"]
@@ -65,7 +64,7 @@ collision_mask = 4
 script = ExtResource("1_200gu")
 item1 = ExtResource("2_wr8ff")
 item2 = ExtResource("3_uiba2")
-item3 = ExtResource("4_tj8f8")
+item3 = ExtResource("4_1h0t5")
 Active_Item = ExtResource("2_wr8ff")
 SPEED = 600
 
@@ -103,20 +102,6 @@ shape = SubResource("CapsuleShape2D_fba2d")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.7, 0.7)
 
-[node name="HealthComponent" parent="." instance=ExtResource("4_dswhc")]
-MAXHEALTH = 100
-
-[node name="HealthDisplay" type="Label" parent="HealthComponent"]
-light_mask = 4
-visibility_layer = 4
-z_index = 2
-texture_filter = 4
-offset_left = -539.672
-offset_top = -268.852
-offset_right = -495.672
-offset_bottom = -245.852
-script = ExtResource("5_t3i60")
-
 [node name="InventoryGui" parent="." instance=ExtResource("7_87di0")]
 visible = false
 anchors_preset = -1
@@ -139,6 +124,17 @@ offset_top = -247.213
 offset_right = -495.672
 offset_bottom = -224.213
 script = ExtResource("9_fuj7g")
+
+[node name="HealthDisplay" type="Label" parent="."]
+light_mask = 4
+visibility_layer = 4
+z_index = 2
+texture_filter = 4
+offset_left = -539.672
+offset_top = -268.852
+offset_right = -495.672
+offset_bottom = -245.852
+script = ExtResource("5_t3i60")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
