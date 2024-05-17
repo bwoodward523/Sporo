@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://d38087hvaadw2" path="res://Assets/summonernobat.png" id="1_60uab"]
 [ext_resource type="Script" path="res://Enemies/Scenes/batSummoner.gd" id="1_ayx3x"]
-[ext_resource type="Resource" path="res://Enemies/Repo/batsummoner.tres" id="2_buuah"]
+[ext_resource type="Resource" uid="uid://7tyyqqhlte11" path="res://Enemies/Repo/batsummoner.tres" id="2_buuah"]
 [ext_resource type="PackedScene" uid="uid://cpu2psp3r768g" path="res://Scenes/health_component.tscn" id="4_4j3o3"]
 [ext_resource type="Script" path="res://HealthComponent.gd" id="5_mkfb4"]
 
@@ -41,6 +41,8 @@ shape = SubResource("CircleShape2D_ydrs5")
 
 [node name="HealthComponent" parent="." instance=ExtResource("4_4j3o3")]
 script = ExtResource("5_mkfb4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [connection signal="area_entered" from="AreaHurtBox" to="." method="_on_area_hurt_box_area_entered"]
 [connection signal="timeout" from="BatSpawnRate" to="." method="_on_bat_spawn_rate_timeout"]

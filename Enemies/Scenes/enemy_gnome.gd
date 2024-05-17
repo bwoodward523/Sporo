@@ -21,6 +21,7 @@ var randomDirFunny
 var rng = RandomNumberGenerator.new()
 
 func _ready():
+	$HealthComponent.health = enemy.ENEMY_HEALTH
 	rng = RandomNumberGenerator.new()
 	rng.randomize()
 	randomDirFunny= Vector2(rng.randi_range(-30,30), rng.randi_range(-30,30))
@@ -75,7 +76,11 @@ func death():
 	
 func take_damage():
 	$HealthComponent.deductHealth()
-	$AnimationPlayer.play("gnomeHurt")
+	rng.randomize()
+	if rng.randi_range(1,2) == 2:
+		$AnimationPlayer.play("gnomeHurt1")	
+	else:
+		$AnimationPlayer.play("gnomeHurt2")
 func shoot():
 	var bulletInstance = bullet1.instantiate()
 	bulletInstance.position = position

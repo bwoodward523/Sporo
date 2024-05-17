@@ -4,7 +4,6 @@
 [ext_resource type="Resource" uid="uid://chmopco6afwyr" path="res://Enemies/Repo/enemy_gnome.tres" id="2_gsosu"]
 [ext_resource type="PackedScene" uid="uid://cpu2psp3r768g" path="res://Scenes/health_component.tscn" id="2_koktx"]
 [ext_resource type="Texture2D" uid="uid://flwuchuwu0dg" path="res://Assets/gGnome.png" id="3_e0oju"]
-[ext_resource type="Script" path="res://HealthComponent.gd" id="5_spu4s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t7buv"]
 radius = 7.0
@@ -51,7 +50,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_0288c"]
-resource_name = "gnomeHurt"
+resource_name = "gnomeHurt1"
 length = 0.16
 step = 0.01
 tracks/0/type = "value"
@@ -66,11 +65,53 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(0.742022, 0, 0.234243, 1), Color(1, 1, 1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.16),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.523599, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_7fxaa"]
+resource_name = "gnomeHurt2"
+length = 0.16
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.16),
+"transitions": PackedFloat32Array(1, 0.203063, 3.24901),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.742022, 0, 0.234243, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.16),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.523599, 0.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6xvds"]
 _data = {
 "gnomeDeath": SubResource("Animation_e767v"),
-"gnomeHurt": SubResource("Animation_0288c")
+"gnomeHurt1": SubResource("Animation_0288c"),
+"gnomeHurt2": SubResource("Animation_7fxaa")
 }
 
 [node name="EnemyGnome" type="CharacterBody2D"]
@@ -83,18 +124,16 @@ fleeRange = 300.0
 shotsUntilMultiply = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -2)
+position = Vector2(-0.5, 1.33333)
 scale = Vector2(0.725, 2.04)
 shape = SubResource("CircleShape2D_t7buv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -4)
 texture = ExtResource("3_e0oju")
 region_enabled = true
 region_rect = Rect2(0, 0, 32, 32)
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_koktx")]
-script = ExtResource("5_spu4s")
 
 [node name="FireRate" type="Timer" parent="."]
 wait_time = 0.2
@@ -104,7 +143,7 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-0.5, -2)
+position = Vector2(-0.5, 1.33333)
 scale = Vector2(0.725, 2.04)
 shape = SubResource("CircleShape2D_t7buv")
 

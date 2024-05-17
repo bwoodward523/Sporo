@@ -102,7 +102,7 @@ _data = {
 collision_layer = 8
 collision_mask = 8
 script = ExtResource("1_ek7gm")
-batSpeed = 100
+batSpeed = 175
 knockbackForce = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -143,8 +143,8 @@ libraries = {
 "": SubResource("AnimationLibrary_16pew")
 }
 
-[connection signal="body_entered" from="BatDamageArea" to="EnemyBat" method="_on_bat_damage_area_body_entered"]
 [connection signal="body_entered" from="BatDamageArea" to="." method="_on_bat_damage_area_body_entered"]
-[connection signal="area_entered" from="BatTakeDamageArea" to="EnemyBat" method="_on_bat_take_damage_area_area_entered"]
+[connection signal="body_entered" from="BatDamageArea" to="EnemyBat" method="_on_bat_damage_area_body_entered"]
 [connection signal="area_entered" from="BatTakeDamageArea" to="." method="_on_bat_take_damage_area_area_entered"]
+[connection signal="area_entered" from="BatTakeDamageArea" to="EnemyBat" method="_on_bat_take_damage_area_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="EnemyBat" method="_on_animation_player_animation_finished"]
