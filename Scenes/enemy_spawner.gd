@@ -19,7 +19,7 @@ func _on_timer_timeout():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 	
-	if rng.randi_range(1,10) == 1:
+	if rng.randi_range(1,10) == 1 && canSpawnGnome:
 		enemyInstance = enemyGnome.instantiate()
 	elif rng.randi_range(1,10) == 2:
 		enemyInstance = enemySummoner.instantiate()
@@ -27,7 +27,7 @@ func _on_timer_timeout():
 		enemyInstance = enemyMage.instantiate()
 	elif canSpawnGnome:
 		enemyInstance = enemy.instantiate()
-	
+
 	if enemyInstance != null:
 		dirSpawn = rng.randi_range(1,4) #set which side of screen enemy comes from
 		if dirSpawn == 1: #left

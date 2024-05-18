@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://c2kw7tdl557ri"]
+[gd_scene load_steps=21 format=3 uid="uid://bk2ayfcf7osys"]
 
 [ext_resource type="PackedScene" uid="uid://cpu2psp3r768g" path="res://Scenes/health_component.tscn" id="1_e75tj"]
 [ext_resource type="Script" path="res://Enemies/Scenes/enemy_mage.gd" id="1_ylq4h"]
 [ext_resource type="Texture2D" uid="uid://kr7ltncnw4g2" path="res://Assets/mageenemyspritesheet.png" id="2_b7lg6"]
-[ext_resource type="Resource" path="res://Enemies/Repo/mage.tres" id="2_fw421"]
+[ext_resource type="Resource" uid="uid://ctqu0uehdrjct" path="res://Enemies/Repo/mage.tres" id="2_fw421"]
 [ext_resource type="Script" path="res://HealthComponent.gd" id="4_tpi4b"]
+[ext_resource type="Texture2D" uid="uid://d0e48hvkb4dlg" path="res://Assets/mageBullet.png" id="5_slgoi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aqxve"]
 radius = 7.0
@@ -186,6 +187,31 @@ _data = {
 "mageHurt2": SubResource("Animation_5gww5")
 }
 
+[sub_resource type="Curve" id="Curve_2wjk1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.663507, 0.538462), -2.11706, -2.11706, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_kqifc"]
+curve = SubResource("Curve_2wjk1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mikl4"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 20.0
+emission_ring_inner_radius = 16.0
+angle_max = 181.5
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+radial_velocity_min = -3.85
+radial_velocity_max = 3.7
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -100.0
+radial_accel_max = -50.0
+scale_curve = SubResource("CurveTexture_kqifc")
+turbulence_enabled = true
+
 [node name="EnemyMage" type="CharacterBody2D"]
 scale = Vector2(3, 3)
 collision_layer = 4
@@ -226,5 +252,15 @@ libraries = {
 "": SubResource("AnimationLibrary_cfw83")
 }
 
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_mikl4")
+texture = ExtResource("5_slgoi")
+lifetime = 4.0
+one_shot = true
+speed_scale = 1.99
+
 [connection signal="timeout" from="FireRate" to="." method="_on_fire_rate_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="finished" from="GPUParticles2D" to="." method="_on_gpu_particles_2d_finished"]

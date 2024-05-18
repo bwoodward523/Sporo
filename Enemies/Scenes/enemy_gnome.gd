@@ -28,6 +28,7 @@ func _ready():
 	randomDirFunny= Vector2(rng.randi_range(-30,30), rng.randi_range(-30,30))
 
 func _physics_process(delta):
+	$Sprite2D.visible = true
 	manage_states()
 	if velocity.x > 0:
 		$Sprite2D.flip_h = false
