@@ -20,7 +20,7 @@ var canShoot = false
 var dirFace = 1
 
 func _ready():
-	self.health = 100
+	self.health = 10
 
 func _physics_process(delta):
 	var direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
@@ -115,7 +115,7 @@ func check_death():
 		visible = false
 		print(isDead)
 		if is_inside_tree():
-			get_tree().change_scene_to_file("res://Scenes/end_screen.tscn")
+			get_tree().change_scene_to_file("res://hub_world.tscn")
 
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("enemyBullet"):

@@ -23,7 +23,7 @@ func _physics_process(delta):
 func _on_body_entered(body):
 	#coin.
 	if item_type == 0:
-		player.balance += 1
+		Data.balance += 1
 		print("Coin picked up")
 	#heart
 	if item_type == 1:
