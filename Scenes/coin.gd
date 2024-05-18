@@ -30,6 +30,7 @@ func _on_body_entered(body):
 		print("Health picked up")
 
 	$AudioStreamPlayer2D.play()
+	queue_free()
 
 
 func _on_audio_stream_player_2d_finished():

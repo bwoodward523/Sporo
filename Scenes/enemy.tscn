@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://ydps0kym737e"]
+[gd_scene load_steps=13 format=3 uid="uid://ydps0kym737e"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_j1xkc"]
 [ext_resource type="Texture2D" uid="uid://htr4lvmqwcjx" path="res://Assets/Enemy1.png" id="2_gkncm"]
 [ext_resource type="Resource" uid="uid://cslalod3l863d" path="res://Enemies/Repo/grunt.tres" id="2_xem1n"]
 [ext_resource type="PackedScene" uid="uid://cpu2psp3r768g" path="res://Scenes/health_component.tscn" id="3_uegvw"]
+[ext_resource type="Script" path="res://HealthComponent.gd" id="5_qyham"]
 [ext_resource type="Texture2D" uid="uid://p4tmyj72ng0e" path="res://Assets/gunraindropbullet.png" id="5_rfby1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wpvdv"]
@@ -35,7 +36,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1.5, 1.5), Vector2(1.5, 1), Vector2(1.5, 1.5), Vector2(1.5, 1), Vector2(1.5, 1.5)]
+"values": [Vector2(2, 2), Vector2(2, 1), Vector2(2, 2), Vector2(2, 1), Vector2(2, 2)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -132,14 +133,14 @@ particle_flag_disable_z = true
 gravity = Vector3(0, 98, 0)
 
 [node name="Enemy" type="CharacterBody2D"]
-scale = Vector2(1.5, 1.5)
-collision_layer = 36
+scale = Vector2(2, 2)
+collision_layer = 4
+collision_mask = 5
 script = ExtResource("1_j1xkc")
 CHARGE_SPEED = 800
 enemy = ExtResource("2_xem1n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(1.2, 1.2)
 shape = SubResource("CapsuleShape2D_wpvdv")
 debug_color = Color(4.23551e-06, 0.616156, 0.595245, 0.42)
 
@@ -148,6 +149,7 @@ position = Vector2(0, 1)
 texture = ExtResource("2_gkncm")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_uegvw")]
+script = ExtResource("5_qyham")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

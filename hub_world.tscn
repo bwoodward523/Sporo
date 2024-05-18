@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://c4gcjhx8kgn0n" path="res://Assets/maindoor.png" id="3_rhmmp"]
 [ext_resource type="PackedScene" uid="uid://b7oes3w40giek" path="res://Scenes/command_input.tscn" id="5_gdtpv"]
 [ext_resource type="PackedScene" uid="uid://whd11j441bhe" path="res://Scenes/player.tscn" id="5_tyrbb"]
-[ext_resource type="Resource" uid="uid://0i4nxircwafu" path="res://Items/Repo/ak.tres" id="6_f2c40"]
-[ext_resource type="PackedScene" path="res://transition_screen.tscn" id="7_vhwwc"]
+[ext_resource type="Resource" path="res://Items/Repo/ak.tres" id="6_f2c40"]
+[ext_resource type="PackedScene" uid="uid://df1jx5nx25v45" path="res://transition_screen.tscn" id="7_vhwwc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_263ts"]
 texture = ExtResource("1_j853q")

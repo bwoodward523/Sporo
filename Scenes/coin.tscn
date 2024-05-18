@@ -20,6 +20,6 @@ shape = SubResource("RectangleShape2D_ofmbc")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_26jy7")
 volume_db = 1.0
+autoplay = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

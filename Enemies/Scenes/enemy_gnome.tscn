@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://chmopco6afwyr" path="res://Enemies/Repo/enemy_gnome.tres" id="2_gsosu"]
 [ext_resource type="PackedScene" uid="uid://cpu2psp3r768g" path="res://Scenes/health_component.tscn" id="2_koktx"]
 [ext_resource type="Texture2D" uid="uid://flwuchuwu0dg" path="res://Assets/gGnome.png" id="3_e0oju"]
-[ext_resource type="Texture2D" uid="uid://c1f07xf4dr8af" path="res://Assets/bulletGnome.png" id="3_gvsme"]
+[ext_resource type="Script" path="res://HealthComponent.gd" id="5_843ar"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t7buv"]
 radius = 7.0
@@ -123,7 +123,6 @@ script = ExtResource("1_u6pn4")
 enemy = ExtResource("2_gsosu")
 fleeRange = 300.0
 shotsUntilMultiply = 3
-bullSprite = ExtResource("3_gvsme")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 1.33333)
@@ -131,12 +130,12 @@ scale = Vector2(0.725, 2.04)
 shape = SubResource("CircleShape2D_t7buv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -4)
 texture = ExtResource("3_e0oju")
 region_enabled = true
 region_rect = Rect2(0, 0, 32, 32)
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_koktx")]
+script = ExtResource("5_843ar")
 
 [node name="FireRate" type="Timer" parent="."]
 wait_time = 0.2
@@ -151,7 +150,7 @@ scale = Vector2(0.725, 2.04)
 shape = SubResource("CircleShape2D_t7buv")
 
 [node name="TimeToMultiply" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 10.0
 autostart = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

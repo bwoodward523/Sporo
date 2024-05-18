@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="RANGED_ENEMY" load_steps=3 format=3 uid="uid://bcldddai10py0"]
+[gd_resource type="Resource" script_class="RANGED_ENEMY" load_steps=3 format=3 uid="uid://7tyyqqhlte11"]
 
 [ext_resource type="Script" path="res://Enemies/Classes/ranged_enemy_class.gd" id="1_dfsse"]
 [ext_resource type="PackedScene" uid="uid://0083x7i7r7y4" path="res://Enemies/Scenes/BatBullet.tscn" id="1_oda2a"]
