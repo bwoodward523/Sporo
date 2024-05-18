@@ -31,17 +31,17 @@ func _on_timer_timeout():
 	if enemyInstance != null:
 		dirSpawn = rng.randi_range(1,4) #set which side of screen enemy comes from
 		if dirSpawn == 1: #left
-			var randHeight = rng.randi_range(player.position.y - rightEnd.y/2, player.position.y + rightEnd.y/2)
-			enemyInstance.position = Vector2(player.position.x - rightEnd.x/2, randHeight)
+			var randHeight = rng.randi_range(player.position.y - rightEnd.y/1.25, player.position.y + rightEnd.y/1.25)
+			enemyInstance.position = Vector2(player.position.x - rightEnd.x/1.25, randHeight)
 		if dirSpawn == 2: # right
-			var randHeight = rng.randi_range(player.position.y - rightEnd.y/2, player.position.y + rightEnd.y/2)
-			enemyInstance.position = Vector2(player.position.x + rightEnd.x/2, randHeight)
+			var randHeight = rng.randi_range(player.position.y - rightEnd.y/1.25, player.position.y + rightEnd.y/1.25)
+			enemyInstance.position = Vector2(player.position.x + rightEnd.x/1.25, randHeight)
 		if dirSpawn == 3: # come from above
-			var randWidth = rng.randi_range(player.position.x - rightEnd.x/2, player.position.x + rightEnd.x/2)
-			enemyInstance.position = Vector2(randWidth, player.position.y - rightEnd.y/2)
+			var randWidth = rng.randi_range(player.position.x - rightEnd.x/1.25, player.position.x + rightEnd.x/1.25)
+			enemyInstance.position = Vector2(randWidth, player.position.y - rightEnd.y/1.25)
 		if dirSpawn == 4: # come from below
-			var randWidth = rng.randi_range(player.position.x - rightEnd.x/2, player.position.x + rightEnd.x/2)
-			enemyInstance.position = Vector2(randWidth, player.position.y + rightEnd.y/2)
+			var randWidth = rng.randi_range(player.position.x - rightEnd.x/1.25, player.position.x + rightEnd.x/1.25)
+			enemyInstance.position = Vector2(randWidth, player.position.y + rightEnd.y/1.25)
 		#print(player.position)
 		
 	
