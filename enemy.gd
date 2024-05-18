@@ -54,6 +54,14 @@ func _physics_process(delta):
 				drop_item()
 			if randi_range(0, 100) == 69: #hehehe
 				drop_heart()
+			if randi_range(0, 50) == 21: #hehehe
+				drop_ammo()
+func drop_ammo():
+	var item = item_scene.instantiate()
+	item.position = position
+	item.item_type = 2
+	main.call_deferred("add_child", item)
+	item.add_to_group("items")
 func drop_heart():
 	var item = item_scene.instantiate()
 	item.position = position

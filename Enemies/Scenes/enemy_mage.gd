@@ -72,8 +72,15 @@ func death():
 		$CollisionShape2D.disabled = true
 		$Area2D/CollisionShape2D.disabled = true
 		doOnce = false
-	
-	
+		if randi_range(0, 50) == 21: #hehehe
+				drop_ammo()
+func drop_ammo():
+	var item = item_scene.instantiate()
+	item.position = position
+	item.item_type = 2
+	main.call_deferred("add_child", item)
+	item.add_to_group("items")
+
 func take_damage():
 	$HealthComponent.deductHealth()
 	rng.randomize()

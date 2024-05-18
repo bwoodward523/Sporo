@@ -5,7 +5,7 @@
 [ext_resource type="Resource" uid="uid://d2jg3o7ug4xpo" path="res://Items/Repo/fist.tres" id="2_wr8ff"]
 [ext_resource type="PackedScene" uid="uid://thjtpkg3w2xm" path="res://Scenes/rifle.tscn" id="3_8keq0"]
 [ext_resource type="Resource" uid="uid://gtg5k0en2rdk" path="res://Items/Repo/watergun.tres" id="3_uiba2"]
-[ext_resource type="Resource" path="res://Items/Repo/ak.tres" id="4_hgjui"]
+[ext_resource type="Resource" uid="uid://0i4nxircwafu" path="res://Items/Repo/ak.tres" id="4_hgjui"]
 [ext_resource type="Script" path="res://Scenes/HealthDisplay.gd" id="5_t3i60"]
 [ext_resource type="PackedScene" uid="uid://ck7geeut0uvi6" path="res://inventory_gui.tscn" id="7_87di0"]
 [ext_resource type="Script" path="res://Scenes/Balance.gd" id="9_fuj7g"]
