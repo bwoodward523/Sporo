@@ -22,7 +22,7 @@ var doOnce = true
 @export var shotSpread: float
 var savedTime= 0.0
 var rng = RandomNumberGenerator.new()
-
+var startParticles = true
 func _ready():
 	$HealthComponent.health = enemy.ENEMY_HEALTH
 	rng.randomize()
@@ -97,19 +97,18 @@ func manage_states():
 	previousState = behaviorState
 	if position.distance_to(player.position) <= detectionRange:
 		behaviorState = "Attacking"
-		if previousState == "Searching":
-			$FireRate.start(savedTime)
+		if startParticles:
+			startParticles = false
+			$GPUParticles2D.restart()
+			$FireRate.start(3.2)
 	else:
 		behaviorState = "Searching"
 		savedTime = $FireRate.time_left
-		$FireRate.stop()
+		#$FireRate.stop()
 	
 func attack():
 	velocity = Vector2(0,0)
-func _on_fire_rate_timeout():
-	shoot()
-	shotCount+= 1
-	
+
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "mageDeath":
@@ -130,7 +129,7 @@ func shoot():
 			bulletInstance.dir = _assign_bullet_direction(i, predictionDirection, shotsPerShot, shotSpread) 
 		#bulletInstance.rotation = position.angle_to_point(player.global_position)
 		get_parent().add_child(bulletInstance)
-	
+	startParticles = true
 func _assign_bullet_direction(bulletNumber: int, dir: Vector2, shots: int, spread:float):
 	var bulletDirection = (get_global_mouse_position() - player.position).normalized()
 	var returnDir: Vector2
@@ -170,3 +169,11 @@ func solveQuadratic(a: float, b: float, c: float ):
 		roots[0] = ((-b + sqrt(discriminant)) / 2*a)
 		roots[1] = ((-b - sqrt(discriminant)) / 2*a)
 		return roots
+
+
+func _on_gpu_particles_2d_finished():
+	pass
+
+
+func _on_fire_rate_timeout():
+	shoot()
