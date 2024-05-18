@@ -32,11 +32,11 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("moveRight"):
 		_animation_player.play("walk")
-		$Sprite2D.flip_h = false
+		$Sprite2D.flip_h = true
 
 	elif Input.is_action_pressed("moveLeft"):
 		_animation_player.play("walk")
-		$Sprite2D.flip_h = true
+		$Sprite2D.flip_h = false
 	elif Input.is_action_pressed("moveDown"):
 		_animation_player.play("walk")
 	elif Input.is_action_pressed("moveUp"):
