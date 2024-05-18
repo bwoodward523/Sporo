@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="RANGED_ENEMY" load_steps=4 format=3 uid="uid://ctqu0uehdrjct"]
+
+[ext_resource type="Script" path="res://Enemies/Classes/ranged_enemy_class.gd" id="1_3uyql"]
+[ext_resource type="Texture2D" uid="uid://d0e48hvkb4dlg" path="res://Assets/mageBullet.png" id="1_qrck2"]
+[ext_resource type="PackedScene" uid="uid://dtg5d86lb3lk1" path="res://Enemies/Scenes/gnome_bullet.tscn" id="1_vx8g6"]
+
+[resource]
+script = ExtResource("1_3uyql")
+PROJECTILE_TYPE = Array[PackedScene]([ExtResource("1_vx8g6")])
+ENEMY_TEXTURE = ExtResource("1_qrck2")
+ENEMY_DEATH_ANIMATION = ""
+ENEMY_HURT_ANIMATION = ""
+ENEMY_SPEED = 100.0
+ENEMY_DETECTION_RANGE = 600.0
+ENEMY_HEALTH = 7
+ENEMY_ATTACK_ANIMATIONS = Array[String]([])

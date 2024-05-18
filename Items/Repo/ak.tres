@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="WEAPON_ITEM" load_steps=4 format=3 uid="uid://0i4nxircwafu"]
+
+[ext_resource type="Texture2D" uid="uid://c72qd3p7md3qe" path="res://Assets/AR.png" id="1_oalqt"]
+[ext_resource type="Texture2D" uid="uid://culjurx6l0yc4" path="res://Assets/akBullet.png" id="2_h5vnm"]
+[ext_resource type="Script" path="res://Items/Classes/weapon_item_class.gd" id="3_foab5"]
+
+[resource]
+script = ExtResource("3_foab5")
+DAMAGE = 1
+FIRE_RATE = 0.1
+MAX_AMMO = 99999999999999
+PROJECTILE_SPEED = 1200.0
+PROJECTILE_TEXTURE = ExtResource("2_h5vnm")
+SHOTS_PER_SHOT = 1
+SPREAD_WIDTH = 0.0
+MAX_BULLET_DISTANCE = 1400.0
+PROJECTILE_SIZE = Vector2(1.5, 2)
+PROJECTILE_ROTATION = 90.0
+PROJECTILE_ROTATION_RATE = 0.0
+ITEM_NAME = "Assault Rifle"
+ITEM_TEXTURE = ExtResource("1_oalqt")
+QUANTITY = 1
+HOVER_TEXT = "Just a gun"

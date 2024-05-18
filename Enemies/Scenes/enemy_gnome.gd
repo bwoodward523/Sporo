@@ -19,6 +19,7 @@ var doOnce = true
 @export var shotsUntilMultiply: int
 var randomDirFunny
 var rng = RandomNumberGenerator.new()
+@export var bullSprite: Texture2D
 
 func _ready():
 	$HealthComponent.health = enemy.ENEMY_HEALTH
@@ -85,6 +86,7 @@ func shoot():
 	var bulletInstance = bullet1.instantiate()
 	bulletInstance.position = position
 	bulletInstance.dir = (player.position - position).normalized()
+	bulletInstance.sprite1 = bullSprite
 	#bulletInstance.rotation = position.angle_to_point(player.global_position)
 	get_parent().add_child(bulletInstance)
 func _play_hurt():

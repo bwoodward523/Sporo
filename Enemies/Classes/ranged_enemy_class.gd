@@ -1,4 +1,4 @@
-extends ENEMY
+extends "res://Enemies/Classes/enemy_class.gd"
 
 class_name RANGED_ENEMY
 

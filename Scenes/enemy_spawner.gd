@@ -3,6 +3,7 @@ extends Node2D
 @onready var enemy = preload("res://Scenes/enemy.tscn")
 @onready var enemyGnome = preload("res://Enemies/Scenes/enemy_gnome.tscn")
 @onready var enemySummoner = preload("res://Enemies/Scenes/batSummoner.tscn")
+@onready var enemyMage = preload("res://Enemies/Scenes/EnemyMage.tscn")
 #@onready var enemyMage = load("res://Scenes/enemymage.tscn")
 @onready var main = get_tree().get_current_scene()
 @onready var player = get_parent().get_node("player")
@@ -10,6 +11,7 @@ extends Node2D
 var canSpawnGnome = true
 var enemyInstance
 var dirSpawn: int #(1 left) (2 right) (3 up) 4(down)
+var enemiesSpawned = 0
 func _on_timer_timeout():
 	var viewport = get_viewport()
 	var rectangle = viewport.get_visible_rect()
@@ -21,8 +23,11 @@ func _on_timer_timeout():
 		enemyInstance = enemyGnome.instantiate()
 	elif rng.randi_range(1,10) == 2:
 		enemyInstance = enemySummoner.instantiate()
+	elif rng.randi_range(1,10) == 3:
+		enemyInstance = enemyMage.instantiate()
 	elif canSpawnGnome:
 		enemyInstance = enemy.instantiate()
+	
 	if enemyInstance != null:
 		dirSpawn = rng.randi_range(1,4) #set which side of screen enemy comes from
 		if dirSpawn == 1: #left
@@ -41,7 +46,10 @@ func _on_timer_timeout():
 		
 	
 	main.add_child(enemyInstance,true)
-
+	enemiesSpawned += 1
+	
+	if fmod(enemiesSpawned, 10) == 0 && $Timer.wait_time > 0.1:
+		$Timer.wait_time  -= 0.05
 func _on_count_gnomes_timeout():
 	var gnomeCount = 0
 	var world = get_parent()
