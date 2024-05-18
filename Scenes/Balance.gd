@@ -7,6 +7,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var balance = player.balance
+	var balance = Data.balance
 	
 	text = "Balance: "+str(balance)

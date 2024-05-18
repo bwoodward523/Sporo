@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://dhmsoifjhyut7"]
 
-[ext_resource type="PackedScene" uid="uid://cw4mekeakilt0" path="res://Scenes/tile_map.tscn" id="1_70dvb"]
+[ext_resource type="PackedScene" uid="uid://cv2rejn7ecfth" path="res://Scenes/tile_map.tscn" id="1_70dvb"]
 [ext_resource type="Script" path="res://TestWorld.gd" id="1_wd6si"]
 [ext_resource type="PackedScene" uid="uid://whd11j441bhe" path="res://Scenes/player.tscn" id="3_mh2yx"]
 [ext_resource type="PackedScene" uid="uid://ckap5eabxuiku" path="res://Scenes/enemy_spawner.tscn" id="4_1wl62"]

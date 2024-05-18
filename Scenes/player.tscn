@@ -1,11 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://whd11j441bhe"]
+[gd_scene load_steps=18 format=3 uid="uid://whd11j441bhe"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_200gu"]
-[ext_resource type="Texture2D" uid="uid://2q5lrp74xdxl" path="res://Assets/MainBulletSpriteSheet.png" id="2_rr0v0"]
 [ext_resource type="Resource" uid="uid://d2jg3o7ug4xpo" path="res://Items/Repo/fist.tres" id="2_wr8ff"]
 [ext_resource type="PackedScene" uid="uid://thjtpkg3w2xm" path="res://Scenes/rifle.tscn" id="3_8keq0"]
 [ext_resource type="Resource" uid="uid://gtg5k0en2rdk" path="res://Items/Repo/watergun.tres" id="3_uiba2"]
 [ext_resource type="Resource" uid="uid://0i4nxircwafu" path="res://Items/Repo/ak.tres" id="4_hgjui"]
+[ext_resource type="Texture2D" uid="uid://darbpemtv2tyb" path="res://Assets/mainshroom.png" id="5_13lof"]
 [ext_resource type="Script" path="res://Scenes/HealthDisplay.gd" id="5_t3i60"]
 [ext_resource type="PackedScene" uid="uid://ck7geeut0uvi6" path="res://inventory_gui.tscn" id="7_87di0"]
 [ext_resource type="Script" path="res://Scenes/Balance.gd" id="9_fuj7g"]
@@ -28,12 +28,52 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [6]
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_13lof")]
 }
 
 [sub_resource type="Animation" id="Animation_xm3ld"]
 resource_name = "idle"
 length = 0.1
+
+[sub_resource type="Animation" id="Animation_ec8kj"]
+resource_name = "main_walk"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 7]
+}
 
 [sub_resource type="Animation" id="Animation_mlbch"]
 resource_name = "walk"
@@ -56,14 +96,14 @@ tracks/0/keys = {
 _data = {
 "RESET": SubResource("Animation_l28nw"),
 "idle": SubResource("Animation_xm3ld"),
+"main_walk": SubResource("Animation_ec8kj"),
 "walk": SubResource("Animation_mlbch")
 }
 
 [node name="CharacterBody2D2" type="CharacterBody2D"]
-scale = Vector2(1.525, 1.525)
 collision_mask = 4
 script = ExtResource("1_200gu")
-health = 100
+health = 1
 item1 = ExtResource("2_wr8ff")
 item2 = ExtResource("3_uiba2")
 item3 = ExtResource("4_hgjui")
@@ -80,9 +120,8 @@ light_mask = 2
 visibility_layer = 2
 z_index = 1
 scale = Vector2(1.8125, 1.8125)
-texture = ExtResource("2_rr0v0")
-hframes = 7
-frame = 6
+texture = ExtResource("5_13lof")
+hframes = 8
 
 [node name="Weapon" parent="Sprite2D" instance=ExtResource("3_8keq0")]
 position = Vector2(-0.361786, 6.51215)
@@ -98,7 +137,7 @@ scale = Vector2(1.1, 1.1)
 collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-1.31148, 4.59016)
+position = Vector2(-0.596125, 2.3845)
 scale = Vector2(1.16, 1.16)
 shape = SubResource("CapsuleShape2D_fba2d")
 
