@@ -1,9 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://bk2ayfcf7osys"]
+[gd_scene load_steps=21 format=3 uid="uid://bk2ayfcf7osys"]
 
 [ext_resource type="PackedScene" uid="uid://cpu2psp3r768g" path="res://Scenes/health_component.tscn" id="1_e75tj"]
 [ext_resource type="Script" path="res://Enemies/Scenes/enemy_mage.gd" id="1_ylq4h"]
 [ext_resource type="Texture2D" uid="uid://kr7ltncnw4g2" path="res://Assets/mageenemyspritesheet.png" id="2_b7lg6"]
 [ext_resource type="Resource" uid="uid://ctqu0uehdrjct" path="res://Enemies/Repo/mage.tres" id="2_fw421"]
+[ext_resource type="Script" path="res://HealthComponent.gd" id="4_tpi4b"]
 [ext_resource type="Texture2D" uid="uid://d0e48hvkb4dlg" path="res://Assets/mageBullet.png" id="5_slgoi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aqxve"]
@@ -235,6 +236,7 @@ scale = Vector2(1, 2.525)
 shape = SubResource("CircleShape2D_aqxve")
 
 [node name="HealthComponent" parent="." instance=ExtResource("1_e75tj")]
+script = ExtResource("4_tpi4b")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_x34vr")

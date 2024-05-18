@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://whd11j441bhe" path="res://Scenes/player.tscn" id="3_mh2yx"]
 [ext_resource type="PackedScene" uid="uid://ckap5eabxuiku" path="res://Scenes/enemy_spawner.tscn" id="4_1wl62"]
 [ext_resource type="PackedScene" uid="uid://b7oes3w40giek" path="res://Scenes/command_input.tscn" id="4_2mw6b"]
-[ext_resource type="Resource" uid="uid://0i4nxircwafu" path="res://Items/Repo/ak.tres" id="4_rfet3"]
 [ext_resource type="Texture2D" uid="uid://d0po3x2wa2jmp" path="res://Assets/raindropforsister.png" id="7_7nxts"]
 [ext_resource type="PackedScene" uid="uid://b8wdbkawwttw" path="res://Scenes/coin.tscn" id="7_181rs"]
 [ext_resource type="PackedScene" uid="uid://bxfyr5l5ydx66" path="res://Enemies/Scenes/enemy_boss.tscn" id="8_ivl54"]
@@ -22,7 +21,6 @@ script = ExtResource("1_wd6si")
 [node name="TileMap" parent="." instance=ExtResource("1_70dvb")]
 
 [node name="player" parent="." instance=ExtResource("3_mh2yx")]
-item3 = ExtResource("4_rfet3")
 
 [node name="EnemySpawner" parent="." instance=ExtResource("4_1wl62")]
 

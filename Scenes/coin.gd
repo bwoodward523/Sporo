@@ -5,10 +5,11 @@ var item_type : int # 0: coin
 @onready var player = get_parent().get_node("player")
 var coin_img = preload("res://Assets/tempcoin.png")
 var heart_img = preload("res://Assets/heartdrop.png")
+var ammo_img = preload("res://Assets/ammo pickup.png")
 var dir: Vector2
 var range := Vector2(150,150)
 var SPEED = 750
-var textures = [coin_img, heart_img]
+var textures = [coin_img, heart_img, ammo_img]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,8 +29,13 @@ func _on_body_entered(body):
 	if item_type == 1:
 		player.health += 1
 		print("Health picked up")
+	#ammo
+	if item_type == 2:
+		player.Active_Item.MAX_AMMO += 300
+		print("Ammo picked up")
 
 	$AudioStreamPlayer2D.play()
+	queue_free()
 
 
 func _on_audio_stream_player_2d_finished():

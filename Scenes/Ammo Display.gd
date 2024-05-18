@@ -1,6 +1,7 @@
 extends Label
 
-@onready var parent = get_parent() 
+@onready var parent = get_parent()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -8,5 +9,5 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var health = parent.health
-	text = "Health: "+str(health)
+	var ammo = parent.Active_Item.MAX_AMMO
+	text = "Ammo: "+str(ammo)
