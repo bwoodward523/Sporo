@@ -73,7 +73,8 @@ func detect_enemy():
 				var collision = get_slide_collision(k)
 				if collision.get_collider().has_method("take_damage"):
 					#collision.get_collider().take_damage()
-					collision.get_collider().queue_free()
+					if !i.contains("EnemyBoss"):
+						collision.get_collider().queue_free()
 					#play collision explosion anim or something 
 				else:
 					print("implement take_damage function on player collision")

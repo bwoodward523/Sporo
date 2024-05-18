@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dhmsoifjhyut7"]
+[gd_scene load_steps=11 format=3 uid="uid://dhmsoifjhyut7"]
 
 [ext_resource type="PackedScene" uid="uid://cw4mekeakilt0" path="res://Scenes/tile_map.tscn" id="1_70dvb"]
 [ext_resource type="Script" path="res://TestWorld.gd" id="1_wd6si"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://0i4nxircwafu" path="res://Items/Repo/ak.tres" id="4_rfet3"]
 [ext_resource type="Texture2D" uid="uid://d0po3x2wa2jmp" path="res://Assets/raindropforsister.png" id="7_7nxts"]
 [ext_resource type="PackedScene" uid="uid://b8wdbkawwttw" path="res://Scenes/coin.tscn" id="7_181rs"]
+[ext_resource type="PackedScene" uid="uid://bxfyr5l5ydx66" path="res://Enemies/Scenes/enemy_boss.tscn" id="8_ivl54"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pm81r"]
 particle_flag_disable_z = true
@@ -36,5 +37,8 @@ lifetime = 2.0
 fixed_fps = 25
 
 [node name="Coin" parent="." instance=ExtResource("7_181rs")]
+
+[node name="EnemyBoss" parent="." instance=ExtResource("8_ivl54")]
+position = Vector2(-100, 0)
 
 [connection signal="gui_input" from="CommandInput" to="CommandInput" method="_on_gui_input"]

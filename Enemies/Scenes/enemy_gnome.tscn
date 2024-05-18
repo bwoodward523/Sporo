@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://chmopco6afwyr" path="res://Enemies/Repo/enemy_gnome.tres" id="2_gsosu"]
 [ext_resource type="PackedScene" uid="uid://cpu2psp3r768g" path="res://Scenes/health_component.tscn" id="2_koktx"]
 [ext_resource type="Texture2D" uid="uid://flwuchuwu0dg" path="res://Assets/gGnome.png" id="3_e0oju"]
-[ext_resource type="Texture2D" uid="uid://c1f07xf4dr8af" path="res://Assets/bulletGnome.png" id="3_gvsme"]
+[ext_resource type="Texture2D" uid="uid://c1f07xf4dr8af" path="res://Assets/bulletGnome.png" id="3_no5wh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t7buv"]
 radius = 7.0
