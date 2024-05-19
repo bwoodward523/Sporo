@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bk2ayfcf7osys"]
+[gd_scene load_steps=21 format=3 uid="uid://bk2ayfcf7osys"]
 
 [ext_resource type="PackedScene" uid="uid://cpu2psp3r768g" path="res://Scenes/health_component.tscn" id="1_e75tj"]
 [ext_resource type="Script" path="res://Enemies/Scenes/enemy_mage.gd" id="1_ylq4h"]
