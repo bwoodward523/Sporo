@@ -156,7 +156,8 @@ func interceptionDirection(a: Vector2, b: Vector2, vA: Vector2, sB: float):
 	newShootDir = (c - b).normalized()
 	#print(newShootDir.x, " ", newShootDir.y)
 	return newShootDir
-	
+
+
 func solveQuadratic(a: float, b: float, c: float ):
 	var roots = [0.0,0.0]
 	var discriminant = b * b - 4*a*c

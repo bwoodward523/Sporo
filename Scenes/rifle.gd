@@ -49,7 +49,6 @@ func _physics_process(delta):
 				playerShoot()
 	#rotate gun towards mouse
 	look_at(get_global_mouse_position())
-	#print(rotation_degrees)
 	
 	if abs(rotation_degrees) >= 90: #This kinda works. goal is for gun to face a dir that feels right
 		$Rifle.flip_v = true

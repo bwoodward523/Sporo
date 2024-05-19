@@ -12,7 +12,7 @@ func _ready():
 func _physics_process(delta):
 	dir = (player.position - position).normalized()
 	velocity += dir * batSpeed * delta + knockBack
-	if velocity.length() > 1000:
+	if velocity.length() > 600:
 		velocity -= dir*  batSpeed * delta + knockBack
 	knockBack = lerp(knockBack, Vector2.ZERO, .1)
 	move_and_slide()
@@ -39,3 +39,7 @@ func _on_bat_damage_area_body_entered(body):
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "batDeath":
 		queue_free()
+
+
+func _on_timer_timeout():
+	queue_free()
