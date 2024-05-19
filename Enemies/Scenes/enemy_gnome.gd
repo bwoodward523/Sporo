@@ -24,6 +24,7 @@ var rng = RandomNumberGenerator.new()
 @export var bullSprite: Texture2D
 
 func _ready():
+	process_mode = Node.PROCESS_MODE_PAUSABLE
 	$HealthComponent.health = enemy.ENEMY_HEALTH
 	rng = RandomNumberGenerator.new()
 	rng.randomize()

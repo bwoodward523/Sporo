@@ -27,6 +27,9 @@ var cost : int
 
 func _ready():
 	self.health = 10
+	update_ammo_ui()
+	update_health_ui()
+	$HealthBar.max_value = self.health
 	$hatmenu.visible = false
 	print("My current scene is: ", get_tree().get_current_scene().get_name())
 	if get_tree().get_current_scene().get_name() == "HubWorld":
@@ -49,6 +52,22 @@ func _ready():
 			item3 = Data.item3
 		if Data.hat != null:
 			$Sprite2D/hat.texture = Data.hat
+
+func update_health_ui():
+	set_health_bar()
+
+func update_ammo_ui():
+	set_ammo_bar()
+
+func set_ammo_bar():
+	if Active_Item != null:
+		$AmmoBar.max_value = Active_Item.MAX_AMMO
+		$AmmoBar.value = Active_Item.MAX_AMMO - Active_Item.CURRENT_AMMO
+
+func set_health_bar() -> void:
+	#var progress_tween = get_tree().create_tween()
+	#progress_tween.tween_property($HealthBar, "value", 10-health, 1.0).set_trans(Tween.TRANS_LINEAR)
+	$HealthBar.value = 10-health
 
 func _physics_process(delta):
 	if !isDead:
@@ -159,6 +178,7 @@ func _input(event):
 func deductHealth():
 	if !isDead:
 		health -= 1
+		update_health_ui()
 		randAnimRot.randomize()
 		var hurtAnim = $HurtAndDeathAnimation.get_animation("playerHurt")
 		hurtAnim.track_set_key_value(1, 1, deg_to_rad(randAnimRot.randf_range(-50,50)))

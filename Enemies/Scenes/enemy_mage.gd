@@ -26,6 +26,7 @@ var savedTime= 0.0
 var rng = RandomNumberGenerator.new()
 var startParticles = true
 func _ready():
+	process_mode = Node.PROCESS_MODE_PAUSABLE
 	$HealthComponent.health = enemy.ENEMY_HEALTH
 	rng.randomize()
 

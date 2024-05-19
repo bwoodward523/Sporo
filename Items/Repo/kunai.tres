@@ -7,6 +7,7 @@
 script = ExtResource("1_n6jaw")
 DAMAGE = 1
 FIRE_RATE = 0.3
+CURRENT_AMMO = 500
 MAX_AMMO = 500
 PROJECTILE_SPEED = 1000.0
 PROJECTILE_TEXTURE = ExtResource("1_4nr1q")

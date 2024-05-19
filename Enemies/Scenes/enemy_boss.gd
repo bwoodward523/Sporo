@@ -34,6 +34,7 @@ var aimDir:= Vector2.RIGHT
 var laserWallY
 var laserWallDegrees = 0
 func _ready():
+	process_mode = Node.PROCESS_MODE_PAUSABLE
 	$HealthBar.max_value = bossHealth
 	$HealthBar.value = bossHealth
 	$HealthComponent.health = bossHealth

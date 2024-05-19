@@ -33,14 +33,17 @@ func _input(event):
 			player.Active_Item = get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot").item
 			print("New Item Selected: ", player.Active_Item.ITEM_NAME)
 			player.get_node("Sprite2D").get_child(0).switch_weapon()
+			player.update_ammo_ui()
 		if event is InputEventKey and Input.is_action_pressed("item_two") and player.item2 != null:
 			player.Active_Item = get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot2").item
 			print("New Item Selected: ", player.Active_Item.ITEM_NAME)
 			player.get_node("Sprite2D").get_child(0).switch_weapon()
+			player.update_ammo_ui()
 		if event is InputEventKey and Input.is_action_pressed("item_three") and player.item3 != null:	
 			player.Active_Item = get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot3").item
 			print("New Item Selected: ", player.Active_Item.ITEM_NAME)
 			player.get_node("Sprite2D").get_child(0).switch_weapon()
+			player.update_ammo_ui()
 		#Update weapon parameters to match selected weapon	
 	
 	

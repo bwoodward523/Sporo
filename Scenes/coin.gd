@@ -33,7 +33,7 @@ func _on_body_entered(body):
 		print("Health picked up")
 	#ammo
 	if item_type == 2:
-		player.Active_Item.MAX_AMMO += 300
+		player.Active_Item.CURRENT_AMMO += 300
 		print("Ammo picked up")
 
 func _on_pickup_finished():
