@@ -1,6 +1,5 @@
 [gd_scene load_steps=13 format=3 uid="uid://bxfyr5l5ydx66"]
 
-
 [ext_resource type="Texture2D" uid="uid://baq4ge7sy085w" path="res://Assets/BulletMancer.png" id="1_j2yil"]
 [ext_resource type="Script" path="res://Enemies/Scenes/enemy_boss.gd" id="1_pkodp"]
 [ext_resource type="Texture2D" uid="uid://c1f07xf4dr8af" path="res://Assets/bulletGnome.png" id="2_l7kb3"]

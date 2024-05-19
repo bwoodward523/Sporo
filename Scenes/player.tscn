@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://whd11j441bhe"]
+[gd_scene load_steps=35 format=3 uid="uid://whd11j441bhe"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_200gu"]
 [ext_resource type="Resource" uid="uid://d2jg3o7ug4xpo" path="res://Items/Repo/fist.tres" id="2_wr8ff"]
@@ -16,8 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://dg3vfqc6cijo3" path="res://Assets/healthbackground.png" id="13_ip61e"]
 [ext_resource type="Texture2D" uid="uid://dp5e6hm6segqb" path="res://Assets/hatmenu.png" id="13_neay1"]
 [ext_resource type="Texture2D" uid="uid://ciqu1dswp05tu" path="res://Assets/healthunder.png" id="14_xs4um"]
-[ext_resource type="Texture2D" uid="uid://db5dhgsn3xgjn" path="res://Assets/cowboyselect.png" id="15_hoiow"]
-[ext_resource type="Texture2D" uid="uid://b7stfcn5hqguy" path="res://Assets/crownselect.png" id="16_8weu1"]
 [ext_resource type="Texture2D" uid="uid://dnuw7u5ysyk8p" path="res://Assets/mushroomhat.png" id="15_x81ma"]
 [ext_resource type="Texture2D" uid="uid://eskaypoi45qt" path="res://Assets/sprout.png" id="16_hwq23"]
 [ext_resource type="Texture2D" uid="uid://cxgxr3qjrxxw8" path="res://Assets/shotgun.png" id="17_66mjk"]

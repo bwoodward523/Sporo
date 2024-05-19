@@ -131,6 +131,7 @@ func detect_enemy():
 			#Check if player is dead
 			check_death()
 		if i.contains("levelswitch"):
+			print(i)
 			emit_signal("switching")
 
 			

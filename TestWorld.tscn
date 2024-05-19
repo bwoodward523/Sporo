@@ -1,6 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://dhmsoifjhyut7"]
+[gd_scene load_steps=14 format=3 uid="uid://dhmsoifjhyut7"]
 
-[ext_resource type="PackedScene" uid="uid://cv2rejn7ecfth" path="res://Scenes/tile_map.tscn" id="1_70dvb"]
+[ext_resource type="PackedScene" uid="uid://cw4mekeakilt0" path="res://Scenes/tile_map.tscn" id="1_70dvb"]
 [ext_resource type="Script" path="res://TestWorld.gd" id="1_wd6si"]
 [ext_resource type="PackedScene" uid="uid://whd11j441bhe" path="res://Scenes/player.tscn" id="3_mh2yx"]
 [ext_resource type="PackedScene" uid="uid://ckap5eabxuiku" path="res://Scenes/enemy_spawner.tscn" id="4_1wl62"]
@@ -10,9 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://dqcfi0egkr3ji" path="res://Assets/ReturnToMainMenu.png" id="6_o37cb"]
 [ext_resource type="Texture2D" uid="uid://d0po3x2wa2jmp" path="res://Assets/raindropforsister.png" id="7_7nxts"]
 [ext_resource type="PackedScene" uid="uid://b8wdbkawwttw" path="res://Scenes/coin.tscn" id="7_181rs"]
-
-[ext_resource type="AudioStream" uid="uid://ckrtc3iutw5v" path="res://Assets/Sounds/2019-12-09_-_Retro_Forest_-_David_Fesliyan.mp3" id="8_yltml"]
 [ext_resource type="Texture2D" uid="uid://c4fpdkt2u87wq" path="res://Assets/ReturnToMainMenuHover.png" id="7_ven08"]
+[ext_resource type="AudioStream" uid="uid://ckrtc3iutw5v" path="res://Assets/Sounds/2019-12-09_-_Retro_Forest_-_David_Fesliyan.mp3" id="8_yltml"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pm81r"]
 particle_flag_disable_z = true
@@ -68,10 +67,6 @@ fixed_fps = 25
 
 [node name="Coin" parent="." instance=ExtResource("7_181rs")]
 process_mode = 1
-
-[node name="SkyLaser" parent="." instance=ExtResource("9_c5pwr")]
-process_mode = 1
-position = Vector2(311, 5)
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 process_mode = 1
