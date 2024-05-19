@@ -89,6 +89,7 @@ func _on_phase_switcher_timeout():
 func shootAtPlayer():
 	var playerDir = (player.position - position).normalized()
 	var bulletInstance = gnomeBullet.instantiate()
+	bulletInstance.set_owner(get_tree().edited_scene_root)
 	bulletInstance.position = position
 	bulletInstance.bulletSpeed = snipeSpeed
 	bulletInstance.dir = playerDir

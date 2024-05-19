@@ -4,6 +4,7 @@ var dir: Vector2
 var speed: float
 
 func _ready():
+	process_mode = Node.PROCESS_MODE_PAUSABLE
 	$AnimatedSprite2D.visible = false
 	$AnimatedSprite2D.pause()
 	$AnimationPlayer.play("new_animation")

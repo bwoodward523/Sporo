@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cv2icmpcghveh" path="res://Assets/ReturnToMenuHover.png" id="7_brgqe"]
 [ext_resource type="Texture2D" uid="uid://ckgg68njy83to" path="res://Assets/FullscreenHover.png" id="7_uxty7"]
 [ext_resource type="Texture2D" uid="uid://dauqe7qr7myk4" path="res://Assets/Windowed.png" id="8_yxn87"]
-[ext_resource type="Texture2D" uid="uid://d28stjh0q4slx" path="res://Assets/WindowedHover.png" id="9_2ss38"]
+[ext_resource type="Texture2D" uid="uid://x8aekfjdk5vh" path="res://Assets/WindowedHover1.png" id="9_4l166"]
 
 [sub_resource type="Gradient" id="Gradient_ftb7b"]
 offsets = PackedFloat32Array(0, 0.00347222, 0.993056)
@@ -142,7 +142,7 @@ texture_hover = ExtResource("7_uxty7")
 [node name="Windowed" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("8_yxn87")
-texture_hover = ExtResource("9_2ss38")
+texture_hover = ExtResource("9_4l166")
 
 [node name="Back to Main Menu" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

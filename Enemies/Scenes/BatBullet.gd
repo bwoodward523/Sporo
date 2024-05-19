@@ -8,6 +8,7 @@ var dir
 var knockBack= Vector2.ZERO
 
 func _ready():
+	process_mode = Node.PROCESS_MODE_PAUSABLE
 	pass
 func _physics_process(delta):
 	dir = (player.position - position).normalized()

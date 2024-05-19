@@ -18,6 +18,7 @@ signal switching
 @export var SPEED = 450
 var canShoot = false
 var dirFace = 1
+var can_toggle_pause = true
 
 var randText : int
 @onready var couldBuy = false
@@ -49,9 +50,6 @@ func _ready():
 
 func _physics_process(delta):
 	var direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
-	if(Input.is_key_pressed(KEY_ESCAPE)):
-		get_tree().change_scene_to_file("res://Menu.tscn")
-	
 	if couldBuy:
 		$hatmenu/HatmanSpeaking.text = "Which slot would you like this to go into? Type 1, 2, or 3"
 		if Input.is_action_pressed("item_one"):
@@ -101,7 +99,6 @@ func _physics_process(delta):
 	
 	detect_enemy()
 	pass
-	
 
 func detect_enemy():
 	
@@ -151,6 +148,8 @@ func _input(event):
 			inventory.close()
 		else:
 			inventory.open()
+	#if event.is_action_pressed("pause"):
+		#pausedMenu()
 
 func deductHealth():
 	health -= 1
@@ -282,4 +281,3 @@ func _on_item_list_2_item_selected(index):
 	print("Can buy 2?: ", couldBuy )
 	print("Balance 2?: ", balance )
 	print("Current temp gun: ", tempItem.ITEM_NAME)
-	

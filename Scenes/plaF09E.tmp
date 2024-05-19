@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://whd11j441bhe"]
+[gd_scene load_steps=34 format=3 uid="uid://whd11j441bhe"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_200gu"]
 [ext_resource type="Resource" uid="uid://d2jg3o7ug4xpo" path="res://Items/Repo/fist.tres" id="2_wr8ff"]
@@ -23,6 +23,10 @@
 [ext_resource type="Texture2D" uid="uid://biyp08a14wegw" path="res://Assets/watergun.png" id="19_435m7"]
 [ext_resource type="Texture2D" uid="uid://ddc8sbhvgmawu" path="res://Assets/theEye.png" id="19_hefa7"]
 [ext_resource type="Texture2D" uid="uid://bosm0nq0mpc51" path="res://Assets/kunai.png" id="20_i5ts0"]
+[ext_resource type="Texture2D" uid="uid://gy02ftq0nsdn" path="res://Assets/Resume.png" id="24_nqk88"]
+[ext_resource type="Texture2D" uid="uid://ocs2s2wntgfv" path="res://Assets/ResumeHover.png" id="25_6j7hl"]
+[ext_resource type="Texture2D" uid="uid://dqcfi0egkr3ji" path="res://Assets/ReturnToMainMenu.png" id="26_t8xl7"]
+[ext_resource type="Texture2D" uid="uid://c4fpdkt2u87wq" path="res://Assets/ReturnToMainMenuHover.png" id="27_motvl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fba2d"]
 radius = 7.0
@@ -301,8 +305,28 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 350
 autowrap_mode = 3
 
+[node name="PauseMenu" type="VBoxContainer" parent="."]
+visible = false
+z_index = 7
+offset_left = -163.0
+offset_top = -63.0
+offset_right = 185.0
+offset_bottom = 69.0
+
+[node name="Resume" type="TextureButton" parent="PauseMenu"]
+layout_mode = 2
+texture_normal = ExtResource("24_nqk88")
+texture_hover = ExtResource("25_6j7hl")
+
+[node name="Return to Main Menu" type="TextureButton" parent="PauseMenu"]
+layout_mode = 2
+texture_normal = ExtResource("26_t8xl7")
+texture_hover = ExtResource("27_motvl")
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="item_clicked" from="hatmenu/ItemList" to="." method="_on_item_list_item_clicked"]
 [connection signal="item_clicked" from="hatmenu/ItemList2" to="." method="_on_item_list_2_item_clicked"]
 [connection signal="item_selected" from="hatmenu/ItemList2" to="." method="_on_item_list_2_item_selected"]
+[connection signal="pressed" from="PauseMenu/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseMenu/Return to Main Menu" to="." method="_on_return_to_main_menu_pressed"]

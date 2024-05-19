@@ -25,7 +25,7 @@ func switch_weapon():
 func _ready():
 	selectedItem = player.Active_Item
 	ammoCount = selectedItem.MAX_AMMO
-
+	
 	rifle.texture = selectedItem.ITEM_TEXTURE
 	if (selectedItem.ITEM_NAME == "Fist"):
 		rifle.visible = false
