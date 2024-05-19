@@ -28,6 +28,9 @@ var phase = "none"
 
 var aimRotation: float
 var aimDir:= Vector2.RIGHT
+
+var laserWallY
+var laserWallDegrees = 0
 func _ready():
 	$HealthBar.max_value = bossHealth
 	$HealthBar.value = bossHealth
@@ -63,6 +66,7 @@ func phase_manager():
 		$ShootCloak.set_paused(false)
 		#$TentacleTimer.set_paused(true)
 		#$ShootAtPlayer.set_paused(true)
+	laserWallY = position.y
 func switch_phase():
 	if phase == "none":
 		phase = "tentacle1"
@@ -105,12 +109,13 @@ func shootSkyLaser(pos: Vector2):
 	bulletInstance.position = pos
 	bulletInstance.speed = 500
 	get_parent().add_child(bulletInstance, true)
+	
 func shootSkyLaserWall():
 	var laserCount = 20
-	var laserPos = Vector2(position.x - laserCount*100/2, position.y)
+	var laserPos = Vector2(position.x - laserCount*100/2, laserWallY)
 	for i in laserCount: 
 		if i != laserCount/2 and  i != laserCount/2 +1 and i != laserCount/2 -1:
-			shootSkyLaser(Vector2(laserPos.x + i * 100, laserPos.y))
+			shootSkyLaser(Vector2(laserPos.x + i * 100, laserPos.y).rotated(rad_to_deg(laserWallDegrees)))
 func _on_snipe_reset_timeout():
 	print("My timer ran teehee")
 	$ShootAtPlayer.set_paused(false)
@@ -186,3 +191,5 @@ func _on_shoot_laser_timeout():
 
 func _on_shoot_laser_wall_timeout():
 	shootSkyLaserWall()
+	laserWallY += 100
+	laserWallDegrees += 5
