@@ -21,6 +21,7 @@ func _physics_process(delta):
 		position += dir * SPEED * delta
 
 func _on_body_entered(body):
+	$Pickup.play()
 	#coin.
 	if item_type == 0:
 		Data.balance += 1
@@ -34,10 +35,5 @@ func _on_body_entered(body):
 		player.Active_Item.MAX_AMMO += 300
 		print("Ammo picked up")
 
-	$AudioStreamPlayer2D.play()
-	queue_free()
-
-
-func _on_audio_stream_player_2d_finished():
-		#delete item
+func _on_pickup_finished():
 	queue_free()

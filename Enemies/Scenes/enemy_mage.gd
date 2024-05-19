@@ -61,6 +61,7 @@ func drop_heart():
 func death():
 	if doOnce:
 		#print("popped gnome")
+		$AudioStreamPlayer2D.play()
 		if randi_range(0,3) == 2:
 			drop_item()
 		if randi_range(0, 100) == 69: #hehehe
