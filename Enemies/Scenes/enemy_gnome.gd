@@ -3,7 +3,9 @@ extends CharacterBody2D
 @export var enemy: Resource
 @onready var main = get_node("/root/main")
 @onready var player = get_parent().get_node("player")
-
+var isDead =  false
+var addDeathTimer = true
+@onready var spawner = get_parent().get_node("EnemySpawner")
 var item_scene := preload("res://Scenes/coin.tscn")
 @onready var bullet1 = enemy.PROJECTILE_TYPE[0]
 @onready var enemyScene = preload("res://Enemies/Scenes/enemy_gnome.tscn")
@@ -28,6 +30,9 @@ func _ready():
 	randomDirFunny= Vector2(rng.randi_range(-30,30), rng.randi_range(-30,30))
 
 func _physics_process(delta):
+	if spawner.bandaidNoMoreBoss && addDeathTimer:
+		addDeathTimer = false
+		$BossKill.start(1)
 	$Sprite2D.visible = true
 	manage_states()
 	if velocity.x > 0:
@@ -69,7 +74,9 @@ func drop_item():
 	item.add_to_group("items")
 func death():
 	if doOnce:
+		isDead = true
 		#print("popped gnome")
+		spawner.enemyKillCount += 1
 		if randi_range(0,3) == 2:
 			drop_item()
 		if randi_range(0, 100) == 69: #hehehe
@@ -144,3 +151,7 @@ func _on_time_to_multiply_timeout():
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "gnomeDeath":
 		queue_free()
+
+
+func _on_boss_kill_timeout():
+	$AnimationPlayer.play("gnomeDeath")

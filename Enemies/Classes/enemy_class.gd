@@ -1,4 +1,5 @@
-extends Resource
+extends Resource 
+
 
 class_name ENEMY
 
@@ -9,6 +10,5 @@ class_name ENEMY
 @export var ENEMY_DETECTION_RANGE: float
 @export var ENEMY_HEALTH: int
 @export var ENEMY_ATTACK_ANIMATIONS: Array[String]
-
 
 

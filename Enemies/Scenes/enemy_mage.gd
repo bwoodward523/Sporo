@@ -3,9 +3,11 @@ extends CharacterBody2D
 @export var enemy: Resource
 @onready var main = get_node("/root/main")
 @onready var player = get_parent().get_node("player")
-
+var isDead = false
+var addDeathTimer = true
 var item_scene := preload("res://Scenes/coin.tscn")
 @onready var bullet1 = enemy.PROJECTILE_TYPE[0]
+@onready var spawner = get_parent().get_node("EnemySpawner")
 @onready var enemyScene = preload("res://Enemies/Scenes/enemy_gnome.tscn")
 @onready var enemySpawner = get_parent().get_node("EnemySpawner")
 var behaviorState = "Searching"
@@ -29,7 +31,9 @@ func _ready():
 
 func _physics_process(delta):
 	manage_states()
-
+	if spawner.bandaidNoMoreBoss && addDeathTimer:
+		addDeathTimer = false
+		$BossKill.start(1)
 	if behaviorState == "Searching":
 		velocity = (player.position - position).normalized() * enemy.ENEMY_SPEED
 		move_and_collide(velocity * delta)
@@ -61,6 +65,8 @@ func drop_heart():
 func death():
 	if doOnce:
 		#print("popped gnome")
+		isDead =true
+		spawner.enemyKillCount += 1
 		$AudioStreamPlayer2D.play()
 		if randi_range(0,3) == 2:
 			drop_item()
@@ -179,3 +185,8 @@ func _on_gpu_particles_2d_finished():
 
 func _on_fire_rate_timeout():
 	shoot()
+
+
+
+func _on_boss_kill_timeout():
+	$AnimationPlayer.play("mageDeath")

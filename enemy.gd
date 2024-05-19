@@ -6,13 +6,13 @@ var DETECTION_RANGE
 @export var enemy: Resource
 @onready var main = get_node("/root/main")
 @onready var player = get_parent().get_node("player")
-
+@onready var spawner = get_parent().get_node("EnemySpawner")
 var item_scene := preload("res://Scenes/coin.tscn")
-
+var addDeathTimer = true
 var behaviorState = "Searching"
 var stopMovement = false
 var dir: Vector2
-
+var isDead = false
 var attackAnimation: String
 var hurtAnimation: String
 var deathAnimation: String
@@ -31,6 +31,9 @@ func _ready():
 	deathAnimation = enemy.ENEMY_DEATH_ANIMATION
 
 func _physics_process(delta):
+	if spawner.bandaidNoMoreBoss && addDeathTimer:
+		addDeathTimer = false
+		$BossKill.start(1)
 	if $AnimationPlayer.current_animation != deathAnimation:
 		if behaviorState == "Searching":
 			dir = (player.position - position).normalized()
@@ -42,6 +45,8 @@ func _physics_process(delta):
 		if behaviorState == "Charging":
 			move_and_collide(velocity * delta) #velocity is defined when the animation is finished
 		if $HealthComponent.isDead:
+			isDead = true
+			spawner.enemyKillCount += 1
 			$AudioStreamPlayer2D.play()
 			var rng = RandomNumberGenerator.new()
 			rng.randomize()
@@ -105,3 +110,7 @@ func take_damage():
 
 func _on_lifespan_timeout():
 	queue_free()
+
+
+func _on_boss_kill_timeout():
+	$AnimationPlayer.play("gruntDeath")

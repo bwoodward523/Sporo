@@ -9,12 +9,12 @@ signal switching
 @export var item3 : Resource
 @export var Active_Item : Resource
 
-
+@onready var spawner = get_parent().get_node("EnemySpawner")
 @onready var _animation_player = $AnimationPlayer
 #@onready var inventory = get_parent().get_node("CommandInput/CanvasLayer/InventoryGui")
 @onready var inventory = get_node("InventoryGui")
 @onready var isDead = false
-
+@onready var randAnimRot = RandomNumberGenerator.new()
 @export var SPEED = 450
 var canShoot = false
 var dirFace = 1
@@ -29,6 +29,8 @@ func _ready():
 	$hatmenu.visible = false
 	print("My current scene is: ", get_tree().get_current_scene().get_name())
 	if get_tree().get_current_scene().get_name() == "HubWorld":
+		$EnemiesKilled.visible = false
+		
 		if item1 != null:
 			Data.item1 = item1
 		if item2 != null:
@@ -44,60 +46,68 @@ func _ready():
 			item3 = Data.item3
 
 func _physics_process(delta):
-	var direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
-	if(Input.is_key_pressed(KEY_ESCAPE)):
-		get_tree().change_scene_to_file("res://Menu.tscn")
-	
-	if couldBuy:
-		$hatmenu/HatmanSpeaking.text = "Which slot would you like this to go into? Type 1, 2, or 3"
-		if Input.is_action_pressed("item_one"):
-			balance -= cost
-			item1 = tempItem
-			Data.item1 = item1
-			print("Did it work (should be shotgun): ", item1)
-			couldBuy = false
-			$hatmenu/HatmanSpeaking.text = "Thank you for your purchase!"
-		elif  Input.is_action_pressed("item_two"):
-			balance -= cost
-			item2 = tempItem
-			Data.item2 = item2
-			couldBuy = false
-			$hatmenu/HatmanSpeaking.text = "Thank you for your purchase!"
-		elif  Input.is_action_pressed("item_three"):
-			balance -= cost
-			item3 = tempItem
-			Data.item3 = item3
-			couldBuy = false
-			$hatmenu/HatmanSpeaking.text = "Thank you for your purchase!"
-	
-	velocity = direction * SPEED
-	
-	if Input.is_action_pressed("moveRight"):
-		_animation_player.play("walk")
-		$Sprite2D.flip_h = true
+	if !isDead:
+		if get_tree().get_current_scene().get_name() == "main":
+			$EnemiesKilled.visible = true
+			$EnemiesKilled.max_value = spawner.enemiesUntilBoss
+			$EnemiesKilled.value = spawner.enemyKillCount
+			if !spawner.canSpawnEnemies:
+				$EnemiesKilled.visible = false
+		var direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
+		if(Input.is_key_pressed(KEY_ESCAPE)):
+			get_tree().change_scene_to_file("res://Menu.tscn")
+		
+		if couldBuy:
+			$hatmenu/HatmanSpeaking.text = "Which slot would you like this to go into? Type 1, 2, or 3"
+			if Input.is_action_pressed("item_one"):
+				balance -= cost
+				item1 = tempItem
+				Data.item1 = item1
+				print("Did it work (should be shotgun): ", item1)
+				couldBuy = false
+				$hatmenu/HatmanSpeaking.text = "Thank you for your purchase!"
+			elif  Input.is_action_pressed("item_two"):
+				balance -= cost
+				item2 = tempItem
+				Data.item2 = item2
+				couldBuy = false
+				$hatmenu/HatmanSpeaking.text = "Thank you for your purchase!"
+			elif  Input.is_action_pressed("item_three"):
+				balance -= cost
+				item3 = tempItem
+				Data.item3 = item3
+				couldBuy = false
+				$hatmenu/HatmanSpeaking.text = "Thank you for your purchase!"
+		
+		velocity = direction * SPEED
+		
+		if Input.is_action_pressed("moveRight"):
+			_animation_player.play("walk")
+			$Sprite2D.flip_h = true
 
-	elif Input.is_action_pressed("moveLeft"):
-		_animation_player.play("walk")
-		$Sprite2D.flip_h = false
-	elif Input.is_action_pressed("moveDown"):
-		_animation_player.play("walk")
-	elif Input.is_action_pressed("moveUp"):
-		_animation_player.play("walk")
+		elif Input.is_action_pressed("moveLeft"):
+			_animation_player.play("walk")
+			$Sprite2D.flip_h = false
+		elif Input.is_action_pressed("moveDown"):
+			_animation_player.play("walk")
+		elif Input.is_action_pressed("moveUp"):
+			_animation_player.play("walk")
+		else:
+			_animation_player.play("RESET")
+		if direction:
+			if velocity.x > 0:
+				pass
+
+			elif velocity.x < 0:
+				pass
+
+		
+		move_and_slide()
+		
+		detect_enemy()
+		pass
 	else:
-		_animation_player.play("RESET")
-	if direction:
-		if velocity.x > 0:
-			pass
-
-		elif velocity.x < 0:
-			pass
-
-	
-	move_and_slide()
-	
-	detect_enemy()
-	pass
-	
+		_animation_player.play("RESET")	
 
 func detect_enemy():
 	
@@ -149,17 +159,31 @@ func _input(event):
 			inventory.open()
 
 func deductHealth():
-	health -= 1
-	$AudioStreamPlayer2D.play()
-	if health <= 0:
-		isDead = true
+	if !isDead:
+		health -= 1
+		randAnimRot.randomize()
+		var hurtAnim = $HurtAndDeathAnimation.get_animation("playerHurt")
+		hurtAnim.track_set_key_value(1, 1, deg_to_rad(randAnimRot.randf_range(-50,50)))
+		$HurtAndDeathAnimation.play("playerHurt")
+		$AudioStreamPlayer2D.play()
+		if health <= 0:
+			isDead = true
+			$CollisionShape2D.disabled = true
+			$Area2D/CollisionShape2D.disabled =true
+			$Area2D.monitoring = false
+			$Area2D.monitorable = false
+
+func _on_hurt_and_death_animation_animation_finished(anim_name):
+	if anim_name == "playerDeath":
+		if is_inside_tree():
+			get_tree().change_scene_to_file("res://hub_world.tscn")
 
 func check_death():
 	if isDead:
-		visible = false
+		$HurtAndDeathAnimation.clear_queue()
+		$HurtAndDeathAnimation.play("playerDeath")
 		print(isDead)
-		if is_inside_tree():
-			get_tree().change_scene_to_file("res://hub_world.tscn")
+		
 
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("enemyBullet"):
@@ -197,21 +221,21 @@ func _on_item_list_item_clicked(index, at_position, mouse_button_index):
 		if balance >= 1000:
 			balance -= 1000
 			$hatmenu/HatmanSpeaking.text = "Thank you for your business!"
-			$hat.texture = load("res://Assets/sprout.png")
+			$Sprite2D/hat.texture = load("res://Assets/sprout.png")
 		else:
 			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
 	if index == 1:
 		if balance >= 3000:
 			balance -= 3000
 			$hatmenu/HatmanSpeaking.text = "Thank you for your business!"
-			$hat.texture = load("res://Assets/cowboy.png")
+			$Sprite2D/hat.texture = load("res://Assets/cowboy.png")
 		else:
 			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
 	if index == 2:
 		if balance >= 9999:
 			balance -= 9999
 			$hatmenu/HatmanSpeaking.text = "Thank you for your business!"
-			$hat.texture = load("res://Assets/crown.png")
+			$Sprite2D/hat.texture = load("res://Assets/crown.png")
 		else:
 			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
 	
@@ -243,3 +267,6 @@ func _on_item_list_2_item_selected(index):
 	print("Balance 2?: ", balance )
 	print("Current temp gun: ", tempItem.ITEM_NAME)
 	
+
+
+

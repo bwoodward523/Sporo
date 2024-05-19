@@ -5,6 +5,8 @@ var gnomeBullet := preload("res://Enemies/Scenes/gnome_bullet.tscn")
 var bat = preload("res://Enemies/Scenes/BatBullet.tscn")
 var skyLaser = preload("res://Enemies/Scenes/SkyLaser.tscn")
 
+var isDead = false
+
 @onready var player = get_parent().get_node("player")
 @export var bossHealth: int
 @export var bulletSprites: Array[Texture2D]
@@ -23,7 +25,7 @@ var snipeCounter = 0
 @export var snipeResetTimeSec:float
 var isHurt = true
 var rng = RandomNumberGenerator.new()
-
+var rngAnimRot = RandomNumberGenerator.new()
 var phase = "none"
 
 var aimRotation: float
@@ -41,7 +43,13 @@ func _ready():
 	$PhaseSwitcher.wait_time = 5
 	$ShootLaser.set_paused(false)
 	phase_manager()
-
+func disableAllTimers():
+	$TentacleTimer.set_paused(true)
+	$ShootAtPlayer.set_paused(true)
+	$ShootCloak.set_paused(true)
+	$ShootLaser.set_paused(true)
+	$ShootLaserWall.set_paused(true)
+	$SnipeReset.set_paused(true)
 func _physics_process(delta):
 	pass
 
@@ -166,14 +174,25 @@ func _play_hurt():
 	pass
 
 func take_damage():
-	$HealthComponent.deductHealth()
-	check_death()
-	set_health_bar()
+	if !$HealthComponent.isDead:
+		$HealthComponent.deductHealth()
+		set_health_bar()
+		var hurtAnim = $AnimationPlayer.get_animation("bossHurt")
+		rngAnimRot.randomize()
+		hurtAnim.track_set_key_value(2, 1, deg_to_rad(rngAnimRot.randf_range(-40, 40)))
+		var randScale = rngAnimRot.randf_range(1, 1.6)
+		hurtAnim.track_set_key_value(1, 1, Vector2(randScale, randScale))
+		$AnimationPlayer.play("bossHurt")
+		$AudioStreamPlayer2D.play()
+		check_death()
 
 func check_death():
 	if $HealthComponent.isDead:
+		isDead = true
+		$AnimationPlayer.clear_queue()
 		$AnimationPlayer.play("bossDeath")
 		$CollisionShape2D.disabled = true
+		disableAllTimers()
 		
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "bossDeath":

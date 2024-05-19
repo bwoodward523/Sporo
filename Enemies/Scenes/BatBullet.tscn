@@ -152,9 +152,13 @@ autostart = true
 stream = ExtResource("4_d8wx1")
 volume_db = 1.0
 
+[node name="BossKill" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="body_entered" from="BatDamageArea" to="." method="_on_bat_damage_area_body_entered"]
 [connection signal="body_entered" from="BatDamageArea" to="EnemyBat" method="_on_bat_damage_area_body_entered"]
 [connection signal="area_entered" from="BatTakeDamageArea" to="." method="_on_bat_take_damage_area_area_entered"]
 [connection signal="area_entered" from="BatTakeDamageArea" to="EnemyBat" method="_on_bat_take_damage_area_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="EnemyBat" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="BossKill" to="." method="_on_boss_kill_timeout"]

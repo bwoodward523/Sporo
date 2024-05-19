@@ -4,6 +4,7 @@ extends Node2D
 @onready var enemyGnome = preload("res://Enemies/Scenes/enemy_gnome.tscn")
 @onready var enemySummoner = preload("res://Enemies/Scenes/batSummoner.tscn")
 @onready var enemyMage = preload("res://Enemies/Scenes/EnemyMage.tscn")
+@onready var enemyBoss = preload("res://Enemies/Scenes/enemy_boss.tscn")
 #@onready var enemyMage = load("res://Scenes/enemymage.tscn")
 @onready var main = get_tree().get_current_scene()
 @onready var player = get_parent().get_node("player")
@@ -12,6 +13,13 @@ var canSpawnGnome = true
 var enemyInstance
 var dirSpawn: int #(1 left) (2 right) (3 up) 4(down)
 var enemiesSpawned = 0
+@export var enemiesUntilBoss = 100
+var enemyKillCount = 0
+var canSpawnEnemies = true
+var bandaidNoMoreBoss = false
+var enemyAliveArray: Array[PackedScene]
+
+var spawnBoss = false
 func _on_timer_timeout():
 	var viewport = get_viewport()
 	var rectangle = viewport.get_visible_rect()
@@ -27,7 +35,20 @@ func _on_timer_timeout():
 		enemyInstance = enemyMage.instantiate()
 	elif canSpawnGnome:
 		enemyInstance = enemy.instantiate()
-	enemyInstance = null
+	if enemyKillCount >= enemiesUntilBoss:
+		enemyInstance = null
+		spawnBoss = true
+		enemyKillCount = 0
+	if !canSpawnEnemies:
+		enemyKillCount = 0
+		enemyInstance = null
+	if spawnBoss and !bandaidNoMoreBoss:
+		enemyInstance = enemyBoss.instantiate()
+		enemyInstance.position = Vector2(player.position.x - 50, player.position.y + 50)
+		spawnBoss = false
+		canSpawnEnemies = false
+		bandaidNoMoreBoss = true
+
 	if enemyInstance != null:
 		dirSpawn = rng.randi_range(1,4) #set which side of screen enemy comes from
 		if dirSpawn == 1: #left
@@ -42,9 +63,7 @@ func _on_timer_timeout():
 		if dirSpawn == 4: # come from below
 			var randWidth = rng.randi_range(player.position.x - rightEnd.x/1.25, player.position.x + rightEnd.x/1.25)
 			enemyInstance.position = Vector2(randWidth, player.position.y + rightEnd.y/1.25)
-		#print(player.position)
-		
-	
+
 	main.add_child(enemyInstance,true)
 	enemiesSpawned += 1
 	
@@ -64,3 +83,8 @@ func _on_count_gnomes_timeout():
 		canSpawnGnome = false
 	else:
 		canSpawnGnome = true
+
+
+func _on_count_enemies_timeout():
+	#print(enemyKillCount)
+	pass	

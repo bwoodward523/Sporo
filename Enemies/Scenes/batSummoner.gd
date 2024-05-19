@@ -3,6 +3,10 @@ extends CharacterBody2D
 @export var enemy: Resource
 var item_scene := preload("res://Scenes/coin.tscn")
 @onready var bat = preload("res://Enemies/Scenes/BatBullet.tscn")
+@onready var spawner = get_parent().get_node("EnemySpawner")
+
+@onready var deathTimer = preload("res://Enemies/add_death_timer.gd").new()
+var addDeathTimer = true
 @onready var player = get_parent().get_node("player")
 @onready var main = get_parent()
 var isHurt: bool
@@ -15,6 +19,10 @@ func _ready():
 func _physics_process(delta):
 	velocity = (player.position - position).normalized() * enemy.ENEMY_SPEED * delta
 	move_and_slide()
+	
+	if spawner.bandaidNoMoreBoss && addDeathTimer:
+		addDeathTimer = false
+		$BossKill.start(1)
 
 func death():
 	if doDeath:
@@ -82,6 +90,7 @@ func take_damage():
 	print($HealthComponent.health, " <--  sumowner helth | is dead? --> ", $HealthComponent.isDead)
 	if $HealthComponent.isDead:
 		death()
+		spawner.enemyKillCount += 1
 		
 
 
@@ -89,3 +98,7 @@ func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "summonerDeath":
 		queue_free()
 	
+
+
+func _on_boss_kill_timeout():
+	$AnimationPlayer.play("summonerDeath")

@@ -1,10 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://ydps0kym737e"]
+[gd_scene load_steps=13 format=3 uid="uid://ydps0kym737e"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_j1xkc"]
 [ext_resource type="Texture2D" uid="uid://htr4lvmqwcjx" path="res://Assets/Enemy1.png" id="2_gkncm"]
 [ext_resource type="Resource" uid="uid://cslalod3l863d" path="res://Enemies/Repo/grunt.tres" id="2_xem1n"]
 [ext_resource type="PackedScene" uid="uid://cpu2psp3r768g" path="res://Scenes/health_component.tscn" id="3_uegvw"]
-[ext_resource type="Script" path="res://HealthComponent.gd" id="5_qyham"]
 [ext_resource type="Texture2D" uid="uid://p4tmyj72ng0e" path="res://Assets/gunraindropbullet.png" id="5_rfby1"]
 [ext_resource type="AudioStream" uid="uid://dgi3qcr486fce" path="res://Assets/Sounds/hitHurt.wav" id="7_5dhbc"]
 
@@ -150,7 +149,6 @@ position = Vector2(0, 1)
 texture = ExtResource("2_gkncm")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_uegvw")]
-script = ExtResource("5_qyham")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -175,5 +173,9 @@ stream = ExtResource("7_5dhbc")
 volume_db = 1.0
 max_polyphony = 1000
 
+[node name="BossKill" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="Lifespan" to="." method="_on_lifespan_timeout"]
+[connection signal="timeout" from="BossKill" to="." method="_on_boss_kill_timeout"]
