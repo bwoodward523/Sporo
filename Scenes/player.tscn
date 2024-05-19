@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://whd11j441bhe"]
+[gd_scene load_steps=27 format=3 uid="uid://whd11j441bhe"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_200gu"]
 [ext_resource type="Resource" uid="uid://d2jg3o7ug4xpo" path="res://Items/Repo/fist.tres" id="2_wr8ff"]
@@ -7,10 +7,19 @@
 [ext_resource type="Resource" uid="uid://0i4nxircwafu" path="res://Items/Repo/ak.tres" id="4_hgjui"]
 [ext_resource type="Texture2D" uid="uid://darbpemtv2tyb" path="res://Assets/mainshroom.png" id="5_13lof"]
 [ext_resource type="Script" path="res://Scenes/HealthDisplay.gd" id="5_t3i60"]
+[ext_resource type="Texture2D" uid="uid://b08808ttmxrg3" path="res://Assets/crown.png" id="5_tl4jw"]
 [ext_resource type="PackedScene" uid="uid://ck7geeut0uvi6" path="res://inventory_gui.tscn" id="7_87di0"]
 [ext_resource type="Script" path="res://Scenes/Balance.gd" id="9_fuj7g"]
 [ext_resource type="Script" path="res://inventory_gui1.gd" id="10_663x2"]
 [ext_resource type="Script" path="res://Scenes/Ammo Display.gd" id="11_xsyh2"]
+[ext_resource type="AudioStream" uid="uid://ymrpreffmw2h" path="res://Assets/Sounds/playerHurt.wav" id="12_frjin"]
+[ext_resource type="Texture2D" uid="uid://dp5e6hm6segqb" path="res://Assets/hatmenu.png" id="13_neay1"]
+[ext_resource type="Texture2D" uid="uid://ctwidjnic0iic" path="res://Assets/sproutshop.png" id="14_duwlq"]
+[ext_resource type="Texture2D" uid="uid://db5dhgsn3xgjn" path="res://Assets/cowboyselect.png" id="15_hoiow"]
+[ext_resource type="Texture2D" uid="uid://b7stfcn5hqguy" path="res://Assets/crownselect.png" id="16_8weu1"]
+[ext_resource type="Texture2D" uid="uid://cxgxr3qjrxxw8" path="res://Assets/shotgun.png" id="17_66mjk"]
+[ext_resource type="Texture2D" uid="uid://c72qd3p7md3qe" path="res://Assets/AR.png" id="18_iiw6h"]
+[ext_resource type="Texture2D" uid="uid://biyp08a14wegw" path="res://Assets/watergun.png" id="19_435m7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fba2d"]
 radius = 7.0
@@ -104,11 +113,18 @@ _data = {
 collision_mask = 4
 script = ExtResource("1_200gu")
 health = 1
+balance = 9999999
 item1 = ExtResource("2_wr8ff")
 item2 = ExtResource("3_uiba2")
 item3 = ExtResource("4_hgjui")
 Active_Item = ExtResource("2_wr8ff")
 SPEED = 600
+
+[node name="hat" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(-1, -34)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("5_tl4jw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.31148, 4.59016)
@@ -189,5 +205,91 @@ offset_right = -495.672
 offset_bottom = -209.131
 script = ExtResource("11_xsyh2")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_frjin")
+volume_db = 1.0
+max_polyphony = 10
+
+[node name="hatmenu" type="Control" parent="."]
+z_index = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="hatmenu"]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("13_neay1")
+
+[node name="ItemList" type="ItemList" parent="hatmenu"]
+layout_mode = 0
+offset_left = -255.0
+offset_top = -36.0
+offset_right = 124.0
+offset_bottom = 121.0
+text_overrun_behavior = 0
+item_count = 3
+max_columns = 0
+item_0/text = "Sprout: 1000 Coins"
+item_0/icon = ExtResource("14_duwlq")
+item_1/text = "Cowpolk hat: 3000 Coins"
+item_1/icon = ExtResource("15_hoiow")
+item_2/text = "Crown: 9999 Coins"
+item_2/icon = ExtResource("16_8weu1")
+
+[node name="ItemList2" type="ItemList" parent="hatmenu"]
+layout_mode = 0
+offset_left = -254.0
+offset_top = -223.0
+offset_right = 121.0
+offset_bottom = -69.0
+allow_search = false
+text_overrun_behavior = 0
+item_count = 3
+max_columns = 0
+item_0/text = "Shotgun: 1000 Coins "
+item_0/icon = ExtResource("17_66mjk")
+item_1/text = "Rifle: 250 Coins"
+item_1/icon = ExtResource("18_iiw6h")
+item_2/text = "Water Gun: 5000 Coins"
+item_2/icon = ExtResource("19_435m7")
+
+[node name="WeaponLabel" type="Label" parent="hatmenu"]
+texture_filter = 6
+layout_mode = 0
+offset_left = -252.0
+offset_top = -248.0
+offset_right = -212.0
+offset_bottom = -225.0
+scale = Vector2(0.01, 0.01)
+theme_override_font_sizes/font_size = 2000
+text = "Weapons For Sale:"
+
+[node name="HatLabel" type="Label" parent="hatmenu"]
+texture_filter = 6
+layout_mode = 0
+offset_left = -255.0
+offset_top = -64.0
+offset_right = 3268.0
+offset_bottom = 482.0
+scale = Vector2(0.01, 0.01)
+theme_override_font_sizes/font_size = 2000
+text = "Hats For Sale:"
+
+[node name="HatmanSpeaking" type="Label" parent="hatmenu"]
+texture_filter = 6
+layout_mode = 0
+offset_left = -255.0
+offset_top = 174.0
+offset_right = 9965.0
+offset_bottom = 2214.0
+scale = Vector2(0.05, 0.05)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 350
+autowrap_mode = 3
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="item_clicked" from="hatmenu/ItemList" to="." method="_on_item_list_item_clicked"]
+[connection signal="item_clicked" from="hatmenu/ItemList2" to="." method="_on_item_list_2_item_clicked"]
+[connection signal="item_selected" from="hatmenu/ItemList2" to="." method="_on_item_list_2_item_selected"]

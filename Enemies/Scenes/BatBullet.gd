@@ -24,6 +24,7 @@ func _on_bat_take_damage_area_area_entered(area):
 		death()
 
 func death():
+	$AudioStreamPlayer2D.play()
 	$BatTakeDamageArea.set_collision_mask_value(2,false)
 	$BatDamageArea.set_collision_mask_value(1, false)
 	$AnimationPlayer.play("batDeath")

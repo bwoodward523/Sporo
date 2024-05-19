@@ -29,8 +29,9 @@ func death():
 				drop_ammo()
 		if rng.randi_range(1,2) == 2:
 			scale.x = -scale.x
+	$AudioStreamPlayer2D.play()
 	$AnimationPlayer.clear_queue()
-	$AnimationPlayer.play("summonerDeath")	
+	$AnimationPlayer.play("summonerDeath")
 	$CollisionShape2D.disabled = true
 	$AreaHurtBox/CollisionShape2D.disabled =true
 func drop_ammo():

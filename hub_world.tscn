@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://crwp8oa2k5nyd"]
+[gd_scene load_steps=16 format=3 uid="uid://crwp8oa2k5nyd"]
 
 [ext_resource type="Script" path="res://hub_world.gd" id="1_g27cd"]
 [ext_resource type="Texture2D" uid="uid://e2qd8un5hrpe" path="res://Assets/cavefloor1.png" id="1_j853q"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b7oes3w40giek" path="res://Scenes/command_input.tscn" id="5_gdtpv"]
 [ext_resource type="PackedScene" uid="uid://whd11j441bhe" path="res://Scenes/player.tscn" id="5_tyrbb"]
 [ext_resource type="PackedScene" uid="uid://df1jx5nx25v45" path="res://transition_screen.tscn" id="7_vhwwc"]
+[ext_resource type="PackedScene" uid="uid://bvdx41qqer5nc" path="res://Scenes/hatman.tscn" id="8_bq13c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_263ts"]
 texture = ExtResource("1_j853q")
@@ -82,3 +83,13 @@ position = Vector2(572, 328)
 metadata/_edit_use_anchors_ = true
 
 [node name="TransitionScreen" parent="." instance=ExtResource("7_vhwwc")]
+visible = false
+
+[node name="hatman" parent="." instance=ExtResource("8_bq13c")]
+position = Vector2(175, 78)
+scale = Vector2(2, 2)
+collision_layer = 5
+collision_mask = 5
+
+[connection signal="area_entered" from="hatman" to="player" method="_on_hatman_area_entered"]
+[connection signal="area_exited" from="hatman" to="player" method="_on_hatman_area_exited"]

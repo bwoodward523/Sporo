@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://thjtpkg3w2xm"]
+[gd_scene load_steps=5 format=3 uid="uid://thjtpkg3w2xm"]
 
 [ext_resource type="Texture2D" uid="uid://c72qd3p7md3qe" path="res://Assets/AR.png" id="1_qopo1"]
 [ext_resource type="Script" path="res://Scenes/rifle.gd" id="2_4bwlb"]
+[ext_resource type="AudioStream" uid="uid://do2u4yrw7ksj1" path="res://Assets/Sounds/lasr.wav" id="3_p252n"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_002ul"]
 
@@ -26,5 +27,10 @@ position = Vector2(6.18164, 5.4375)
 [node name="FireRate" type="Timer" parent="."]
 wait_time = 0.948
 one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_p252n")
+volume_db = 1.0
+max_polyphony = 20
 
 [connection signal="timeout" from="FireRate" to="." method="_on_fire_rate_timeout"]

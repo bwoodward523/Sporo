@@ -42,6 +42,7 @@ func _physics_process(delta):
 		if behaviorState == "Charging":
 			move_and_collide(velocity * delta) #velocity is defined when the animation is finished
 		if $HealthComponent.isDead:
+			$AudioStreamPlayer2D.play()
 			var rng = RandomNumberGenerator.new()
 			rng.randomize()
 			if rng.randi_range(1,2) == 2:

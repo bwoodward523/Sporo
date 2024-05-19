@@ -64,7 +64,6 @@ func drop_heart():
 	item.add_to_group("items")
 func drop_item():
 	var item = item_scene.instantiate()
-	item.position = position
 	item.item_type = 0
 	main.call_deferred("add_child", item)
 	item.add_to_group("items")
@@ -77,6 +76,7 @@ func death():
 			drop_heart()
 		if rng.randi_range(1,2) == 2:
 			scale.x = -scale.x
+		$AudioStreamPlayer2D.play()
 		$AnimationPlayer.play("gnomeDeath")
 		$AnimationPlayer.clear_queue()
 		$CollisionShape2D.disabled = true

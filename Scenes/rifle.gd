@@ -43,7 +43,7 @@ func _physics_process(delta):
 	#else:
 	#	rifle.texture = selectedItem.ITEM_TEXTURE
 	#	rifle.visible = true
-	if Input.is_action_pressed("shoot"):
+	if Input.is_action_pressed("shoot") and get_tree().get_current_scene().get_name() != "HubWorld":
 		if canShoot:
 			if ammoCount > 0:
 				playerShoot()
@@ -81,6 +81,8 @@ func playerShoot():
 	#Wait for firerate cooldown
 	canShoot = false
 	$FireRate.start(selectedItem.FIRE_RATE)
+	if(player.Active_Item.ITEM_NAME != "WaterGun"):
+		$AudioStreamPlayer2D.play()
 
 func _on_fire_rate_timeout():
 	#enable shooting
