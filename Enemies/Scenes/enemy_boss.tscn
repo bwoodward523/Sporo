@@ -173,8 +173,8 @@ volume_db = -20.0
 pitch_scale = 0.52
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
-[connection signal="timeout" from="TentacleTimer" to="." method="_on_rotate_shoot_timeout"]
 [connection signal="timeout" from="TentacleTimer" to="." method="_on_tentacle_timer_timeout"]
+[connection signal="timeout" from="TentacleTimer" to="." method="_on_rotate_shoot_timeout"]
 [connection signal="timeout" from="PhaseSwitcher" to="." method="_on_phase_switcher_timeout"]
 [connection signal="timeout" from="ShootAtPlayer" to="." method="_on_shoot_at_player_timeout"]
 [connection signal="timeout" from="ShootCloak" to="." method="_on_shoot_cloak_timeout"]
