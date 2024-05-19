@@ -28,7 +28,8 @@ func _on_body_entered(body):
 		print("Coin picked up")
 	#heart
 	if item_type == 1:
-		player.health += 1
+		if player.health >= 25:
+			player.health += 1
 		print("Health picked up")
 	#ammo
 	if item_type == 2:

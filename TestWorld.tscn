@@ -1,15 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://dhmsoifjhyut7"]
+[gd_scene load_steps=12 format=3 uid="uid://dhmsoifjhyut7"]
 
-[ext_resource type="PackedScene" uid="uid://cw4mekeakilt0" path="res://Scenes/tile_map.tscn" id="1_70dvb"]
+[ext_resource type="PackedScene" uid="uid://cv2rejn7ecfth" path="res://Scenes/tile_map.tscn" id="1_70dvb"]
 [ext_resource type="Script" path="res://TestWorld.gd" id="1_wd6si"]
 [ext_resource type="PackedScene" uid="uid://whd11j441bhe" path="res://Scenes/player.tscn" id="3_mh2yx"]
 [ext_resource type="PackedScene" uid="uid://ckap5eabxuiku" path="res://Scenes/enemy_spawner.tscn" id="4_1wl62"]
 [ext_resource type="PackedScene" uid="uid://b7oes3w40giek" path="res://Scenes/command_input.tscn" id="4_2mw6b"]
 [ext_resource type="Texture2D" uid="uid://d0po3x2wa2jmp" path="res://Assets/raindropforsister.png" id="7_7nxts"]
 [ext_resource type="PackedScene" uid="uid://b8wdbkawwttw" path="res://Scenes/coin.tscn" id="7_181rs"]
-[ext_resource type="PackedScene" uid="uid://bxfyr5l5ydx66" path="res://Enemies/Scenes/enemy_boss.tscn" id="8_ivl54"]
-[ext_resource type="PackedScene" uid="uid://bgjgdbjea4y6i" path="res://Enemies/Scenes/SkyLaser.tscn" id="9_c5pwr"]
+[ext_resource type="PackedScene" uid="uid://bx3qlb3sff0t4" path="res://Enemies/Scenes/enemy_boss.tscn" id="8_ivl54"]
 [ext_resource type="AudioStream" uid="uid://ckrtc3iutw5v" path="res://Assets/Sounds/2019-12-09_-_Retro_Forest_-_David_Fesliyan.mp3" id="8_yltml"]
+[ext_resource type="PackedScene" uid="uid://k418ydmlrlcy" path="res://Enemies/Scenes/SkyLaser.tscn" id="9_c5pwr"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pm81r"]
 particle_flag_disable_z = true
@@ -44,9 +44,11 @@ position = Vector2(-100, 0)
 
 [node name="SkyLaser" parent="." instance=ExtResource("9_c5pwr")]
 position = Vector2(311, 5)
+
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_yltml")
 volume_db = -15.0
 autoplay = true
+bus = &"music"
 
 [connection signal="gui_input" from="CommandInput" to="CommandInput" method="_on_gui_input"]

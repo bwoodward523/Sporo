@@ -29,12 +29,14 @@ func _ready():
 	$hatmenu.visible = false
 	print("My current scene is: ", get_tree().get_current_scene().get_name())
 	if get_tree().get_current_scene().get_name() == "HubWorld":
-		if item1 != null:
-			Data.item1 = item1
-		if item2 != null:
-			Data.item2 = item2
-		if item3 != null:
-			Data.item3 = item3
+		if Data.item1 != null:
+			item1 = Data.item1
+		if Data.item2 != null:
+			item2 = Data.item2
+		if Data.item3 != null:
+			item3 = Data.item3
+		if Data.hat != null:
+			$hat.texture = Data.hat
 	else:
 		if item1 != null:
 			item1 = Data.item1
@@ -42,6 +44,8 @@ func _ready():
 			item2 = Data.item2
 		if item3 != null:
 			item3 = Data.item3
+		if Data.hat != null:
+			$hat.texture = Data.hat
 
 func _physics_process(delta):
 	var direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
@@ -189,29 +193,51 @@ func _on_hatman_area_entered(area):
 
 func _on_hatman_area_exited(area):
 	print("I don't wanna fuck the hatman")
+	$hatmenu/ItemList.deselect_all()
+	$hatmenu/ItemList2.deselect_all()
+	couldBuy = false
 	$hatmenu.visible = false
 
 
 func _on_item_list_item_clicked(index, at_position, mouse_button_index):
 	if index == 0:
+		if balance >= 250:
+			balance -= 250
+			$hatmenu/HatmanSpeaking.text = "Thank you for your business!"
+			$hat.texture = load("res://Assets/mushroomhat.png")
+			Data.hat = $hat.texture
+		else:
+			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
+	if index == 1:
 		if balance >= 1000:
 			balance -= 1000
 			$hatmenu/HatmanSpeaking.text = "Thank you for your business!"
 			$hat.texture = load("res://Assets/sprout.png")
+			Data.hat = $hat.texture
 		else:
 			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
-	if index == 1:
+	if index == 2:
 		if balance >= 3000:
 			balance -= 3000
 			$hatmenu/HatmanSpeaking.text = "Thank you for your business!"
 			$hat.texture = load("res://Assets/cowboy.png")
+			Data.hat = $hat.texture
 		else:
 			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
-	if index == 2:
-		if balance >= 9999:
-			balance -= 9999
+	if index == 3:
+		if balance >= 5000:
+			balance -= 5000
 			$hatmenu/HatmanSpeaking.text = "Thank you for your business!"
 			$hat.texture = load("res://Assets/crown.png")
+			Data.hat = $hat.texture
+		else:
+			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
+	if index == 4:
+		if balance >= 9999:
+			balance -= 9999
+			$hatmenu/HatmanSpeaking.text = "Be careful with this one, you don't want to know where I found it..."
+			$hat.texture = load("res://Assets/theEye.png")
+			Data.hat = $hat.texture
 		else:
 			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
 	
@@ -219,10 +245,10 @@ func _on_item_list_2_item_selected(index):
 	print("Can buy 1?: ", couldBuy )
 	print("Balance 1?: ", balance )
 	if index == 0:
-		if balance >= 1000:
+		if balance >= 100:
 			couldBuy = true
-			tempItem = load("res://Items/Repo/shotgun.tres")
-			cost = 1000
+			tempItem = load("res://Items/Repo/snubby.tres")
+			cost = 100
 		else:
 			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
 	if index == 1:
@@ -233,6 +259,20 @@ func _on_item_list_2_item_selected(index):
 		else:
 			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
 	if index == 2:
+		if balance >= 1000:
+			couldBuy = true
+			tempItem = load("res://Items/Repo/kunai.tres")
+			cost = 1000
+		else:
+			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
+	if index == 3:
+		if balance >= 1000:
+			couldBuy = true
+			tempItem = load("res://Items/Repo/shotgun.tres")
+			cost = 1000
+		else:
+			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
+	if index == 4:
 		if balance >= 5000:
 			couldBuy = true
 			tempItem = load("res://Items/Repo/watergun.tres")

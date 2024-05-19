@@ -21,9 +21,12 @@ func _process(delta):
 func generate_chunk(position):
 	
 	var tile_pos = local_to_map(position)
+	
 	for x in range(width):
 		for y in range(height):
-			var moist = moisture.get_noise_2d(tile_pos.x-width/2 + x, tile_pos.y-height/2 +y)*20
-			var temp = temperature.get_noise_2d(tile_pos.x-width/2 + x, tile_pos.y-height/2 +y)*20
-			var alt = altitude.get_noise_2d(tile_pos.x-width/2 + x, tile_pos.y-height/2 +y)*20
-			set_cell(0, Vector2i(tile_pos.x-width/2 + x, tile_pos.y-height/2+y), 0, Vector2(round((moist+10)/10), round((temp+10)/10)))
+			#var moist = moisture.get_noise_2d(tile_pos.x-width/2 + x, tile_pos.y-height/2 +y)*20
+			#var temp = temperature.get_noise_2d(tile_pos.x-width/2 + x, tile_pos.y-height/2 +y)*20
+			#var alt = altitude.get_noise_2d(tile_pos.x-width/2 + x, tile_pos.y-height/2 +y)*20
+			#set_cell(0, Vector2i(tile_pos.x-width/2 + x, tile_pos.y-height/2+y), 0, Vector2(round((moist+10)/10), round((temp+10)/10)))
+			if(get_cell_source_id(0, Vector2i(tile_pos.x-width/2 + x, tile_pos.y-height/2+y)) == -1):
+				set_cell(0, Vector2i(tile_pos.x-width/2 + x, tile_pos.y-height/2+y), 0, Vector2i(randi_range(0,2), randi_range(0,2)))
