@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://whd11j441bhe"]
+[gd_scene load_steps=30 format=3 uid="uid://whd11j441bhe"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_200gu"]
 [ext_resource type="Resource" uid="uid://d2jg3o7ug4xpo" path="res://Items/Repo/fist.tres" id="2_wr8ff"]
@@ -15,13 +15,18 @@
 [ext_resource type="AudioStream" uid="uid://ymrpreffmw2h" path="res://Assets/Sounds/playerHurt.wav" id="12_frjin"]
 [ext_resource type="Texture2D" uid="uid://dg3vfqc6cijo3" path="res://Assets/healthbackground.png" id="13_ip61e"]
 [ext_resource type="Texture2D" uid="uid://dp5e6hm6segqb" path="res://Assets/hatmenu.png" id="13_neay1"]
-[ext_resource type="Texture2D" uid="uid://ctwidjnic0iic" path="res://Assets/sproutshop.png" id="14_duwlq"]
 [ext_resource type="Texture2D" uid="uid://ciqu1dswp05tu" path="res://Assets/healthunder.png" id="14_xs4um"]
 [ext_resource type="Texture2D" uid="uid://db5dhgsn3xgjn" path="res://Assets/cowboyselect.png" id="15_hoiow"]
 [ext_resource type="Texture2D" uid="uid://b7stfcn5hqguy" path="res://Assets/crownselect.png" id="16_8weu1"]
+[ext_resource type="Texture2D" uid="uid://dnuw7u5ysyk8p" path="res://Assets/mushroomhat.png" id="15_x81ma"]
+[ext_resource type="Texture2D" uid="uid://eskaypoi45qt" path="res://Assets/sprout.png" id="16_hwq23"]
 [ext_resource type="Texture2D" uid="uid://cxgxr3qjrxxw8" path="res://Assets/shotgun.png" id="17_66mjk"]
+[ext_resource type="Texture2D" uid="uid://v5s1dwc4uvrq" path="res://Assets/cowboy.png" id="17_hk5gk"]
+[ext_resource type="Texture2D" uid="uid://5ycxbvc21vhb" path="res://Assets/snubby.png" id="18_gf7ce"]
 [ext_resource type="Texture2D" uid="uid://c72qd3p7md3qe" path="res://Assets/AR.png" id="18_iiw6h"]
 [ext_resource type="Texture2D" uid="uid://biyp08a14wegw" path="res://Assets/watergun.png" id="19_435m7"]
+[ext_resource type="Texture2D" uid="uid://ddc8sbhvgmawu" path="res://Assets/theEye.png" id="19_hefa7"]
+[ext_resource type="Texture2D" uid="uid://bosm0nq0mpc51" path="res://Assets/kunai.png" id="20_i5ts0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fba2d"]
 radius = 7.0
@@ -296,10 +301,10 @@ light_mask = 4
 visibility_layer = 4
 z_index = 2
 texture_filter = 4
-offset_left = -539.672
-offset_top = -247.213
-offset_right = -495.672
-offset_bottom = -224.213
+offset_left = -822.0
+offset_top = -367.0
+offset_right = -728.0
+offset_bottom = -326.0
 script = ExtResource("9_fuj7g")
 
 [node name="HealthDisplay" type="Label" parent="."]
@@ -307,10 +312,10 @@ light_mask = 4
 visibility_layer = 4
 z_index = 2
 texture_filter = 4
-offset_left = -539.672
-offset_top = -268.852
-offset_right = -495.672
-offset_bottom = -245.852
+offset_left = -824.0
+offset_top = -314.0
+offset_right = -704.0
+offset_bottom = -261.0
 script = ExtResource("5_t3i60")
 
 [node name="Ammo Display" type="Label" parent="."]
@@ -318,10 +323,10 @@ light_mask = 4
 visibility_layer = 4
 z_index = 2
 texture_filter = 4
-offset_left = -539.672
-offset_top = -232.131
-offset_right = -495.672
-offset_bottom = -209.131
+offset_left = -824.0
+offset_top = -262.0
+offset_right = -731.0
+offset_bottom = -209.0
 script = ExtResource("11_xsyh2")
 
 [node name="EnemiesKilled" type="TextureProgressBar" parent="."]
@@ -337,8 +342,9 @@ tint_progress = Color(1, 1, 1, 0.392157)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_frjin")
-volume_db = 1.0
+volume_db = -20.0
 max_polyphony = 10
+bus = &"sfx"
 
 [node name="hatmenu" type="Control" parent="."]
 visible = false
@@ -359,31 +365,39 @@ offset_top = -36.0
 offset_right = 124.0
 offset_bottom = 121.0
 text_overrun_behavior = 0
-item_count = 3
+item_count = 5
 max_columns = 0
-item_0/text = "Sprout: 1000 Coins"
-item_0/icon = ExtResource("14_duwlq")
-item_1/text = "Cowpolk hat: 3000 Coins"
-item_1/icon = ExtResource("15_hoiow")
-item_2/text = "Crown: 9999 Coins"
-item_2/icon = ExtResource("16_8weu1")
+item_0/text = "Shroom Cap: 500 Coins"
+item_0/icon = ExtResource("15_x81ma")
+item_1/text = "Sprout: 1000 Coins"
+item_1/icon = ExtResource("16_hwq23")
+item_2/text = "Cowpolk hat: 3000 Coins"
+item_2/icon = ExtResource("17_hk5gk")
+item_3/text = "Crown: 5000 Coins"
+item_3/icon = ExtResource("5_tl4jw")
+item_4/text = "The Eye: 9999 Coins"
+item_4/icon = ExtResource("19_hefa7")
 
 [node name="ItemList2" type="ItemList" parent="hatmenu"]
 layout_mode = 0
-offset_left = -254.0
+offset_left = -250.0
 offset_top = -223.0
-offset_right = 121.0
+offset_right = 125.0
 offset_bottom = -69.0
 allow_search = false
 text_overrun_behavior = 0
-item_count = 3
+item_count = 5
 max_columns = 0
-item_0/text = "Shotgun: 1000 Coins "
-item_0/icon = ExtResource("17_66mjk")
+item_0/text = "Snubby: 100 Coins"
+item_0/icon = ExtResource("18_gf7ce")
 item_1/text = "Rifle: 250 Coins"
 item_1/icon = ExtResource("18_iiw6h")
-item_2/text = "Water Gun: 5000 Coins"
-item_2/icon = ExtResource("19_435m7")
+item_2/text = "Kunai: 500 Coins"
+item_2/icon = ExtResource("20_i5ts0")
+item_3/text = "Shotgun: 1000 Coins "
+item_3/icon = ExtResource("17_66mjk")
+item_4/text = "Water Gun: 5000 Coins"
+item_4/icon = ExtResource("19_435m7")
 
 [node name="WeaponLabel" type="Label" parent="hatmenu"]
 texture_filter = 6

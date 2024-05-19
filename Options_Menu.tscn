@@ -1,6 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://di1oa51l1vgi3"]
+[gd_scene load_steps=16 format=3 uid="uid://di1oa51l1vgi3"]
 
 [ext_resource type="Script" path="res://Options_Menu.gd" id="1_m50vf"]
+[ext_resource type="Texture2D" uid="uid://dajicd1mgcxe4" path="res://Assets/mushroom.png" id="2_33lt5"]
+[ext_resource type="AudioStream" uid="uid://ty7hlux7jjch" path="res://Assets/Sounds/mainmenu.wav" id="2_047kv"]
+[ext_resource type="Script" path="res://music_volume.gd" id="2_cvepk"]
+[ext_resource type="Texture2D" uid="uid://cjxbkk2825h53" path="res://Assets/Voume.png" id="3_k680n"]
+[ext_resource type="Texture2D" uid="uid://sgp10eb28p38" path="res://Assets/VoumeHover.png" id="4_0clel"]
+[ext_resource type="AudioStream" uid="uid://dgi3qcr486fce" path="res://Assets/Sounds/hitHurt.wav" id="4_op4o0"]
+[ext_resource type="Texture2D" uid="uid://dcuxkt7yjbyf0" path="res://Assets/Fullscreen.png" id="6_38k7c"]
+[ext_resource type="Texture2D" uid="uid://hf2u4bo8bpk0" path="res://Assets/ReturnToMenu.png" id="6_oevm3"]
+[ext_resource type="Texture2D" uid="uid://cv2icmpcghveh" path="res://Assets/ReturnToMenuHover.png" id="7_brgqe"]
+[ext_resource type="Texture2D" uid="uid://ckgg68njy83to" path="res://Assets/FullscreenHover.png" id="7_uxty7"]
+[ext_resource type="Texture2D" uid="uid://dauqe7qr7myk4" path="res://Assets/Windowed.png" id="8_yxn87"]
+[ext_resource type="Texture2D" uid="uid://x8aekfjdk5vh" path="res://Assets/WindowedHover1.png" id="9_4l166"]
+
+[sub_resource type="Gradient" id="Gradient_ftb7b"]
+offsets = PackedFloat32Array(0, 0.00347222, 0.993056)
+colors = PackedColorArray(0, 0.917647, 0.0627451, 1, 0.184314, 0.341176, 0.32549, 1, 0.231373, 0.490196, 0.309804, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_uqiy5"]
+gradient = SubResource("Gradient_ftb7b")
 
 [node name="Menu" type="Control"]
 layout_direction = 1
@@ -16,28 +35,134 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_m50vf")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -604.0
+offset_top = -340.0
+offset_right = -572.0
+offset_bottom = -308.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(37.8585, 21.4239)
+texture = SubResource("GradientTexture1D_uqiy5")
+expand_mode = 2
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = -469.0
+offset_top = -225.0
+offset_right = -405.0
+offset_bottom = -161.0
+texture = ExtResource("2_33lt5")
+
+[node name="TextureRect2" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 390.0
+offset_top = -86.0
+offset_right = 454.0
+offset_bottom = -22.0
+texture = ExtResource("2_33lt5")
+
+[node name="TextureRect4" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 159.0
+offset_top = -230.0
+offset_right = 223.0
+offset_bottom = -166.0
+texture = ExtResource("2_33lt5")
+
+[node name="TextureRect3" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = -222.0
+offset_top = 148.0
+offset_right = -158.0
+offset_bottom = 212.0
+texture = ExtResource("2_33lt5")
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_left = -64.0
-offset_top = -51.0
-offset_right = 66.0
-offset_bottom = 50.0
+offset_left = -178.0
+offset_top = -135.0
+offset_right = 170.0
+offset_bottom = 133.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="Volume" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Volume" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Volume"
+texture_normal = ExtResource("3_k680n")
+texture_hover = ExtResource("4_0clel")
 
-[node name="Fullscreen" type="CheckButton" parent="MarginContainer/VBoxContainer"]
+[node name="Volumebox" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
-text = "Fullscreen"
 
-[node name="Back to Main Menu" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="MasterLabel" type="Label" parent="MarginContainer/VBoxContainer/Volumebox"]
 layout_mode = 2
-text = "Return to Main Menu"
+text = "Master Volume:"
 
+[node name="master_volume" type="HSlider" parent="MarginContainer/VBoxContainer/Volumebox"]
+layout_mode = 2
+script = ExtResource("2_cvepk")
+bus_name = "Master"
+
+[node name="MusicLabel" type="Label" parent="MarginContainer/VBoxContainer/Volumebox"]
+layout_mode = 2
+text = "Music Volume:"
+
+[node name="music_volume" type="HSlider" parent="MarginContainer/VBoxContainer/Volumebox"]
+layout_mode = 2
+script = ExtResource("2_cvepk")
+bus_name = "music"
+
+[node name="SFXLabel" type="Label" parent="MarginContainer/VBoxContainer/Volumebox"]
+layout_mode = 2
+text = "Sound Effects Volume:"
+
+[node name="sfx_volume" type="HSlider" parent="MarginContainer/VBoxContainer/Volumebox"]
+layout_mode = 2
+script = ExtResource("2_cvepk")
+bus_name = "sfx"
+
+[node name="Fullscreen" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("6_38k7c")
+texture_hover = ExtResource("7_uxty7")
+
+[node name="Windowed" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("8_yxn87")
+texture_hover = ExtResource("9_4l166")
+
+[node name="Back to Main Menu" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("6_oevm3")
+texture_hover = ExtResource("7_brgqe")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_047kv")
+volume_db = -20.0
+autoplay = true
+bus = &"music"
+
+[node name="hurttest" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_op4o0")
+volume_db = -20.0
+bus = &"sfx"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Volume" to="." method="_on_volume_pressed"]
+[connection signal="drag_ended" from="MarginContainer/VBoxContainer/Volumebox/sfx_volume" to="." method="_on_sfx_volume_drag_ended"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Fullscreen" to="." method="_on_fullscreen_pressed"]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/Fullscreen" to="." method="_on_fullscreen_toggled"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Windowed" to="." method="_on_windowed_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Back to Main Menu" to="." method="_on_back_to_main_menu_pressed"]

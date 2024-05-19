@@ -13,6 +13,7 @@ var startRotation: float
 var rotationRate: float
 @export var waterBullet: Texture2D
 func _ready():
+	process_mode = Node.PROCESS_MODE_PAUSABLE
 	global_position = spawnPos
 	global_rotation = spawnRot
 	z_index = zdex

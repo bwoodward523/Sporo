@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bgjgdbjea4y6i"]
+[gd_scene load_steps=15 format=3 uid="uid://k418ydmlrlcy"]
 
 [ext_resource type="Script" path="res://Enemies/Scenes/SkyLaser.gd" id="1_rluon"]
 [ext_resource type="Texture2D" uid="uid://cyjwdc82h1r06" path="res://Assets/lazorsprites.png" id="1_tskt2"]

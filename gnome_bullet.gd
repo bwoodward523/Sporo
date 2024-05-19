@@ -5,6 +5,7 @@ var dir: Vector2
 var sprite1:Texture2D
 var lifeTime = 10.0
 func _ready():
+	process_mode = Node.PROCESS_MODE_PAUSABLE
 	$Lifetime.wait_time = lifeTime
 	$Sprite2D.texture = sprite1
 func _physics_process(delta):

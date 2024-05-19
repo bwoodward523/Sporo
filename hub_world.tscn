@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://crwp8oa2k5nyd"]
+[gd_scene load_steps=20 format=3 uid="uid://crwp8oa2k5nyd"]
 
 [ext_resource type="Script" path="res://hub_world.gd" id="1_g27cd"]
 [ext_resource type="Texture2D" uid="uid://e2qd8un5hrpe" path="res://Assets/cavefloor1.png" id="1_j853q"]
@@ -8,6 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://whd11j441bhe" path="res://Scenes/player.tscn" id="5_tyrbb"]
 [ext_resource type="PackedScene" uid="uid://df1jx5nx25v45" path="res://transition_screen.tscn" id="7_vhwwc"]
 [ext_resource type="PackedScene" uid="uid://bvdx41qqer5nc" path="res://Scenes/hatman.tscn" id="8_bq13c"]
+[ext_resource type="Texture2D" uid="uid://gy02ftq0nsdn" path="res://Assets/Resume.png" id="9_m4538"]
+[ext_resource type="Texture2D" uid="uid://ocs2s2wntgfv" path="res://Assets/ResumeHover.png" id="10_tnq8m"]
+[ext_resource type="Texture2D" uid="uid://dqcfi0egkr3ji" path="res://Assets/ReturnToMainMenu.png" id="11_pv44s"]
+[ext_resource type="Texture2D" uid="uid://c4fpdkt2u87wq" path="res://Assets/ReturnToMainMenuHover.png" id="12_32eyx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_263ts"]
 texture = ExtResource("1_j853q")
@@ -62,9 +66,11 @@ physics_layer_0/collision_mask = 5
 sources/1 = SubResource("TileSetAtlasSource_31jk5")
 
 [node name="HubWorld" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_g27cd")
 
 [node name="hub" type="TileMap" parent="."]
+process_mode = 1
 tile_set = SubResource("TileSet_c4qgc")
 rendering_quadrant_size = 64
 format = 2
@@ -77,7 +83,28 @@ format = 2
 layer_0/tile_data = PackedInt32Array(14, 1, 0, 65550, 1, 1)
 
 [node name="player" parent="." instance=ExtResource("5_tyrbb")]
+process_mode = 1
 position = Vector2(572, 328)
+
+[node name="Node2D" type="Node2D" parent="player"]
+process_mode = 3
+z_index = 8
+position = Vector2(-164, -63)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="player/Node2D"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureButton" type="TextureButton" parent="player/Node2D/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("9_m4538")
+texture_hover = ExtResource("10_tnq8m")
+
+[node name="TextureButton2" type="TextureButton" parent="player/Node2D/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("11_pv44s")
+texture_hover = ExtResource("12_32eyx")
 
 [node name="CommandInput" parent="." instance=ExtResource("5_gdtpv")]
 metadata/_edit_use_anchors_ = true
@@ -91,5 +118,7 @@ scale = Vector2(2, 2)
 collision_layer = 5
 collision_mask = 5
 
+[connection signal="pressed" from="player/Node2D/VBoxContainer/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="player/Node2D/VBoxContainer/TextureButton2" to="." method="_on_texture_button_2_pressed"]
 [connection signal="area_entered" from="hatman" to="player" method="_on_hatman_area_entered"]
 [connection signal="area_exited" from="hatman" to="player" method="_on_hatman_area_exited"]

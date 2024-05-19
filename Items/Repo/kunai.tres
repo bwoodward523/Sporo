@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="WEAPON_ITEM" load_steps=3 format=3 uid="uid://bw2ol8dxa63h6"]
+
+[ext_resource type="Texture2D" uid="uid://bosm0nq0mpc51" path="res://Assets/kunai.png" id="1_4nr1q"]
+[ext_resource type="Script" path="res://Items/Classes/weapon_item_class.gd" id="1_n6jaw"]
+
+[resource]
+script = ExtResource("1_n6jaw")
+DAMAGE = 1
+FIRE_RATE = 0.3
+MAX_AMMO = 500
+PROJECTILE_SPEED = 1000.0
+PROJECTILE_TEXTURE = ExtResource("1_4nr1q")
+SHOTS_PER_SHOT = 3
+SPREAD_WIDTH = 9.0
+MAX_BULLET_DISTANCE = 1000.0
+PROJECTILE_SIZE = Vector2(3, 3)
+PROJECTILE_ROTATION = 90.0
+PROJECTILE_ROTATION_RATE = 0.0
+ITEM_NAME = "kunai"
+ITEM_TEXTURE = ExtResource("1_4nr1q")
+QUANTITY = 0
+HOVER_TEXT = ""

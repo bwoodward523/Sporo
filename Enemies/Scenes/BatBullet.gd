@@ -10,6 +10,7 @@ var knockBack= Vector2.ZERO
 var isDead = false
 var dieOnce = true
 func _ready():
+	process_mode = Node.PROCESS_MODE_PAUSABLE
 	pass
 func _physics_process(delta):
 	if spawner.bandaidNoMoreBoss && addDeathTimer and spawner.canSpawnEnemies:

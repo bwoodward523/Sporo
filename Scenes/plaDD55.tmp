@@ -1,0 +1,332 @@
+[gd_scene load_steps=34 format=3 uid="uid://whd11j441bhe"]
+
+[ext_resource type="Script" path="res://Scenes/player.gd" id="1_200gu"]
+[ext_resource type="Resource" uid="uid://d2jg3o7ug4xpo" path="res://Items/Repo/fist.tres" id="2_wr8ff"]
+[ext_resource type="PackedScene" uid="uid://thjtpkg3w2xm" path="res://Scenes/rifle.tscn" id="3_8keq0"]
+[ext_resource type="Resource" uid="uid://gtg5k0en2rdk" path="res://Items/Repo/watergun.tres" id="3_uiba2"]
+[ext_resource type="Resource" uid="uid://0i4nxircwafu" path="res://Items/Repo/ak.tres" id="4_hgjui"]
+[ext_resource type="Texture2D" uid="uid://darbpemtv2tyb" path="res://Assets/mainshroom.png" id="5_13lof"]
+[ext_resource type="Script" path="res://Scenes/HealthDisplay.gd" id="5_t3i60"]
+[ext_resource type="Texture2D" uid="uid://b08808ttmxrg3" path="res://Assets/crown.png" id="5_tl4jw"]
+[ext_resource type="PackedScene" uid="uid://ck7geeut0uvi6" path="res://inventory_gui.tscn" id="7_87di0"]
+[ext_resource type="Script" path="res://Scenes/Balance.gd" id="9_fuj7g"]
+[ext_resource type="Script" path="res://inventory_gui1.gd" id="10_663x2"]
+[ext_resource type="Script" path="res://Scenes/Ammo Display.gd" id="11_xsyh2"]
+[ext_resource type="AudioStream" uid="uid://ymrpreffmw2h" path="res://Assets/Sounds/playerHurt.wav" id="12_frjin"]
+[ext_resource type="Texture2D" uid="uid://dp5e6hm6segqb" path="res://Assets/hatmenu.png" id="13_neay1"]
+[ext_resource type="Texture2D" uid="uid://dnuw7u5ysyk8p" path="res://Assets/mushroomhat.png" id="15_x81ma"]
+[ext_resource type="Texture2D" uid="uid://eskaypoi45qt" path="res://Assets/sprout.png" id="16_hwq23"]
+[ext_resource type="Texture2D" uid="uid://cxgxr3qjrxxw8" path="res://Assets/shotgun.png" id="17_66mjk"]
+[ext_resource type="Texture2D" uid="uid://v5s1dwc4uvrq" path="res://Assets/cowboy.png" id="17_hk5gk"]
+[ext_resource type="Texture2D" uid="uid://5ycxbvc21vhb" path="res://Assets/snubby.png" id="18_gf7ce"]
+[ext_resource type="Texture2D" uid="uid://c72qd3p7md3qe" path="res://Assets/AR.png" id="18_iiw6h"]
+[ext_resource type="Texture2D" uid="uid://biyp08a14wegw" path="res://Assets/watergun.png" id="19_435m7"]
+[ext_resource type="Texture2D" uid="uid://ddc8sbhvgmawu" path="res://Assets/theEye.png" id="19_hefa7"]
+[ext_resource type="Texture2D" uid="uid://bosm0nq0mpc51" path="res://Assets/kunai.png" id="20_i5ts0"]
+[ext_resource type="Texture2D" uid="uid://gy02ftq0nsdn" path="res://Assets/Resume.png" id="24_nqk88"]
+[ext_resource type="Texture2D" uid="uid://ocs2s2wntgfv" path="res://Assets/ResumeHover.png" id="25_6j7hl"]
+[ext_resource type="Texture2D" uid="uid://dqcfi0egkr3ji" path="res://Assets/ReturnToMainMenu.png" id="26_t8xl7"]
+[ext_resource type="Texture2D" uid="uid://c4fpdkt2u87wq" path="res://Assets/ReturnToMainMenuHover.png" id="27_motvl"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fba2d"]
+radius = 7.0
+height = 42.0
+
+[sub_resource type="Animation" id="Animation_l28nw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_13lof")]
+}
+
+[sub_resource type="Animation" id="Animation_xm3ld"]
+resource_name = "idle"
+length = 0.1
+
+[sub_resource type="Animation" id="Animation_ec8kj"]
+resource_name = "main_walk"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 7]
+}
+
+[sub_resource type="Animation" id="Animation_mlbch"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 6]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7mfy0"]
+_data = {
+"RESET": SubResource("Animation_l28nw"),
+"idle": SubResource("Animation_xm3ld"),
+"main_walk": SubResource("Animation_ec8kj"),
+"walk": SubResource("Animation_mlbch")
+}
+
+[node name="CharacterBody2D2" type="CharacterBody2D"]
+collision_mask = 4
+script = ExtResource("1_200gu")
+health = 1
+balance = 9999999
+item1 = ExtResource("2_wr8ff")
+item2 = ExtResource("3_uiba2")
+item3 = ExtResource("4_hgjui")
+Active_Item = ExtResource("2_wr8ff")
+SPEED = 600
+
+[node name="hat" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(-1, -34)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("5_tl4jw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.31148, 4.59016)
+scale = Vector2(1.16, 1.16)
+shape = SubResource("CapsuleShape2D_fba2d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+z_index = 1
+scale = Vector2(1.8125, 1.8125)
+texture = ExtResource("5_13lof")
+hframes = 8
+
+[node name="Weapon" parent="Sprite2D" instance=ExtResource("3_8keq0")]
+position = Vector2(-0.361786, 6.51215)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7mfy0")
+}
+speed_scale = 2.0
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(1.1, 1.1)
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.596125, 2.3845)
+scale = Vector2(1.16, 1.16)
+shape = SubResource("CapsuleShape2D_fba2d")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.7, 0.7)
+
+[node name="InventoryGui" parent="." instance=ExtResource("7_87di0")]
+visible = false
+anchors_preset = -1
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = -178.0
+offset_top = 30.0
+offset_right = -178.0
+offset_bottom = 30.0
+grow_horizontal = 1
+script = ExtResource("10_663x2")
+
+[node name="Balance" type="Label" parent="."]
+light_mask = 4
+visibility_layer = 4
+z_index = 2
+texture_filter = 4
+offset_left = -822.0
+offset_top = -367.0
+offset_right = -728.0
+offset_bottom = -326.0
+script = ExtResource("9_fuj7g")
+
+[node name="HealthDisplay" type="Label" parent="."]
+light_mask = 4
+visibility_layer = 4
+z_index = 2
+texture_filter = 4
+offset_left = -824.0
+offset_top = -314.0
+offset_right = -704.0
+offset_bottom = -261.0
+script = ExtResource("5_t3i60")
+
+[node name="Ammo Display" type="Label" parent="."]
+light_mask = 4
+visibility_layer = 4
+z_index = 2
+texture_filter = 4
+offset_left = -824.0
+offset_top = -262.0
+offset_right = -731.0
+offset_bottom = -209.0
+script = ExtResource("11_xsyh2")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_frjin")
+volume_db = -20.0
+max_polyphony = 10
+bus = &"sfx"
+
+[node name="hatmenu" type="Control" parent="."]
+visible = false
+z_index = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="hatmenu"]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("13_neay1")
+
+[node name="ItemList" type="ItemList" parent="hatmenu"]
+layout_mode = 0
+offset_left = -255.0
+offset_top = -36.0
+offset_right = 124.0
+offset_bottom = 121.0
+text_overrun_behavior = 0
+item_count = 5
+max_columns = 0
+item_0/text = "Shroom Cap: 500 Coins"
+item_0/icon = ExtResource("15_x81ma")
+item_1/text = "Sprout: 1000 Coins"
+item_1/icon = ExtResource("16_hwq23")
+item_2/text = "Cowpolk hat: 3000 Coins"
+item_2/icon = ExtResource("17_hk5gk")
+item_3/text = "Crown: 5000 Coins"
+item_3/icon = ExtResource("5_tl4jw")
+item_4/text = "The Eye: 9999 Coins"
+item_4/icon = ExtResource("19_hefa7")
+
+[node name="ItemList2" type="ItemList" parent="hatmenu"]
+layout_mode = 0
+offset_left = -250.0
+offset_top = -223.0
+offset_right = 125.0
+offset_bottom = -69.0
+allow_search = false
+text_overrun_behavior = 0
+item_count = 5
+max_columns = 0
+item_0/text = "Snubby: 100 Coins"
+item_0/icon = ExtResource("18_gf7ce")
+item_1/text = "Rifle: 250 Coins"
+item_1/icon = ExtResource("18_iiw6h")
+item_2/text = "Kunai: 500 Coins"
+item_2/icon = ExtResource("20_i5ts0")
+item_3/text = "Shotgun: 1000 Coins "
+item_3/icon = ExtResource("17_66mjk")
+item_4/text = "Water Gun: 5000 Coins"
+item_4/icon = ExtResource("19_435m7")
+
+[node name="WeaponLabel" type="Label" parent="hatmenu"]
+texture_filter = 6
+layout_mode = 0
+offset_left = -252.0
+offset_top = -248.0
+offset_right = -212.0
+offset_bottom = -225.0
+scale = Vector2(0.01, 0.01)
+theme_override_font_sizes/font_size = 2000
+text = "Weapons For Sale:"
+
+[node name="HatLabel" type="Label" parent="hatmenu"]
+texture_filter = 6
+layout_mode = 0
+offset_left = -255.0
+offset_top = -64.0
+offset_right = 3268.0
+offset_bottom = 482.0
+scale = Vector2(0.01, 0.01)
+theme_override_font_sizes/font_size = 2000
+text = "Hats For Sale:"
+
+[node name="HatmanSpeaking" type="Label" parent="hatmenu"]
+texture_filter = 6
+layout_mode = 0
+offset_left = -255.0
+offset_top = 174.0
+offset_right = 9965.0
+offset_bottom = 2214.0
+scale = Vector2(0.05, 0.05)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 350
+autowrap_mode = 3
+
+[node name="PauseMenu" type="VBoxContainer" parent="."]
+visible = false
+z_index = 7
+offset_left = -163.0
+offset_top = -63.0
+offset_right = 185.0
+offset_bottom = 69.0
+
+[node name="Resume" type="TextureButton" parent="PauseMenu"]
+layout_mode = 2
+texture_normal = ExtResource("24_nqk88")
+texture_hover = ExtResource("25_6j7hl")
+
+[node name="Return to Main Menu" type="TextureButton" parent="PauseMenu"]
+layout_mode = 2
+texture_normal = ExtResource("26_t8xl7")
+texture_hover = ExtResource("27_motvl")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="item_clicked" from="hatmenu/ItemList" to="." method="_on_item_list_item_clicked"]
+[connection signal="item_clicked" from="hatmenu/ItemList2" to="." method="_on_item_list_2_item_clicked"]
+[connection signal="item_selected" from="hatmenu/ItemList2" to="." method="_on_item_list_2_item_selected"]
+[connection signal="pressed" from="PauseMenu/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseMenu/Return to Main Menu" to="." method="_on_return_to_main_menu_pressed"]
