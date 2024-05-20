@@ -121,3 +121,7 @@ func _on_boss_kill_timeout():
 func _on_timer_timeout():
 	justSummoned = false
 	startFleeTimer = true
+
+
+func _on_lifetime_timeout():
+	$AnimationPlayer.play("summonerDeath")
