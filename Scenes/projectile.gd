@@ -13,6 +13,7 @@ var startRotation: float
 var rotationRate: float
 var projectilePenCount = 1
 var enemiesHit: Array[CharacterBody2D]
+var batKillCount = 0
 @export var waterBullet: Texture2D
 func _ready():
 	process_mode = Node.PROCESS_MODE_PAUSABLE
@@ -36,7 +37,8 @@ func _physics_process(delta):
 	_distance_to_destroy_projectile()
 	move_and_collide(velocity)
 
-	
+	if enemiesHit.size() + batKillCount >= projectilePenCount:
+		queue_free()
 
 func _distance_to_destroy_projectile():
 	var distanceTraveled = spawnPos.distance_to(global_position)
@@ -56,5 +58,4 @@ func _on_area_2d_body_entered(body):
 		body._play_hurt()
 		enemiesHit.append(body)
 		print(enemiesHit[enemiesHit.size()-1])
-	if enemiesHit.size() >= projectilePenCount:
-		queue_free()
+	

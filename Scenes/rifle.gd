@@ -77,7 +77,7 @@ func playerShoot():
 		instance.spawnPos = Vector2(barrel.global_position.x, barrel.global_position.y)
 		instance.spawnRot = rotation
 		instance.zdex = z_index -1
-		main.add_child(instance)
+		main.add_child(instance, true)
 		ammoCount -= 1
 		player.Active_Item.CURRENT_AMMO -= 1
 		player.update_ammo_ui()

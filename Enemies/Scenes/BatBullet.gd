@@ -29,7 +29,11 @@ func _physics_process(delta):
 func _on_bat_take_damage_area_area_entered(area):
 	
 	if !area.name == "BatTakeDamageArea" :
-		area.get_parent().queue_free()
+		#area.get_parent().queue_free()
+		print(area.name)
+		if area.is_in_group("playerBullet"):
+			area.get_parent().batKillCount += 1
+			
 		death()
 
 func death():

@@ -15,5 +15,5 @@ wait_time = 0.09
 autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="CountEnemies" to="." method="_on_timer_2_timeout"]
 [connection signal="timeout" from="CountEnemies" to="." method="_on_count_enemies_timeout"]
+[connection signal="timeout" from="CountEnemies" to="." method="_on_timer_2_timeout"]
