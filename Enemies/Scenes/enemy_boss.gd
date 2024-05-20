@@ -4,6 +4,7 @@ var item_scene := preload("res://Scenes/coin.tscn")
 var gnomeBullet := preload("res://Enemies/Scenes/gnome_bullet.tscn")
 var bat = preload("res://Enemies/Scenes/BatBullet.tscn")
 var skyLaser = preload("res://Enemies/Scenes/SkyLaser.tscn")
+var exitportal = preload("res://exit_portal.tscn")
 
 var isDead = false
 
@@ -34,6 +35,7 @@ var aimDir:= Vector2.RIGHT
 var laserWallY =0.0
 var laserWallDegrees = 0
 func _ready():
+	$ExitPortal.visible = false
 	process_mode = Node.PROCESS_MODE_PAUSABLE
 	$CollisionShape2D.disabled = true
 	$HealthBar.max_value = bossHealth
@@ -205,7 +207,11 @@ func take_damage():
 
 func check_death():
 	if $HealthComponent.isDead:
+		Data.balance += 500
 		isDead = true
+		var portalinstance = exitportal.instantiate()	
+		portalinstance.position = position
+		get_parent().add_child(portalinstance, true)
 		$AnimationPlayer.clear_queue()
 		$AnimationPlayer.play("bossDeath")
 		$CollisionShape2D.disabled = true

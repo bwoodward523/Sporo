@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://whd11j441bhe"]
+[gd_scene load_steps=39 format=3 uid="uid://whd11j441bhe"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_200gu"]
 [ext_resource type="PackedScene" uid="uid://thjtpkg3w2xm" path="res://Scenes/rifle.tscn" id="3_8keq0"]
@@ -19,12 +19,16 @@
 [ext_resource type="Texture2D" uid="uid://eskaypoi45qt" path="res://Assets/sprout.png" id="16_hwq23"]
 [ext_resource type="Texture2D" uid="uid://cxgxr3qjrxxw8" path="res://Assets/shotgun.png" id="17_66mjk"]
 [ext_resource type="Texture2D" uid="uid://v5s1dwc4uvrq" path="res://Assets/cowboy.png" id="17_hk5gk"]
+[ext_resource type="Texture2D" uid="uid://ljrgyecf7std" path="res://Assets/elfhat.png" id="18_a4jhy"]
 [ext_resource type="Texture2D" uid="uid://5ycxbvc21vhb" path="res://Assets/snubby.png" id="18_gf7ce"]
 [ext_resource type="Texture2D" uid="uid://c72qd3p7md3qe" path="res://Assets/AR.png" id="18_iiw6h"]
 [ext_resource type="Texture2D" uid="uid://biyp08a14wegw" path="res://Assets/watergun.png" id="19_435m7"]
 [ext_resource type="Texture2D" uid="uid://ddc8sbhvgmawu" path="res://Assets/theEye.png" id="19_hefa7"]
+[ext_resource type="Texture2D" uid="uid://gqh13hm3x3we" path="res://Assets/thechosenone.png" id="20_bd3i4"]
 [ext_resource type="Texture2D" uid="uid://bosm0nq0mpc51" path="res://Assets/kunai.png" id="20_i5ts0"]
+[ext_resource type="Texture2D" uid="uid://bos7sn273vspt" path="res://Assets/m4.png" id="24_8gfmo"]
 [ext_resource type="Texture2D" uid="uid://dtfjh5q30dtd8" path="res://Assets/fist.png" id="25_ufgug"]
+[ext_resource type="Texture2D" uid="uid://bs1x1kv63jrea" path="res://Assets/doohickey.png" id="27_a52d8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fba2d"]
 radius = 7.0
@@ -225,7 +229,7 @@ _data = {
 "walk": SubResource("Animation_mlbch")
 }
 
-[node name="CharacterBody2D2" type="CharacterBody2D"]
+[node name="CharacterBody2D2" type="CharacterBody2D" groups=["playergroup"]]
 collision_mask = 4
 script = ExtResource("1_200gu")
 health = 15
@@ -245,7 +249,6 @@ texture = ExtResource("5_13lof")
 hframes = 8
 
 [node name="Weapon" parent="Sprite2D" instance=ExtResource("3_8keq0")]
-visible = false
 position = Vector2(-0.361786, 6.51215)
 
 [node name="hat" type="Sprite2D" parent="Sprite2D"]
@@ -363,18 +366,22 @@ offset_top = -36.0
 offset_right = 124.0
 offset_bottom = 121.0
 text_overrun_behavior = 0
-item_count = 5
+item_count = 7
 max_columns = 0
 item_0/text = "Shroom Cap: 500 Coins"
 item_0/icon = ExtResource("15_x81ma")
 item_1/text = "Sprout: 1000 Coins"
 item_1/icon = ExtResource("16_hwq23")
-item_2/text = "Cowpolk hat: 3000 Coins"
-item_2/icon = ExtResource("17_hk5gk")
-item_3/text = "Crown: 5000 Coins"
-item_3/icon = ExtResource("5_tl4jw")
-item_4/text = "The Eye: 9999 Coins"
-item_4/icon = ExtResource("19_hefa7")
+item_2/text = "Elf: 2000 Coins"
+item_2/icon = ExtResource("18_a4jhy")
+item_3/text = "Cowpolk hat: 3000 Coins"
+item_3/icon = ExtResource("17_hk5gk")
+item_4/text = "Crown: 5000 Coins"
+item_4/icon = ExtResource("5_tl4jw")
+item_5/text = "The Chosen One: 7500 Coins"
+item_5/icon = ExtResource("20_bd3i4")
+item_6/text = "The Eye: 9999 Coins"
+item_6/icon = ExtResource("19_hefa7")
 
 [node name="ItemList2" type="ItemList" parent="hatmenu"]
 layout_mode = 0
@@ -384,20 +391,24 @@ offset_right = 125.0
 offset_bottom = -69.0
 allow_search = false
 text_overrun_behavior = 0
-item_count = 6
+item_count = 8
 max_columns = 0
 item_0/text = "Snubby: 100 Coins"
 item_0/icon = ExtResource("18_gf7ce")
 item_1/text = "Rifle: 250 Coins"
 item_1/icon = ExtResource("18_iiw6h")
-item_2/text = "Kunai: 500 Coins"
-item_2/icon = ExtResource("20_i5ts0")
-item_3/text = "Shotgun: 1000 Coins "
-item_3/icon = ExtResource("17_66mjk")
-item_4/text = "Water Gun: 5000 Coins"
-item_4/icon = ExtResource("19_435m7")
-item_5/text = "Hand of God: 9999 Coins"
-item_5/icon = ExtResource("25_ufgug")
+item_2/text = "M4: 300 Coins"
+item_2/icon = ExtResource("24_8gfmo")
+item_3/text = "Kunai: 500 Coins"
+item_3/icon = ExtResource("20_i5ts0")
+item_4/text = "Shotgun: 1000 Coins "
+item_4/icon = ExtResource("17_66mjk")
+item_5/text = "Doo-hickey: 2000 Coins"
+item_5/icon = ExtResource("27_a52d8")
+item_6/text = "Water Gun: 5000 Coins"
+item_6/icon = ExtResource("19_435m7")
+item_7/text = "Hand of God: 9999 Coins"
+item_7/icon = ExtResource("25_ufgug")
 
 [node name="WeaponLabel" type="Label" parent="hatmenu"]
 texture_filter = 6
