@@ -37,12 +37,14 @@ func _ready():
 	print("My current scene is: ", get_tree().get_current_scene().get_name())
 	if get_tree().get_current_scene().get_name() == "HubWorld":
 		$EnemiesKilled.visible = false
+		balance = Data.balance
 		item1 = get_item_by_item_id(Data.item1_id)
 		item2 = get_item_by_item_id(Data.item2_id)
 		item3 = get_item_by_item_id(Data.item3_id)
 		$Sprite2D/hat.texture = get_hat_by_hat_id(Data.hat_id)
 	else:
 		print("Making it this far?")
+		balance = Data.balance
 		item1 = get_item_by_item_id(Data.item1_id)
 		item2 = get_item_by_item_id(Data.item2_id)
 		item3 = get_item_by_item_id(Data.item3_id)
@@ -53,6 +55,9 @@ func _ready():
 		Data.item2_id = 0
 	if item3 == null:
 		Data.item3_id = 0
+	if Data.item3_id == 0 and Data.item2_id == 0 and Data.item1_id == 0:
+		item1 = load("res://Items/Repo/snubby.tres")
+		Data.item1_id = item1.ITEM_ID
 
 func get_hat_by_hat_id(hatID : int) -> Texture2D:
 	if hatID == 1:
@@ -120,7 +125,7 @@ func _physics_process(delta):
 		if couldBuy:
 			$hatmenu/HatmanSpeaking.text = "Which slot would you like this to go into? Type 1, 2, or 3"
 			if Input.is_action_pressed("item_one"):
-				balance -= cost
+				Data.balance -= cost
 				item1 = tempItem
 				Data.item1 = item1
 				Data.item1_id = item1.ITEM_ID
@@ -128,14 +133,14 @@ func _physics_process(delta):
 				couldBuy = false
 				$hatmenu/HatmanSpeaking.text = "Thank you for your purchase!"
 			elif  Input.is_action_pressed("item_two"):
-				balance -= cost
+				Data.balance -= cost
 				item2 = tempItem
 				Data.item2 = item2
 				Data.item2_id = item2.ITEM_ID
 				couldBuy = false
 				$hatmenu/HatmanSpeaking.text = "Thank you for your purchase!"
 			elif  Input.is_action_pressed("item_three"):
-				balance -= cost
+				Data.balance -= cost
 				item3 = tempItem
 				Data.item3 = item3
 				Data.item3_id = item3.ITEM_ID
@@ -281,8 +286,8 @@ func _on_hatman_area_exited(area):
 
 func _on_item_list_item_clicked(index, at_position, mouse_button_index):
 	if index == 0:
-		if balance >= 250:
-			balance -= 250
+		if Data.balance >= 250:
+			Data.balance -= 250
 			$hatmenu/HatmanSpeaking.text = "Thank you for your business!"
 			$Sprite2D/hat.texture = load("res://Assets/mushroomhat.png")
 			Data.hat_id = 1
@@ -290,8 +295,8 @@ func _on_item_list_item_clicked(index, at_position, mouse_button_index):
 		else:
 			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
 	if index == 1:
-		if balance >= 1000:
-			balance -= 1000
+		if Data.balance >= 1000:
+			Data.balance -= 1000
 			$hatmenu/HatmanSpeaking.text = "Thank you for your business!"
 			$Sprite2D/hat.texture = load("res://Assets/sprout.png")
 			Data.hat_id = 2
@@ -299,8 +304,8 @@ func _on_item_list_item_clicked(index, at_position, mouse_button_index):
 		else:
 			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
 	if index == 2:
-		if balance >= 3000:
-			balance -= 3000
+		if Data.balance >= 3000:
+			Data.balance -= 3000
 			$hatmenu/HatmanSpeaking.text = "Thank you for your business!"
 			$Sprite2D/hat.texture = load("res://Assets/cowboy.png")
 			Data.hat_id = 3
@@ -308,8 +313,8 @@ func _on_item_list_item_clicked(index, at_position, mouse_button_index):
 		else:
 			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
 	if index == 3:
-		if balance >= 5000:
-			balance -= 5000
+		if Data.balance >= 5000:
+			Data.balance -= 5000
 			$hatmenu/HatmanSpeaking.text = "Thank you for your business!"
 			$Sprite2D/hat.texture = load("res://Assets/crown.png")
 			Data.hat_id = 4
@@ -317,8 +322,8 @@ func _on_item_list_item_clicked(index, at_position, mouse_button_index):
 		else:
 			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
 	if index == 4:
-		if balance >= 9999:
-			balance -= 9999
+		if Data.balance >= 9999:
+			Data.balance -= 9999
 			$hatmenu/HatmanSpeaking.text = "Be careful with this one, you don't want to know where I found it..."
 			$Sprite2D/hat.texture = load("res://Assets/theEye.png")
 			Data.hat_id = 5
@@ -328,45 +333,54 @@ func _on_item_list_item_clicked(index, at_position, mouse_button_index):
 	
 func _on_item_list_2_item_selected(index):
 	print("Can buy 1?: ", couldBuy )
-	print("Balance 1?: ", balance )
+	print("Balance 1?: ", Data.balance )
 	if index == 0:
-		if balance >= 100:
+		if Data.balance >= 100:
 			couldBuy = true
 			tempItem = load("res://Items/Repo/snubby.tres")
 			cost = 100
 		else:
 			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
 	if index == 1:
-		if balance >= 250:
+		if Data.balance >= 250:
 			couldBuy = true
 			tempItem = load("res://Items/Repo/ak.tres")
 			cost = 1000
 		else:
 			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
 	if index == 2:
-		if balance >= 1000:
+		print("Kunai!!!")
+		if Data.balance >= 500:
 			couldBuy = true
 			tempItem = load("res://Items/Repo/kunai.tres")
-			cost = 1000
+			cost = 500
 		else:
 			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
 	if index == 3:
-		if balance >= 1000:
+		if Data.balance >= 1000:
 			couldBuy = true
 			tempItem = load("res://Items/Repo/shotgun.tres")
 			cost = 1000
 		else:
 			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
 	if index == 4:
-		if balance >= 5000:
+		if Data.balance >= 5000:
 			couldBuy = true
 			tempItem = load("res://Items/Repo/watergun.tres")
 			cost = 5000
 		else:
 			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
+	if index == 5:
+		if Data.balance >= 9999:
+			couldBuy = true
+			tempItem = load("res://Items/Repo/fist.tres")
+			cost = 9999
+		else:
+			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
 	print("Can buy 2?: ", couldBuy )
 	print("Balance 2?: ", balance )
-	print("Current temp gun: ", tempItem.ITEM_NAME)
+	if (tempItem != null):
+		print("Current temp gun: ", tempItem.ITEM_NAME)
 	
 
 

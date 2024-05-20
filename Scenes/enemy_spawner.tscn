@@ -7,7 +7,6 @@ script = ExtResource("1_skid6")
 enemiesUntilBoss = 1000
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 1.2
 autostart = true
 
 [node name="CountEnemies" type="Timer" parent="."]

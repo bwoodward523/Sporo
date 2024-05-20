@@ -17,6 +17,7 @@ var rng = RandomNumberGenerator.new()
 var justSummoned = false
 var startFleeTimer = true
 func _ready():
+	process_mode = Node.PROCESS_MODE_PAUSABLE
 	$HealthComponent.health = enemy.ENEMY_HEALTH
 func _physics_process(delta):
 	if justSummoned:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://whd11j441bhe"]
+[gd_scene load_steps=35 format=3 uid="uid://whd11j441bhe"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_200gu"]
 [ext_resource type="PackedScene" uid="uid://thjtpkg3w2xm" path="res://Scenes/rifle.tscn" id="3_8keq0"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://biyp08a14wegw" path="res://Assets/watergun.png" id="19_435m7"]
 [ext_resource type="Texture2D" uid="uid://ddc8sbhvgmawu" path="res://Assets/theEye.png" id="19_hefa7"]
 [ext_resource type="Texture2D" uid="uid://bosm0nq0mpc51" path="res://Assets/kunai.png" id="20_i5ts0"]
+[ext_resource type="Texture2D" uid="uid://dtfjh5q30dtd8" path="res://Assets/fist.png" id="25_ufgug"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fba2d"]
 radius = 7.0
@@ -228,7 +229,6 @@ _data = {
 collision_mask = 4
 script = ExtResource("1_200gu")
 health = 15
-balance = 9999999
 SPEED = 600
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -346,7 +346,6 @@ max_polyphony = 10
 bus = &"sfx"
 
 [node name="hatmenu" type="Control" parent="."]
-visible = false
 z_index = 3
 layout_mode = 3
 anchors_preset = 0
@@ -385,7 +384,7 @@ offset_right = 125.0
 offset_bottom = -69.0
 allow_search = false
 text_overrun_behavior = 0
-item_count = 5
+item_count = 6
 max_columns = 0
 item_0/text = "Snubby: 100 Coins"
 item_0/icon = ExtResource("18_gf7ce")
@@ -397,6 +396,8 @@ item_3/text = "Shotgun: 1000 Coins "
 item_3/icon = ExtResource("17_66mjk")
 item_4/text = "Water Gun: 5000 Coins"
 item_4/icon = ExtResource("19_435m7")
+item_5/text = "Hand of God: 9999 Coins"
+item_5/icon = ExtResource("25_ufgug")
 
 [node name="WeaponLabel" type="Label" parent="hatmenu"]
 texture_filter = 6
