@@ -267,7 +267,8 @@ max_polyphony = 1000
 bus = &"sfx"
 
 [node name="Lifetime" type="Timer" parent="."]
-wait_time = 60.0
+wait_time = 40.0
+one_shot = true
 autostart = true
 
 [node name="BossKill" type="Timer" parent="."]

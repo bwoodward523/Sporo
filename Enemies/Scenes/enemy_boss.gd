@@ -136,6 +136,8 @@ func shootSkyLaserWall():
 	var laserPos = Vector2(position.x - laserCount*100/2.0, laserWallY)
 	for i in laserCount: 
 		#if i != laserCount/2 and  i != laserCount/2 +1 and i != laserCount/2 -1:
+		print(laserPos.x + i * 150)
+		#laserPos = laserPos.rotated(laserWallDegrees)
 		shootSkyLaser(Vector2(laserPos.x + i * 150, laserPos.y).rotated(rad_to_deg(laserWallDegrees)))
 
 func _on_shoot_laser_wall_timeout():

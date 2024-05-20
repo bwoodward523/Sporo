@@ -310,8 +310,6 @@ texture = ExtResource("9_mgjnf")
 wait_time = 8.0
 autostart = true
 
-[node name="laserwallAim" type="Node2D" parent="."]
-
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="TentacleTimer" to="." method="_on_rotate_shoot_timeout"]
 [connection signal="timeout" from="TentacleTimer" to="." method="_on_tentacle_timer_timeout"]

@@ -156,3 +156,7 @@ func _on_animation_player_animation_finished(anim_name):
 
 func _on_boss_kill_timeout():
 	$AnimationPlayer.play("gnomeDeath")
+
+
+func _on_lifetime_timeout():
+	$AnimationPlayer.play("gnomeDeath")

@@ -110,7 +110,7 @@ func take_damage():
 	$HealthComponent.deductHealth()
 	
 func _on_lifespan_timeout():
-	queue_free()
+	$AnimationPlayer.play("gruntDeath")
 
 
 func _on_boss_kill_timeout():
