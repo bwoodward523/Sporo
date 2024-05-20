@@ -68,6 +68,7 @@ func playerShoot():
 		instance.speed = selectedItem.PROJECTILE_SPEED
 		instance.sprite = selectedItem.PROJECTILE_TEXTURE
 		instance.damage = selectedItem.DAMAGE
+		instance.projectilePenCount = selectedItem.PROJECTILE_PENETRATION
 		instance.startRotation = selectedItem.PROJECTILE_ROTATION
 		instance.rotationRate = selectedItem.PROJECTILE_ROTATION_RATE
 		instance.maxDistance = selectedItem.MAX_BULLET_DISTANCE

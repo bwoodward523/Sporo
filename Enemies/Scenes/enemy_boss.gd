@@ -31,9 +31,11 @@ var phase = "none"
 var aimRotation: float
 var aimDir:= Vector2.RIGHT
 
-var laserWallY
+var laserWallY =0.0
 var laserWallDegrees = 0
 func _ready():
+	process_mode = Node.PROCESS_MODE_PAUSABLE
+	$CollisionShape2D.disabled = true
 	$HealthBar.max_value = bossHealth
 	$HealthBar.value = bossHealth
 	$HealthComponent.health = bossHealth
@@ -41,8 +43,9 @@ func _ready():
 	$ShootAtPlayer.set_paused(true)
 	$ShootCloak.set_paused(true)
 	$PhaseSwitcher.wait_time = 5
-	$ShootLaser.set_paused(false)
-	phase_manager()
+	$ShootLaser.set_paused(true)
+	$ShootLaserWall.set_paused(true)
+	
 func disableAllTimers():
 	$TentacleTimer.set_paused(true)
 	$ShootAtPlayer.set_paused(true)
@@ -50,11 +53,15 @@ func disableAllTimers():
 	$ShootLaser.set_paused(true)
 	$ShootLaserWall.set_paused(true)
 	$SnipeReset.set_paused(true)
+	
 func _physics_process(delta):
 	pass
 
 func phase_manager():
+	if phase == "none":
+		phase = "tentacle1"
 	if phase == "tentacle1":
+		$CollisionShape2D.disabled = false
 		$ShootCloak.set_paused(true)
 		$ShootAtPlayer.set_paused(false)
 		$TentacleTimer.set_paused(false)
@@ -74,6 +81,7 @@ func phase_manager():
 		$ShootCloak.set_paused(false)
 		#$TentacleTimer.set_paused(true)
 		#$ShootAtPlayer.set_paused(true)
+		$ShootLaserWall.set_paused(false)
 	laserWallY = position.y
 func switch_phase():
 	if phase == "none":
@@ -89,6 +97,7 @@ func switch_phase():
 	elif phase == "cloakBats":
 		phase = "tentacle1"
 		$PhaseSwitcher.wait_time = 5
+
 func _on_phase_switcher_timeout():
 	switch_phase()
 	phase_manager()
@@ -120,11 +129,18 @@ func shootSkyLaser(pos: Vector2):
 	get_parent().add_child(bulletInstance, true)
 	
 func shootSkyLaserWall():
-	var laserCount = 20
-	var laserPos = Vector2(position.x - laserCount*100/2, laserWallY)
+	var laserCount = 50
+	print(position)
+	var laserPos = Vector2(position.x - laserCount*100/2.0, laserWallY)
 	for i in laserCount: 
-		if i != laserCount/2 and  i != laserCount/2 +1 and i != laserCount/2 -1:
-			shootSkyLaser(Vector2(laserPos.x + i * 100, laserPos.y).rotated(rad_to_deg(laserWallDegrees)))
+		#if i != laserCount/2 and  i != laserCount/2 +1 and i != laserCount/2 -1:
+		shootSkyLaser(Vector2(laserPos.x + i * 150, laserPos.y).rotated(rad_to_deg(laserWallDegrees)))
+
+func _on_shoot_laser_wall_timeout():
+	shootSkyLaserWall()
+	laserWallY = position.y
+	laserWallDegrees += 10
+
 func _on_snipe_reset_timeout():
 	print("My timer ran teehee")
 	$ShootAtPlayer.set_paused(false)
@@ -209,7 +225,9 @@ func _on_shoot_laser_timeout():
 	shootSkyLaser(Vector2(position.x + randi_range(-400,400), randi_range(-400,400)+position.y))
 
 
-func _on_shoot_laser_wall_timeout():
-	shootSkyLaserWall()
-	laserWallY += 100
-	laserWallDegrees += 5
+
+func _on_normal_laser_toggler_timeout():
+	if $ShootLaser.paused == true:
+		$ShootLaser.paused = false
+	else:
+		$ShootLaser.set_paused(true)

@@ -107,7 +107,7 @@ func _on_animation_player_animation_finished(anim_name):
 		
 func take_damage():
 	$HealthComponent.deductHealth()
-
+	
 func _on_lifespan_timeout():
 	queue_free()
 

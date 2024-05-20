@@ -175,6 +175,7 @@ max_polyphony = 1000
 bus = &"sfx"
 
 [node name="BossKill" type="Timer" parent="."]
+wait_time = 0.1
 one_shot = true
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

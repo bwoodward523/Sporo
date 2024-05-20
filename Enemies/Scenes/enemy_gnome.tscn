@@ -166,6 +166,7 @@ max_polyphony = 1000
 bus = &"sfx"
 
 [node name="BossKill" type="Timer" parent="."]
+wait_time = 0.1
 one_shot = true
 
 [connection signal="timeout" from="FireRate" to="." method="_on_fire_rate_timeout"]
