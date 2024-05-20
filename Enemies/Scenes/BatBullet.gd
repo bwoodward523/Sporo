@@ -13,7 +13,7 @@ func _ready():
 	process_mode = Node.PROCESS_MODE_PAUSABLE
 	pass
 func _physics_process(delta):
-	if spawner.bandaidNoMoreBoss && addDeathTimer and spawner.canSpawnEnemies:
+	if spawner.bandaidNoMoreBoss && addDeathTimer && spawner.canSpawnEnemies:
 		addDeathTimer = false
 		$BossKill.start(1)
 	dir = (player.position - position).normalized()
@@ -22,6 +22,9 @@ func _physics_process(delta):
 		velocity -= dir*  batSpeed * delta + knockBack
 	knockBack = lerp(knockBack, Vector2.ZERO, .1)
 	move_and_slide()
+	if $AnimatedSprite2D.modulate.a == 0:
+		print("no more alpha")
+		queue_free()
 	
 func _on_bat_take_damage_area_area_entered(area):
 	
@@ -54,7 +57,7 @@ func _on_animation_player_animation_finished(anim_name):
 
 
 func _on_timer_timeout():
-	queue_free()
+	$AnimationPlayer.play("batDeath")
 
 
 func _on_boss_kill_timeout():

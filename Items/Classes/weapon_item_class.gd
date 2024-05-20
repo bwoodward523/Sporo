@@ -15,3 +15,5 @@ class_name WEAPON_ITEM
 
 @export var PROJECTILE_ROTATION: float
 @export var PROJECTILE_ROTATION_RATE: float
+
+@export var PROJECTILE_PENETRATION: int

@@ -122,7 +122,7 @@ shape = SubResource("CircleShape2D_2km3l")
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_kvo45")
 autoplay = "default"
-frame_progress = 0.0687099
+frame = 1
 speed_scale = 1.5
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
@@ -154,6 +154,7 @@ volume_db = -20.0
 bus = &"sfx"
 
 [node name="BossKill" type="Timer" parent="."]
+wait_time = 0.1
 one_shot = true
 
 [connection signal="body_entered" from="BatDamageArea" to="." method="_on_bat_damage_area_body_entered"]

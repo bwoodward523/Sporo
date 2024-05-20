@@ -4,10 +4,10 @@
 
 [node name="EnemySpawner" type="Node2D"]
 script = ExtResource("1_skid6")
-enemiesUntilBoss = 1000
+enemiesUntilBoss = 10
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 1.2
+wait_time = 0.1
 autostart = true
 
 [node name="CountEnemies" type="Timer" parent="."]
@@ -15,5 +15,5 @@ wait_time = 0.09
 autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="CountEnemies" to="." method="_on_timer_2_timeout"]
 [connection signal="timeout" from="CountEnemies" to="." method="_on_count_enemies_timeout"]
+[connection signal="timeout" from="CountEnemies" to="." method="_on_timer_2_timeout"]

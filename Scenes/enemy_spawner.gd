@@ -20,6 +20,9 @@ var bandaidNoMoreBoss = false
 var enemyAliveArray: Array[PackedScene]
 
 var spawnBoss = false
+
+func _physics_process(delta):
+	player = get_parent().get_node("player")
 func _on_timer_timeout():
 	var viewport = get_viewport()
 	var rectangle = viewport.get_visible_rect()
@@ -44,12 +47,12 @@ func _on_timer_timeout():
 		enemyInstance = null
 	if spawnBoss and !bandaidNoMoreBoss:
 		enemyInstance = enemyBoss.instantiate()
-		enemyInstance.position = Vector2(player.position.x - 50, player.position.y + 50)
+		enemyInstance.position = Vector2(player.position.x + 400, player.position.y - 400)
 		spawnBoss = false
 		canSpawnEnemies = false
 		bandaidNoMoreBoss = true
 
-	if enemyInstance != null:
+	if enemyInstance != null and canSpawnEnemies:
 		dirSpawn = rng.randi_range(1,4) #set which side of screen enemy comes from
 		if dirSpawn == 1: #left
 			var randHeight = rng.randi_range(player.position.y - rightEnd.y/1.25, player.position.y + rightEnd.y/1.25)

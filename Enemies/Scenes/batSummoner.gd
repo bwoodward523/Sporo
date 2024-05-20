@@ -14,10 +14,17 @@ var worldBatCount: int
 @export var maxBatsInWorld: int
 var doDeath = true
 var rng = RandomNumberGenerator.new()
+var justSummoned = false
+var startFleeTimer = true
 func _ready():
 	$HealthComponent.health = enemy.ENEMY_HEALTH
 func _physics_process(delta):
-	velocity = (player.position - position).normalized() * enemy.ENEMY_SPEED * delta
+	if justSummoned:
+		velocity = -(player.position - position).normalized() * enemy.ENEMY_SPEED * delta
+		if startFleeTimer:
+			startFleeTimer = false
+	else:
+		velocity = (player.position - position).normalized() * enemy.ENEMY_SPEED * delta
 	move_and_slide()
 	
 	if spawner.bandaidNoMoreBoss && addDeathTimer:
@@ -63,7 +70,7 @@ func drop_heart():
 func _on_bat_spawn_rate_timeout():
 	worldBatCount = 0
 	count_bats()
-	if worldBatCount < maxBatsInWorld:
+	if worldBatCount < maxBatsInWorld and position.distance_to(player.position) <= enemy.ENEMY_DETECTION_RANGE:
 		
 		var batInstance = bat.instantiate()
 		batInstance.position = Vector2(position.x - 20, position.y)
@@ -72,6 +79,12 @@ func _on_bat_spawn_rate_timeout():
 		batInstance = bat.instantiate()
 		batInstance.position = Vector2(position.x + 20 , position.y)
 		main.add_child(batInstance, true)
+		print("added ab at")
+	
+		if startFleeTimer:
+			justSummoned = true
+			startFleeTimer = false
+			$Timer.start(4)
 
 func count_bats():
 	for child in main.get_children():
@@ -102,3 +115,8 @@ func _on_animation_player_animation_finished(anim_name):
 
 func _on_boss_kill_timeout():
 	$AnimationPlayer.play("summonerDeath")
+
+
+func _on_timer_timeout():
+	justSummoned = false
+	startFleeTimer = true

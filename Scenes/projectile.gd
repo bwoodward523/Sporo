@@ -11,6 +11,8 @@ var maxDistance: float
 var scale1: Vector2
 var startRotation: float
 var rotationRate: float
+var projectilePenCount = 1
+var enemiesHit: Array[CharacterBody2D]
 @export var waterBullet: Texture2D
 func _ready():
 	process_mode = Node.PROCESS_MODE_PAUSABLE
@@ -42,7 +44,7 @@ func _distance_to_destroy_projectile():
 		queue_free()
 
 func _on_area_2d_body_entered(body):
-	if body.name.contains("Enemy"):  #this is the start of the name of the parent enemy node
+	if body.name.contains("Enemy") or body.name.contains("Bat"):  #this is the start of the name of the parent enemy node
 		#print("hit enemy")
 		var hp = body.get_node("HealthComponent")
 		for i in damage:
@@ -52,5 +54,7 @@ func _on_area_2d_body_entered(body):
 				hp.deductHealth()	
 		body.isHurt = true
 		body._play_hurt()
-		#print("enemy hp: ", hp.health)
-	queue_free()
+		enemiesHit.append(body)
+		print(enemiesHit[enemiesHit.size()-1])
+	if enemiesHit.size() >= projectilePenCount:
+		queue_free()

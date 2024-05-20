@@ -8,7 +8,7 @@ signal switching
 @export var item2 : Resource
 @export var item3 : Resource
 @export var Active_Item : Resource
-
+@onready var vignette = preload("res://vignette.tscn")
 @onready var spawner = get_parent().get_node("EnemySpawner")
 @onready var _animation_player = $AnimationPlayer
 #@onready var inventory = get_parent().get_node("CommandInput/CanvasLayer/InventoryGui")
@@ -25,6 +25,7 @@ var randText : int
 @onready var couldBuy = false
 var tempItem : Resource
 var cost : int
+var spawnOneVin = true
 
 func _ready():
 	hat_id = 0
@@ -105,6 +106,11 @@ func set_health_bar() -> void:
 func _physics_process(delta):
 	if !isDead:
 		if get_tree().get_current_scene().get_name() == "main":
+			#if !spawner.canSpawnEnemies && spawnOneVin:
+				#spawnOneVin = false
+				#var vignetteInstance = vignette.instantiate()
+				##vignetteInstance.get_child(0).position = position
+				#add_child(vignetteInstance)
 			$EnemiesKilled.visible = true
 			$EnemiesKilled.max_value = spawner.enemiesUntilBoss
 			$EnemiesKilled.value = spawner.enemyKillCount
