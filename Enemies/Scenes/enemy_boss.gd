@@ -35,7 +35,7 @@ var aimDir:= Vector2.RIGHT
 var laserWallY =0.0
 var laserWallDegrees = 0
 func _ready():
-	$ExitPortal.visible = false
+
 	process_mode = Node.PROCESS_MODE_PAUSABLE
 	$CollisionShape2D.disabled = true
 	$HealthBar.max_value = bossHealth
