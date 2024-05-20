@@ -8,7 +8,7 @@ func _ready():
 
 func _process(delta):
 	var tween = node.create_tween()
-	var offset = center - get_global_mouse_position()
+	var offset = (center - get_global_mouse_position()) * 0.2
 	tween.tween_property(node, "position", offset, 1.0)
 
 func _on_item_rect_changed():
@@ -28,4 +28,10 @@ func _on_options_pressed():
 
 
 func _on_exit_pressed():
+	Data.save()
 	get_tree().quit()
+
+
+func _on_load_game_pressed():
+	Data.load_data()
+	get_tree().change_scene_to_file("res://hub_world.tscn")

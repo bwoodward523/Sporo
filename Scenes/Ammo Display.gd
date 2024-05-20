@@ -9,5 +9,5 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var ammo = parent.Active_Item.MAX_AMMO
+	var ammo = parent.Active_Item.CURRENT_AMMO
 	text = "Ammo: "+str(ammo)

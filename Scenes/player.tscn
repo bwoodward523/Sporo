@@ -1,20 +1,19 @@
-[gd_scene load_steps=35 format=3 uid="uid://whd11j441bhe"]
+[gd_scene load_steps=34 format=3 uid="uid://whd11j441bhe"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_200gu"]
-[ext_resource type="Resource" uid="uid://d2jg3o7ug4xpo" path="res://Items/Repo/fist.tres" id="2_wr8ff"]
 [ext_resource type="PackedScene" uid="uid://thjtpkg3w2xm" path="res://Scenes/rifle.tscn" id="3_8keq0"]
-[ext_resource type="Resource" uid="uid://gtg5k0en2rdk" path="res://Items/Repo/watergun.tres" id="3_uiba2"]
-[ext_resource type="Resource" uid="uid://0i4nxircwafu" path="res://Items/Repo/ak.tres" id="4_hgjui"]
 [ext_resource type="Texture2D" uid="uid://darbpemtv2tyb" path="res://Assets/mainshroom.png" id="5_13lof"]
-[ext_resource type="Script" path="res://Scenes/HealthDisplay.gd" id="5_t3i60"]
 [ext_resource type="Texture2D" uid="uid://b08808ttmxrg3" path="res://Assets/crown.png" id="5_tl4jw"]
 [ext_resource type="PackedScene" uid="uid://ck7geeut0uvi6" path="res://inventory_gui.tscn" id="7_87di0"]
 [ext_resource type="Script" path="res://Scenes/Balance.gd" id="9_fuj7g"]
 [ext_resource type="Script" path="res://inventory_gui1.gd" id="10_663x2"]
-[ext_resource type="Script" path="res://Scenes/Ammo Display.gd" id="11_xsyh2"]
+[ext_resource type="Texture2D" uid="uid://cna84achrsppg" path="res://Assets/spriteHealth.png" id="12_0qqyj"]
 [ext_resource type="AudioStream" uid="uid://ymrpreffmw2h" path="res://Assets/Sounds/playerHurt.wav" id="12_frjin"]
+[ext_resource type="Texture2D" uid="uid://cpwj3xo6kt5u4" path="res://Assets/SpriteHealthDmg.png" id="13_eetfd"]
 [ext_resource type="Texture2D" uid="uid://dg3vfqc6cijo3" path="res://Assets/healthbackground.png" id="13_ip61e"]
+[ext_resource type="Texture2D" uid="uid://ey8yls4xrpcu" path="res://Assets/SpriteAmmo.png" id="13_j1elb"]
 [ext_resource type="Texture2D" uid="uid://dp5e6hm6segqb" path="res://Assets/hatmenu.png" id="13_neay1"]
+[ext_resource type="Texture2D" uid="uid://dh6hy0pmrm25t" path="res://Assets/SpriteAmmoProgress.png" id="14_oqau4"]
 [ext_resource type="Texture2D" uid="uid://ciqu1dswp05tu" path="res://Assets/healthunder.png" id="14_xs4um"]
 [ext_resource type="Texture2D" uid="uid://dnuw7u5ysyk8p" path="res://Assets/mushroomhat.png" id="15_x81ma"]
 [ext_resource type="Texture2D" uid="uid://eskaypoi45qt" path="res://Assets/sprout.png" id="16_hwq23"]
@@ -228,12 +227,8 @@ _data = {
 [node name="CharacterBody2D2" type="CharacterBody2D"]
 collision_mask = 4
 script = ExtResource("1_200gu")
-health = 1
+health = 15
 balance = 9999999
-item1 = ExtResource("2_wr8ff")
-item2 = ExtResource("3_uiba2")
-item3 = ExtResource("4_hgjui")
-Active_Item = ExtResource("2_wr8ff")
 SPEED = 600
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -250,6 +245,7 @@ texture = ExtResource("5_13lof")
 hframes = 8
 
 [node name="Weapon" parent="Sprite2D" instance=ExtResource("3_8keq0")]
+visible = false
 position = Vector2(-0.361786, 6.51215)
 
 [node name="hat" type="Sprite2D" parent="Sprite2D"]
@@ -300,32 +296,37 @@ visibility_layer = 4
 z_index = 2
 texture_filter = 4
 offset_left = -822.0
-offset_top = -367.0
+offset_top = -307.0
 offset_right = -728.0
-offset_bottom = -326.0
+offset_bottom = -266.0
+scale = Vector2(1.43439, 1.56895)
 script = ExtResource("9_fuj7g")
 
-[node name="HealthDisplay" type="Label" parent="."]
-light_mask = 4
-visibility_layer = 4
-z_index = 2
-texture_filter = 4
-offset_left = -824.0
-offset_top = -314.0
-offset_right = -704.0
-offset_bottom = -261.0
-script = ExtResource("5_t3i60")
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+z_index = 8
+offset_left = -823.0
+offset_top = -426.0
+offset_right = -567.0
+offset_bottom = -386.0
+scale = Vector2(1.6111, 1.63984)
+max_value = 11.0
+fill_mode = 1
+texture_under = ExtResource("12_0qqyj")
+texture_progress = ExtResource("13_eetfd")
+radial_initial_angle = 41.7
 
-[node name="Ammo Display" type="Label" parent="."]
-light_mask = 4
-visibility_layer = 4
-z_index = 2
-texture_filter = 4
-offset_left = -824.0
-offset_top = -262.0
-offset_right = -731.0
-offset_bottom = -209.0
-script = ExtResource("11_xsyh2")
+[node name="AmmoBar" type="TextureProgressBar" parent="."]
+z_index = 8
+offset_left = -822.0
+offset_top = -365.0
+offset_right = -566.0
+offset_bottom = -325.0
+scale = Vector2(1.6111, 1.63984)
+max_value = 11.0
+fill_mode = 1
+texture_under = ExtResource("13_j1elb")
+texture_progress = ExtResource("14_oqau4")
+radial_initial_angle = 41.7
 
 [node name="EnemiesKilled" type="TextureProgressBar" parent="."]
 offset_left = -320.0

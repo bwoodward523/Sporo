@@ -22,6 +22,7 @@ var isHurt = false
 var particleVel: Vector2
 func _ready():
 	#Assign resource values
+	process_mode = Node.PROCESS_MODE_PAUSABLE
 	$Sprite2D.set_texture(enemy.ENEMY_TEXTURE)
 	$HealthComponent.health = enemy.ENEMY_HEALTH
 	SPEED = enemy.ENEMY_SPEED

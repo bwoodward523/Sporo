@@ -28,12 +28,13 @@ func _on_body_entered(body):
 		print("Coin picked up")
 	#heart
 	if item_type == 1:
-		if player.health >= 25:
+		if player.health <= 15:
 			player.health += 1
+			player.update_health_ui()
 		print("Health picked up")
 	#ammo
 	if item_type == 2:
-		player.Active_Item.MAX_AMMO += 300
+		player.Active_Item.CURRENT_AMMO += 300
 		print("Ammo picked up")
 
 func _on_pickup_finished():

@@ -23,15 +23,16 @@ func switch_weapon():
 	if ammoCount > 0:
 		canShoot = true
 func _ready():
-	selectedItem = player.Active_Item
-	ammoCount = selectedItem.MAX_AMMO
-	
-	rifle.texture = selectedItem.ITEM_TEXTURE
-	if (selectedItem.ITEM_NAME == "Fist"):
-		rifle.visible = false
-	else:
-		rifle.visible = true
+	if(player.Active_Item != null):
+		selectedItem = player.Active_Item
+		ammoCount = selectedItem.MAX_AMMO
+		
 		rifle.texture = selectedItem.ITEM_TEXTURE
+		if (selectedItem.ITEM_NAME == "Fist"):
+			rifle.visible = false
+		else:
+			rifle.visible = true
+			rifle.texture = selectedItem.ITEM_TEXTURE
 
 
 func _physics_process(delta):
@@ -47,6 +48,7 @@ func _physics_process(delta):
 		if canShoot:
 			if ammoCount > 0:
 				playerShoot()
+				
 	#rotate gun towards mouse
 	look_at(get_global_mouse_position())
 	
@@ -77,7 +79,8 @@ func playerShoot():
 		instance.zdex = z_index -1
 		main.add_child(instance)
 		ammoCount -= 1
-		player.Active_Item.MAX_AMMO -= 1
+		player.Active_Item.CURRENT_AMMO -= 1
+		player.update_ammo_ui()
 	#Wait for firerate cooldown
 	canShoot = false
 	$FireRate.start(selectedItem.FIRE_RATE)

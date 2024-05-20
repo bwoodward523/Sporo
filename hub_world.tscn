@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c4gcjhx8kgn0n" path="res://Assets/maindoor.png" id="3_rhmmp"]
 [ext_resource type="PackedScene" uid="uid://b7oes3w40giek" path="res://Scenes/command_input.tscn" id="5_gdtpv"]
 [ext_resource type="PackedScene" uid="uid://whd11j441bhe" path="res://Scenes/player.tscn" id="5_tyrbb"]
-[ext_resource type="PackedScene" path="res://transition_screen.tscn" id="7_vhwwc"]
+[ext_resource type="PackedScene" uid="uid://df1jx5nx25v45" path="res://transition_screen.tscn" id="7_vhwwc"]
 [ext_resource type="PackedScene" uid="uid://bvdx41qqer5nc" path="res://Scenes/hatman.tscn" id="8_bq13c"]
 [ext_resource type="Texture2D" uid="uid://gy02ftq0nsdn" path="res://Assets/Resume.png" id="9_m4538"]
 [ext_resource type="Texture2D" uid="uid://ocs2s2wntgfv" path="res://Assets/ResumeHover.png" id="10_tnq8m"]
