@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://ih6ytjr1j3dm"]
+
+[ext_resource type="Texture2D" uid="uid://cvqo6vn8j45ww" path="res://Assets/ExitPortal.png" id="1_joms3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jdc81"]
+radius = 64.0
+height = 206.0
+
+[node name="ExitPortal" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.999992, -2)
+scale = Vector2(2.25, 2.79688)
+texture = ExtResource("1_joms3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_jdc81")
