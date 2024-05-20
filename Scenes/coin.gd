@@ -1,7 +1,7 @@
 extends Area2D
 
 var item_type : int # 0: coin
-
+var tempbal : int
 @onready var player = get_parent().get_node("player")
 var coin_img = preload("res://Assets/tempcoin.png")
 var heart_img = preload("res://Assets/heartdrop.png")
@@ -24,7 +24,8 @@ func _on_body_entered(body):
 	$Pickup.play()
 	#coin.
 	if item_type == 0:
-		Data.balance += 1
+		tempbal = randi_range(1,5)
+		Data.balance += tempbal
 		print("Coin picked up")
 	#heart
 	if item_type == 1:
