@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="WEAPON_ITEM" load_steps=4 format=3 uid="uid://c6p6jwl2wt3rf"]
+
+[ext_resource type="Texture2D" uid="uid://bs1x1kv63jrea" path="res://Assets/doohickey.png" id="1_fmexv"]
+[ext_resource type="Texture2D" uid="uid://6c0d2f8l4nk3" path="res://Assets/doohickeyPew.png" id="1_r7fvn"]
+[ext_resource type="Script" path="res://Items/Classes/weapon_item_class.gd" id="1_xi3d0"]
+
+[resource]
+script = ExtResource("1_xi3d0")
+DAMAGE = 2
+FIRE_RATE = 0.3
+CURRENT_AMMO = 2000
+MAX_AMMO = 2000
+PROJECTILE_SPEED = 500.0
+PROJECTILE_TEXTURE = ExtResource("1_r7fvn")
+SHOTS_PER_SHOT = 15
+SPREAD_WIDTH = 24.0
+MAX_BULLET_DISTANCE = 350.0
+PROJECTILE_SIZE = Vector2(2, 2)
+PROJECTILE_ROTATION = 0.0
+PROJECTILE_ROTATION_RATE = 10.0
+PROJECTILE_PENETRATION = 3
+ITEM_NAME = "Doohickey"
+ITEM_ID = 11
+ITEM_TEXTURE = ExtResource("1_fmexv")
+QUANTITY = 1
+HOVER_TEXT = "Questionable?"

@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="WEAPON_ITEM" load_steps=4 format=3 uid="uid://c8h3vsfyc8mip"]
+
+[ext_resource type="Texture2D" uid="uid://b7ljxl4iyb7ho" path="res://Assets/startingPistol.png" id="1_cd1n4"]
+[ext_resource type="Script" path="res://Items/Classes/weapon_item_class.gd" id="1_qtual"]
+[ext_resource type="Texture2D" uid="uid://bm3ssjjr6x7t1" path="res://Assets/startingBullet.png" id="2_r4mg3"]
+
+[resource]
+script = ExtResource("1_qtual")
+DAMAGE = 1
+FIRE_RATE = 0.3
+CURRENT_AMMO = 9999999
+MAX_AMMO = 9999999
+PROJECTILE_SPEED = 700.0
+PROJECTILE_TEXTURE = ExtResource("2_r4mg3")
+SHOTS_PER_SHOT = 1
+SPREAD_WIDTH = 0.0
+MAX_BULLET_DISTANCE = 500.0
+PROJECTILE_SIZE = Vector2(1, 1)
+PROJECTILE_ROTATION = 0.0
+PROJECTILE_ROTATION_RATE = 0.0
+PROJECTILE_PENETRATION = 1
+ITEM_NAME = "Starting Pistol"
+ITEM_ID = 10
+ITEM_TEXTURE = ExtResource("1_cd1n4")
+QUANTITY = 0
+HOVER_TEXT = ""
