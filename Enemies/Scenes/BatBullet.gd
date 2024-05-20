@@ -1,10 +1,13 @@
 extends CharacterBody2D
 
+var item_scene := preload("res://Scenes/coin.tscn")
+
 var addDeathTimer= true
 @export var batSpeed = 20
 @export var knockbackForce: float
 @onready var player = get_parent().get_node("player")
 @onready var spawner = get_parent().get_node("EnemySpawner")
+@onready var main = get_parent()
 var dir
 var knockBack= Vector2.ZERO
 var isDead = false
@@ -40,6 +43,8 @@ func death():
 	if dieOnce:
 		dieOnce = false
 		$AudioStreamPlayer2D.play()
+		if randi_range(0, 50) == 21: #hehehe
+				drop_ammo()
 		$BatTakeDamageArea.set_collision_mask_value(2,false)
 		$BatDamageArea.set_collision_mask_value(1, false)
 		$AnimationPlayer.clear_queue()
@@ -47,7 +52,12 @@ func death():
 		isDead = true
 		spawner.enemyKillCount += .5
 		dir = Vector2(0,0)
-
+func drop_ammo():
+	var item = item_scene.instantiate()
+	item.position = position
+	item.item_type = 2
+	main.call_deferred("add_child", item)
+	item.add_to_group("items")
 func _on_bat_damage_area_body_entered(body):
 	if body.name.contains("player"):	
 		body.take_damage()

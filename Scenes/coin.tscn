@@ -19,7 +19,6 @@ shape = SubResource("RectangleShape2D_ofmbc")
 
 [node name="Pickup" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_26jy7")
-volume_db = -20.0
 max_polyphony = 1000
 bus = &"sfx"
 

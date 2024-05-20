@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://crwp8oa2k5nyd"]
+[gd_scene load_steps=21 format=3 uid="uid://crwp8oa2k5nyd"]
 
 [ext_resource type="Script" path="res://hub_world.gd" id="1_g27cd"]
 [ext_resource type="Texture2D" uid="uid://e2qd8un5hrpe" path="res://Assets/cavefloor1.png" id="1_j853q"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://ocs2s2wntgfv" path="res://Assets/ResumeHover.png" id="10_tnq8m"]
 [ext_resource type="Texture2D" uid="uid://dqcfi0egkr3ji" path="res://Assets/ReturnToMainMenu.png" id="11_pv44s"]
 [ext_resource type="Texture2D" uid="uid://c4fpdkt2u87wq" path="res://Assets/ReturnToMainMenuHover.png" id="12_32eyx"]
+[ext_resource type="AudioStream" uid="uid://wdt6751b0k3f" path="res://Assets/Sounds/2019-08-25_-_8bit-Smooth_Presentation_-_David_Fesliyan.mp3" id="13_k4j7d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_263ts"]
 texture = ExtResource("1_j853q")
@@ -118,6 +119,12 @@ position = Vector2(175, 78)
 scale = Vector2(2, 2)
 collision_layer = 5
 collision_mask = 5
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_k4j7d")
+volume_db = -20.0
+autoplay = true
+bus = &"music"
 
 [connection signal="pressed" from="player/Node2D/VBoxContainer/TextureButton" to="." method="_on_texture_button_pressed"]
 [connection signal="pressed" from="player/Node2D/VBoxContainer/TextureButton2" to="." method="_on_texture_button_2_pressed"]

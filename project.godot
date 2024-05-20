@@ -14,6 +14,7 @@ config/name="2DTopDownShooter"
 run/main_scene="res://Menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/show_image=false
+boot_splash/image="res://Assets/coverart.png"
 config/icon="res://image2vector.svg"
 
 [autoload]

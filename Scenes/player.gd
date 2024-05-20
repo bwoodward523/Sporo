@@ -51,6 +51,7 @@ func _ready():
 		item3 = get_item_by_item_id(Data.item3_id)
 		$Sprite2D/hat.texture = get_hat_by_hat_id(Data.hat_id)
 		$Sprite2D/Weapon.visible = true
+		Active_Item = item1
 	if item1 == null:
 		Data.item1_id = 0
 	if item2 == null:
