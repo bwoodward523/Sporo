@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="2DTopDownShooter"
+config/name="Sporo"
+config/description="The once peaceful forest is under siege by a mysterious dark force that has corrupted its inhabitants. You play as Sporo, a brave and sentient mushroom armed to the teeth. Your mission is to fight through the corrupted creatures, defeat the dark entity, and restore peace to the Sporest."
 run/main_scene="res://Menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/show_image=false
