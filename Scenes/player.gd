@@ -366,60 +366,60 @@ func _on_item_list_2_item_selected(index):
 	print("Can buy 1?: ", couldBuy )
 	print("Balance 1?: ", Data.balance )
 	if index == 0:
-		if Data.balance >= 100:
+		if Data.balance >= 70:
 			couldBuy = true
 			tempItem = load("res://Items/Repo/snubby.tres")
-			cost = 100
+			cost = 70
 		else:
 			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
 	if index == 1:
-		if Data.balance >= 250:
+		if Data.balance >= 175:
 			couldBuy = true
 			tempItem = load("res://Items/Repo/ak.tres")
-			cost = 1000
+			cost = 175
 		else:
 			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
 	if index == 2:
-		if Data.balance >= 300:
+		if Data.balance >= 210:
 			couldBuy = true
 			tempItem = load("res://Items/Repo/m4.tres")
-			cost = 300
+			cost = 210
 		else:
 			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
 	if index == 3:
 		print("Kunai!!!")
-		if Data.balance >= 500:
+		if Data.balance >= 350:
 			couldBuy = true
 			tempItem = load("res://Items/Repo/kunai.tres")
-			cost = 500
+			cost = 350
 		else:
 			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
 	if index == 4:
-		if Data.balance >= 1000:
+		if Data.balance >= 700:
 			couldBuy = true
 			tempItem = load("res://Items/Repo/shotgun.tres")
-			cost = 1000
+			cost = 700
 		else:
 			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
 	if index == 5:
-		if Data.balance >= 2000:
+		if Data.balance >= 1400:
 			couldBuy = true
 			tempItem = load("res://Items/Repo/doohickey.tres")
-			cost = 2000
+			cost = 1400
 		else:
 			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
 	if index == 6:
-		if Data.balance >= 5000:
+		if Data.balance >= 3500:
 			couldBuy = true
 			tempItem = load("res://Items/Repo/watergun.tres")
-			cost = 5000
+			cost = 3500
 		else:
 			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
 	if index == 7:
-		if Data.balance >= 9999:
+		if Data.balance >= 6969:
 			couldBuy = true
 			tempItem = load("res://Items/Repo/fist.tres")
-			cost = 9999
+			cost = 6969
 		else:
 			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
 	print("Can buy 2?: ", couldBuy )
