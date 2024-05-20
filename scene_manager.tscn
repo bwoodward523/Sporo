@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scene_manager.gd" id="1_vjrqw"]
 [ext_resource type="PackedScene" uid="uid://crwp8oa2k5nyd" path="res://hub_world.tscn" id="2_mbwfe"]
 [ext_resource type="PackedScene" uid="uid://blryoimq6tbed" path="res://Menu.tscn" id="3_3bq5x"]
-[ext_resource type="PackedScene" uid="uid://df1jx5nx25v45" path="res://transition_screen.tscn" id="4_wl1s6"]
+[ext_resource type="PackedScene" uid="uid://dahcmm0ncld08" path="res://transition_screen.tscn" id="4_wl1s6"]
 
 [node name="SceneManager" type="Node2D"]
 script = ExtResource("1_vjrqw")
