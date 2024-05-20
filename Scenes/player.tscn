@@ -227,7 +227,7 @@ _data = {
 [node name="CharacterBody2D2" type="CharacterBody2D"]
 collision_mask = 4
 script = ExtResource("1_200gu")
-health = 1
+health = 15
 balance = 9999999
 SPEED = 600
 

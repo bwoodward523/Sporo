@@ -8,7 +8,7 @@ func _ready():
 
 func _process(delta):
 	var tween = node.create_tween()
-	var offset = center - get_global_mouse_position()
+	var offset = (center - get_global_mouse_position()) * 0.2
 	tween.tween_property(node, "position", offset, 1.0)
 
 func _on_item_rect_changed():
