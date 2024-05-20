@@ -1,9 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://blryoimq6tbed"]
+[gd_scene load_steps=14 format=3 uid="uid://blryoimq6tbed"]
 
 [ext_resource type="Script" path="res://Menu.gd" id="1_bpp5d"]
 [ext_resource type="Texture2D" uid="uid://bgr8sebbygjjm" path="res://Assets/StartGameButton.png" id="2_3aac0"]
 [ext_resource type="Texture2D" uid="uid://dajicd1mgcxe4" path="res://Assets/mushroom.png" id="2_ue87s"]
+[ext_resource type="Texture2D" uid="uid://d1kem2rdevf8y" path="res://Assets/LoadGame.png" id="3_j8nx1"]
 [ext_resource type="Texture2D" uid="uid://p6nu8rsrdexu" path="res://Assets/OptionsButton.png" id="3_ra341"]
+[ext_resource type="Texture2D" uid="uid://bqv48uyruudq8" path="res://Assets/LoadGameHover.png" id="4_nno6i"]
 [ext_resource type="Texture2D" uid="uid://du4xh2kvt2kjh" path="res://Assets/QuitButton.png" id="4_ph80f"]
 [ext_resource type="Texture2D" uid="uid://f8y18puy548g" path="res://Assets/StartGameButtonHover.png" id="4_vy335"]
 [ext_resource type="AudioStream" uid="uid://ty7hlux7jjch" path="res://Assets/Sounds/mainmenu.wav" id="5_wly31"]
@@ -95,6 +97,11 @@ offset_bottom = 213.0
 layout_mode = 2
 alignment = 1
 
+[node name="Load Game" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_j8nx1")
+texture_hover = ExtResource("4_nno6i")
+
 [node name="Play" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("2_3aac0")
@@ -116,6 +123,7 @@ volume_db = -20.0
 autoplay = true
 bus = &"music"
 
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Load Game" to="." method="_on_load_game_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

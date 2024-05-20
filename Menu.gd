@@ -28,4 +28,10 @@ func _on_options_pressed():
 
 
 func _on_exit_pressed():
+	Data.save()
 	get_tree().quit()
+
+
+func _on_load_game_pressed():
+	Data.load_data()
+	get_tree().change_scene_to_file("res://hub_world.tscn")

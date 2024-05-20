@@ -1,10 +1,7 @@
-[gd_scene load_steps=37 format=3 uid="uid://whd11j441bhe"]
+[gd_scene load_steps=34 format=3 uid="uid://whd11j441bhe"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_200gu"]
-[ext_resource type="Resource" uid="uid://d2jg3o7ug4xpo" path="res://Items/Repo/fist.tres" id="2_wr8ff"]
 [ext_resource type="PackedScene" uid="uid://thjtpkg3w2xm" path="res://Scenes/rifle.tscn" id="3_8keq0"]
-[ext_resource type="Resource" uid="uid://gtg5k0en2rdk" path="res://Items/Repo/watergun.tres" id="3_uiba2"]
-[ext_resource type="Resource" uid="uid://0i4nxircwafu" path="res://Items/Repo/ak.tres" id="4_hgjui"]
 [ext_resource type="Texture2D" uid="uid://darbpemtv2tyb" path="res://Assets/mainshroom.png" id="5_13lof"]
 [ext_resource type="Texture2D" uid="uid://b08808ttmxrg3" path="res://Assets/crown.png" id="5_tl4jw"]
 [ext_resource type="PackedScene" uid="uid://ck7geeut0uvi6" path="res://inventory_gui.tscn" id="7_87di0"]
@@ -232,10 +229,6 @@ collision_mask = 4
 script = ExtResource("1_200gu")
 health = 1
 balance = 9999999
-item1 = ExtResource("2_wr8ff")
-item2 = ExtResource("3_uiba2")
-item3 = ExtResource("4_hgjui")
-Active_Item = ExtResource("2_wr8ff")
 SPEED = 600
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -252,6 +245,7 @@ texture = ExtResource("5_13lof")
 hframes = 8
 
 [node name="Weapon" parent="Sprite2D" instance=ExtResource("3_8keq0")]
+visible = false
 position = Vector2(-0.361786, 6.51215)
 
 [node name="hat" type="Sprite2D" parent="Sprite2D"]

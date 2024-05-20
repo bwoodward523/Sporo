@@ -19,6 +19,7 @@ signal switching
 var canShoot = false
 var dirFace = 1
 var can_toggle_pause = true
+var hat_id : int
 
 var randText : int
 @onready var couldBuy = false
@@ -26,6 +27,7 @@ var tempItem : Resource
 var cost : int
 
 func _ready():
+	hat_id = 0
 	self.health = 10
 	update_ammo_ui()
 	update_health_ui()
@@ -34,25 +36,56 @@ func _ready():
 	print("My current scene is: ", get_tree().get_current_scene().get_name())
 	if get_tree().get_current_scene().get_name() == "HubWorld":
 		$EnemiesKilled.visible = false
-		
-		if Data.item1 != null:
-			item1 = Data.item1
-		if Data.item2 != null:
-			item2 = Data.item2
-		if Data.item3 != null:
-			item3 = Data.item3
-		if Data.hat != null:
-			$Sprite2D/hat.texture = Data.hat
+		item1 = get_item_by_item_id(Data.item1_id)
+		item2 = get_item_by_item_id(Data.item2_id)
+		item3 = get_item_by_item_id(Data.item3_id)
+		$Sprite2D/hat.texture = get_hat_by_hat_id(Data.hat_id)
 	else:
-		if item1 != null:
-			item1 = Data.item1
-		if item2 != null:
-			item2 = Data.item2
-		if item3 != null:
-			item3 = Data.item3
-		if Data.hat != null:
-			$Sprite2D/hat.texture = Data.hat
+		print("Making it this far?")
+		item1 = get_item_by_item_id(Data.item1_id)
+		item2 = get_item_by_item_id(Data.item2_id)
+		item3 = get_item_by_item_id(Data.item3_id)
+		$Sprite2D/hat.texture = get_hat_by_hat_id(Data.hat_id)
+	if item1 == null:
+		Data.item1_id = 0
+	if item2 == null:
+		Data.item2_id = 0
+	if item3 == null:
+		Data.item3_id = 0
 
+func get_hat_by_hat_id(hatID : int) -> Texture2D:
+	if hatID == 1:
+		return load("res://Assets/mushroomhat.png")
+	if hatID == 2:
+		return load("res://Assets/sprout.png")
+	if hatID == 3:
+		return load("res://Assets/cowboy.png")
+	if hatID == 4:
+		return load("res://Assets/crown.png")
+	if hatID == 5:
+		return load("res://Assets/theEye.png")
+	else:
+		return null
+
+func get_item_by_item_id(itemID : int) -> Resource:
+	if itemID == 1:
+		return load("res://Items/Repo/ak.tres")
+	if itemID == 2:
+		return load("res://Items/Repo/bowlingcannon.tres")
+	if itemID == 3:
+		return load("res://Items/Repo/fist.tres")
+	if itemID == 4:
+		return load("res://Items/Repo/kunai.tres")
+	if itemID == 5:
+		return load("res://Items/Repo/pea_shooter.tres")
+	if itemID == 6:
+		return load("res://Items/Repo/shotgun.tres")
+	if itemID == 7:
+		return load("res://Items/Repo/snubby.tres")
+	if itemID == 8:
+		return load("res://Items/Repo/watergun.tres")
+	else:
+		return null
 func update_health_ui():
 	set_health_bar()
 
@@ -84,6 +117,7 @@ func _physics_process(delta):
 				balance -= cost
 				item1 = tempItem
 				Data.item1 = item1
+				Data.item1_id = item1.ITEM_ID
 				print("Did it work (should be shotgun): ", item1)
 				couldBuy = false
 				$hatmenu/HatmanSpeaking.text = "Thank you for your purchase!"
@@ -91,12 +125,14 @@ func _physics_process(delta):
 				balance -= cost
 				item2 = tempItem
 				Data.item2 = item2
+				Data.item2_id = item2.ITEM_ID
 				couldBuy = false
 				$hatmenu/HatmanSpeaking.text = "Thank you for your purchase!"
 			elif  Input.is_action_pressed("item_three"):
 				balance -= cost
 				item3 = tempItem
 				Data.item3 = item3
+				Data.item3_id = item3.ITEM_ID
 				couldBuy = false
 				$hatmenu/HatmanSpeaking.text = "Thank you for your purchase!"
 		
@@ -243,6 +279,7 @@ func _on_item_list_item_clicked(index, at_position, mouse_button_index):
 			balance -= 250
 			$hatmenu/HatmanSpeaking.text = "Thank you for your business!"
 			$Sprite2D/hat.texture = load("res://Assets/mushroomhat.png")
+			Data.hat_id = 1
 			Data.hat = $Sprite2D/hat.texture
 		else:
 			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
@@ -251,6 +288,7 @@ func _on_item_list_item_clicked(index, at_position, mouse_button_index):
 			balance -= 1000
 			$hatmenu/HatmanSpeaking.text = "Thank you for your business!"
 			$Sprite2D/hat.texture = load("res://Assets/sprout.png")
+			Data.hat_id = 2
 			Data.hat = $Sprite2D/hat.texture
 		else:
 			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
@@ -259,6 +297,7 @@ func _on_item_list_item_clicked(index, at_position, mouse_button_index):
 			balance -= 3000
 			$hatmenu/HatmanSpeaking.text = "Thank you for your business!"
 			$Sprite2D/hat.texture = load("res://Assets/cowboy.png")
+			Data.hat_id = 3
 			Data.hat = $Sprite2D/hat.texture
 		else:
 			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
@@ -267,6 +306,7 @@ func _on_item_list_item_clicked(index, at_position, mouse_button_index):
 			balance -= 5000
 			$hatmenu/HatmanSpeaking.text = "Thank you for your business!"
 			$Sprite2D/hat.texture = load("res://Assets/crown.png")
+			Data.hat_id = 4
 			Data.hat = $Sprite2D/hat.texture
 		else:
 			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
@@ -275,6 +315,7 @@ func _on_item_list_item_clicked(index, at_position, mouse_button_index):
 			balance -= 9999
 			$hatmenu/HatmanSpeaking.text = "Be careful with this one, you don't want to know where I found it..."
 			$Sprite2D/hat.texture = load("res://Assets/theEye.png")
+			Data.hat_id = 5
 			Data.hat = $Sprite2D/hat.texture
 		else:
 			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"

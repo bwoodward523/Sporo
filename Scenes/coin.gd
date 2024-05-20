@@ -30,6 +30,7 @@ func _on_body_entered(body):
 	if item_type == 1:
 		if player.health >= 25:
 			player.health += 1
+			player.update_health_ui()
 		print("Health picked up")
 	#ammo
 	if item_type == 2:

@@ -85,10 +85,6 @@ layer_0/tile_data = PackedInt32Array(14, 1, 0, 65550, 1, 1)
 [node name="player" parent="." instance=ExtResource("5_tyrbb")]
 process_mode = 1
 position = Vector2(572, 328)
-item1 = null
-item2 = null
-item3 = null
-Active_Item = null
 
 [node name="Node2D" type="Node2D" parent="player"]
 process_mode = 3
