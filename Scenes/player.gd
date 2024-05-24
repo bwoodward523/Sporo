@@ -297,7 +297,7 @@ func _on_hatman_area_exited(area):
 	$hatmenu.visible = false
 
 
-func _on_item_list_item_clicked(index, at_position, mouse_button_index):
+func _on_item_list_item_selected(index):
 	if index == 0:
 		if Data.balance >= 250:
 			Data.balance -= 250
@@ -427,6 +427,3 @@ func _on_item_list_2_item_selected(index):
 	if (tempItem != null):
 		print("Current temp gun: ", tempItem.ITEM_NAME)
 	
-
-
-
