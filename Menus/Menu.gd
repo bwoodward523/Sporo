@@ -18,12 +18,12 @@ func _on_item_rect_changed():
 		node.global_position = center
 
 func _on_play_pressed():
-	get_tree().change_scene_to_file("res://hub_world.tscn")
+	get_tree().change_scene_to_file("res://Worlds/hub_world.tscn")
 
 
 
 func _on_options_pressed():
-	get_tree().change_scene_to_file("res://Options_Menu.tscn")
+	get_tree().change_scene_to_file("res://Menus/Options_Menu.tscn")
 
 
 
@@ -34,4 +34,4 @@ func _on_exit_pressed():
 
 func _on_load_game_pressed():
 	Data.load_data()
-	get_tree().change_scene_to_file("res://hub_world.tscn")
+	get_tree().change_scene_to_file("res://Worlds/hub_world.tscn")

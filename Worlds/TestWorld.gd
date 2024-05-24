@@ -33,4 +33,4 @@ func _on_texture_button_2_pressed():
 	get_tree().paused = false
 	$player/Node2D/VBoxContainer.visible = false
 	Data.save()
-	get_tree().change_scene_to_file("res://Menu.tscn")
+	get_tree().change_scene_to_file("res://Menus/Menu.tscn")

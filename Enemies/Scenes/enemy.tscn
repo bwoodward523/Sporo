@@ -1,11 +1,11 @@
 [gd_scene load_steps=13 format=3 uid="uid://ydps0kym737e"]
 
-[ext_resource type="Script" path="res://enemy.gd" id="1_j1xkc"]
-[ext_resource type="Texture2D" uid="uid://htr4lvmqwcjx" path="res://Assets/Enemy1.png" id="2_gkncm"]
-[ext_resource type="Resource" uid="uid://cslalod3l863d" path="res://Enemies/Repo/grunt.tres" id="2_xem1n"]
-[ext_resource type="PackedScene" uid="uid://cpu2psp3r768g" path="res://Scenes/health_component.tscn" id="3_uegvw"]
-[ext_resource type="Texture2D" uid="uid://p4tmyj72ng0e" path="res://Assets/gunraindropbullet.png" id="5_rfby1"]
-[ext_resource type="AudioStream" uid="uid://dgi3qcr486fce" path="res://Assets/Sounds/hitHurt.wav" id="7_5dhbc"]
+[ext_resource type="Script" path="res://Enemies/Scenes/enemy.gd" id="1_r4i6w"]
+[ext_resource type="Resource" uid="uid://cslalod3l863d" path="res://Enemies/Repo/grunt.tres" id="2_g681i"]
+[ext_resource type="Texture2D" uid="uid://htr4lvmqwcjx" path="res://Assets/Enemy1.png" id="3_a7nwg"]
+[ext_resource type="PackedScene" uid="uid://cpu2psp3r768g" path="res://Scenes/health_component.tscn" id="4_cl57h"]
+[ext_resource type="Texture2D" uid="uid://p4tmyj72ng0e" path="res://Assets/gunraindropbullet.png" id="5_7qhg2"]
+[ext_resource type="AudioStream" uid="uid://dgi3qcr486fce" path="res://Assets/Sounds/hitHurt.wav" id="6_5fauq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wpvdv"]
 radius = 8.5
@@ -136,9 +136,9 @@ gravity = Vector3(0, 98, 0)
 scale = Vector2(2, 2)
 collision_layer = 4
 collision_mask = 5
-script = ExtResource("1_j1xkc")
+script = ExtResource("1_r4i6w")
 CHARGE_SPEED = 800
-enemy = ExtResource("2_xem1n")
+enemy = ExtResource("2_g681i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_wpvdv")
@@ -146,9 +146,9 @@ debug_color = Color(4.23551e-06, 0.616156, 0.595245, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 1)
-texture = ExtResource("2_gkncm")
+texture = ExtResource("3_a7nwg")
 
-[node name="HealthComponent" parent="." instance=ExtResource("3_uegvw")]
+[node name="HealthComponent" parent="." instance=ExtResource("4_cl57h")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -162,14 +162,14 @@ autostart = true
 [node name="DeathPoof" type="GPUParticles2D" parent="."]
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_2s8pp")
-texture = ExtResource("5_rfby1")
+texture = ExtResource("5_7qhg2")
 lifetime = 0.5
 one_shot = true
 explosiveness = 0.41
 randomness = 1.0
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_5dhbc")
+stream = ExtResource("6_5fauq")
 volume_db = -20.0
 max_polyphony = 1000
 bus = &"sfx"

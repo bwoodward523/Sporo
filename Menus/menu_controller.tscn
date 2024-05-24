@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dksxf6xg8uihb"]
+
+[ext_resource type="PackedScene" uid="uid://blryoimq6tbed" path="res://Menus/Menu.tscn" id="1_mx8n4"]
+[ext_resource type="PackedScene" uid="uid://di1oa51l1vgi3" path="res://Menus/Options_Menu.tscn" id="2_tpyss"]
+
+[node name="MenuController" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainMenu" parent="." instance=ExtResource("1_mx8n4")]
+layout_mode = 1
+
+[node name="Options" parent="." instance=ExtResource("2_tpyss")]
+visible = false
+layout_mode = 1

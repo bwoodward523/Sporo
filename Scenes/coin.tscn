@@ -8,6 +8,7 @@
 size = Vector2(33, 34)
 
 [node name="Coin" type="Area2D"]
+process_mode = 1
 script = ExtResource("1_jum5s")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

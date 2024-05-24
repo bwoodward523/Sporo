@@ -13,7 +13,7 @@ var bulletsPerShot: int
 
 func switch_weapon():
 	selectedItem = player.Active_Item
-	ammoCount = selectedItem.MAX_AMMO
+	ammoCount = selectedItem.CURRENT_AMMO
 	rifle.texture = selectedItem.ITEM_TEXTURE
 	if (selectedItem.ITEM_NAME == "Fist"):
 		rifle.visible = false
@@ -25,7 +25,7 @@ func switch_weapon():
 func _ready():
 	if(player.Active_Item != null):
 		selectedItem = player.Active_Item
-		ammoCount = selectedItem.MAX_AMMO
+		ammoCount = selectedItem.CURRENT_AMMO
 		
 		rifle.texture = selectedItem.ITEM_TEXTURE
 		if (selectedItem.ITEM_NAME == "Fist"):
@@ -63,7 +63,7 @@ func _physics_process(delta):
 
 func playerShoot():
 	for i in selectedItem.SHOTS_PER_SHOT:
-		
+		ammoCount = selectedItem.CURRENT_AMMO
 		var instance = playerProjectile.instantiate()
 		instance.scale1 = selectedItem.PROJECTILE_SIZE
 		instance.dir = _assign_bullet_direction(i)

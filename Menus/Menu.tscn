@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://blryoimq6tbed"]
 
-[ext_resource type="Script" path="res://Menu.gd" id="1_bpp5d"]
+[ext_resource type="Script" path="res://Menus/Menu.gd" id="1_bpp5d"]
 [ext_resource type="Texture2D" uid="uid://bgr8sebbygjjm" path="res://Assets/StartGameButton.png" id="2_3aac0"]
 [ext_resource type="Texture2D" uid="uid://dajicd1mgcxe4" path="res://Assets/mushroom.png" id="2_ue87s"]
 [ext_resource type="Texture2D" uid="uid://d1kem2rdevf8y" path="res://Assets/LoadGame.png" id="3_j8nx1"]
@@ -30,6 +30,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.6067, 1.60294)
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_bpp5d")

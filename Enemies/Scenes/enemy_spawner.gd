@@ -1,6 +1,6 @@
 extends Node2D
 #@onready var enemy = get_parent().get_node("Enemy")
-@onready var enemy = preload("res://Scenes/enemy.tscn")
+@onready var enemy = preload("res://Enemies/Scenes/enemy.tscn")
 @onready var enemyGnome = preload("res://Enemies/Scenes/enemy_gnome.tscn")
 @onready var enemySummoner = preload("res://Enemies/Scenes/batSummoner.tscn")
 @onready var enemyMage = preload("res://Enemies/Scenes/EnemyMage.tscn")

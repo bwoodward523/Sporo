@@ -1,5 +1,6 @@
 extends Area2D
 
+var temp : int
 var item_type : int # 0: coin
 var tempbal : int
 @onready var player = get_parent().get_node("player")
@@ -24,7 +25,7 @@ func _on_body_entered(body):
 	$Pickup.play()
 	#coin.
 	if item_type == 0:
-		tempbal = randi_range(1,5)
+		tempbal = randi_range(7,15)
 		Data.balance += tempbal
 		print("Coin picked up")
 	#heart
@@ -35,7 +36,12 @@ func _on_body_entered(body):
 		print("Health picked up")
 	#ammo
 	if item_type == 2:
-		player.Active_Item.CURRENT_AMMO += 300
+		temp = player.Active_Item.CURRENT_AMMO + 300
+		if temp > player.Active_Item.MAX_AMMO:
+			player.Active_Item.CURRENT_AMMO = player.Active_Item.MAX_AMMO
+		else:
+			player.Active_Item.CURRENT_AMMO += 300
+		player.update_ammo_ui()
 		print("Ammo picked up")
 
 func _on_pickup_finished():

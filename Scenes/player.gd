@@ -102,7 +102,7 @@ func get_item_by_item_id(itemID : int) -> Resource:
 	if itemID == 10:
 		return load("res://Items/Repo/startingPistol.tres")
 	if itemID == 11:
-		return load("res://Assets/doohickey.png")
+		return load("res://Items/Repo/doohickey.tres")
 	else:
 		return null
 func update_health_ui():
@@ -254,7 +254,7 @@ func deductHealth():
 func _on_hurt_and_death_animation_animation_finished(anim_name):
 	if anim_name == "playerDeath":
 		if is_inside_tree():
-			get_tree().change_scene_to_file("res://hub_world.tscn")
+			get_tree().change_scene_to_file("res://Worlds/hub_world.tscn")
 
 func check_death():
 	if isDead:

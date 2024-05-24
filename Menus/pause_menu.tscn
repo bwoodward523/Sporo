@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://bbounm3ircksb"]
 
-[ext_resource type="Texture2D" uid="uid://gy02ftq0nsdn" path="res://Assets/Resume.png" id="1_vnko3"]
-[ext_resource type="Texture2D" uid="uid://ocs2s2wntgfv" path="res://Assets/ResumeHover.png" id="2_dctde"]
-[ext_resource type="Texture2D" uid="uid://dqcfi0egkr3ji" path="res://Assets/ReturnToMainMenu.png" id="3_aqop5"]
-[ext_resource type="Texture2D" uid="uid://c4fpdkt2u87wq" path="res://Assets/ReturnToMainMenuHover.png" id="4_d264b"]
+[ext_resource type="Texture2D" uid="uid://gy02ftq0nsdn" path="res://Assets/Resume.png" id="1_dsxos"]
+[ext_resource type="Texture2D" uid="uid://ocs2s2wntgfv" path="res://Assets/ResumeHover.png" id="2_f223g"]
+[ext_resource type="Texture2D" uid="uid://dqcfi0egkr3ji" path="res://Assets/ReturnToMainMenu.png" id="3_p0kn6"]
+[ext_resource type="Texture2D" uid="uid://c4fpdkt2u87wq" path="res://Assets/ReturnToMainMenuHover.png" id="4_4km80"]
 
 [node name="PauseMenu" type="Control"]
 layout_mode = 3
@@ -27,10 +27,10 @@ layout_mode = 2
 
 [node name="TextureButton" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("1_vnko3")
-texture_hover = ExtResource("2_dctde")
+texture_normal = ExtResource("1_dsxos")
+texture_hover = ExtResource("2_f223g")
 
 [node name="TextureButton2" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("3_aqop5")
-texture_hover = ExtResource("4_d264b")
+texture_normal = ExtResource("3_p0kn6")
+texture_hover = ExtResource("4_4km80")

@@ -1,9 +1,9 @@
 [gd_scene load_steps=14 format=3 uid="uid://dhmsoifjhyut7"]
 
 [ext_resource type="PackedScene" uid="uid://cv2rejn7ecfth" path="res://Scenes/tile_map.tscn" id="1_70dvb"]
-[ext_resource type="Script" path="res://TestWorld.gd" id="1_wd6si"]
+[ext_resource type="Script" path="res://Worlds/TestWorld.gd" id="1_wd6si"]
 [ext_resource type="PackedScene" uid="uid://whd11j441bhe" path="res://Scenes/player.tscn" id="3_mh2yx"]
-[ext_resource type="PackedScene" uid="uid://ckap5eabxuiku" path="res://Scenes/enemy_spawner.tscn" id="4_1wl62"]
+[ext_resource type="PackedScene" uid="uid://ckap5eabxuiku" path="res://Enemies/Scenes/enemy_spawner.tscn" id="4_1wl62"]
 [ext_resource type="PackedScene" uid="uid://b7oes3w40giek" path="res://Scenes/command_input.tscn" id="4_2mw6b"]
 [ext_resource type="Texture2D" uid="uid://gy02ftq0nsdn" path="res://Assets/Resume.png" id="4_pj1m4"]
 [ext_resource type="Texture2D" uid="uid://ocs2s2wntgfv" path="res://Assets/ResumeHover.png" id="5_idx00"]
