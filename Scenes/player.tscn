@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://whd11j441bhe"]
+[gd_scene load_steps=41 format=3 uid="uid://whd11j441bhe"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_200gu"]
 [ext_resource type="PackedScene" uid="uid://thjtpkg3w2xm" path="res://Scenes/rifle.tscn" id="3_8keq0"]
@@ -29,6 +29,8 @@
 [ext_resource type="Texture2D" uid="uid://bos7sn273vspt" path="res://Assets/m4.png" id="24_8gfmo"]
 [ext_resource type="Texture2D" uid="uid://dtfjh5q30dtd8" path="res://Assets/fist.png" id="25_ufgug"]
 [ext_resource type="Texture2D" uid="uid://bs1x1kv63jrea" path="res://Assets/doohickey.png" id="27_a52d8"]
+[ext_resource type="Script" path="res://Scenes/statmenu.gd" id="30_1y7qx"]
+[ext_resource type="Texture2D" uid="uid://c1iafhh6agu46" path="res://Assets/overseermenu.png" id="30_ug25i"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fba2d"]
 radius = 7.0
@@ -349,6 +351,7 @@ max_polyphony = 10
 bus = &"sfx"
 
 [node name="hatmenu" type="Control" parent="."]
+visible = false
 z_index = 3
 layout_mode = 3
 anchors_preset = 0
@@ -356,15 +359,16 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Sprite2D" type="Sprite2D" parent="hatmenu"]
-scale = Vector2(1.5, 1.5)
+scale = Vector2(2, 2)
 texture = ExtResource("13_neay1")
 
 [node name="ItemList" type="ItemList" parent="hatmenu"]
 layout_mode = 0
-offset_left = -255.0
-offset_top = -36.0
-offset_right = 124.0
-offset_bottom = 121.0
+offset_left = -340.0
+offset_top = -33.0
+offset_right = 39.0
+offset_bottom = 124.0
+scale = Vector2(1.31415, 1.26581)
 text_overrun_behavior = 0
 item_count = 7
 max_columns = 0
@@ -385,10 +389,11 @@ item_6/icon = ExtResource("19_hefa7")
 
 [node name="ItemList2" type="ItemList" parent="hatmenu"]
 layout_mode = 0
-offset_left = -250.0
-offset_top = -223.0
-offset_right = 125.0
-offset_bottom = -69.0
+offset_left = -340.0
+offset_top = -278.0
+offset_right = 35.0
+offset_bottom = -124.0
+scale = Vector2(1.34426, 1.30201)
 allow_search = false
 text_overrun_behavior = 0
 item_count = 8
@@ -413,10 +418,10 @@ item_7/icon = ExtResource("25_ufgug")
 [node name="WeaponLabel" type="Label" parent="hatmenu"]
 texture_filter = 6
 layout_mode = 0
-offset_left = -252.0
-offset_top = -248.0
-offset_right = -212.0
-offset_bottom = -225.0
+offset_left = -341.0
+offset_top = -311.0
+offset_right = 17283.0
+offset_bottom = 2413.0
 scale = Vector2(0.01, 0.01)
 theme_override_font_sizes/font_size = 2000
 text = "Weapons For Sale:"
@@ -424,10 +429,10 @@ text = "Weapons For Sale:"
 [node name="HatLabel" type="Label" parent="hatmenu"]
 texture_filter = 6
 layout_mode = 0
-offset_left = -255.0
-offset_top = -64.0
-offset_right = 3268.0
-offset_bottom = 482.0
+offset_left = -338.0
+offset_top = -68.0
+offset_right = 12792.0
+offset_bottom = 2656.0
 scale = Vector2(0.01, 0.01)
 theme_override_font_sizes/font_size = 2000
 text = "Hats For Sale:"
@@ -435,13 +440,84 @@ text = "Hats For Sale:"
 [node name="HatmanSpeaking" type="Label" parent="hatmenu"]
 texture_filter = 6
 layout_mode = 0
-offset_left = -255.0
-offset_top = 174.0
-offset_right = 9965.0
-offset_bottom = 2214.0
-scale = Vector2(0.05, 0.05)
+offset_left = -338.0
+offset_top = 241.0
+offset_right = 9882.0
+offset_bottom = 2281.0
+scale = Vector2(0.066586, 0.0606061)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 350
+autowrap_mode = 3
+
+[node name="statmenu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("30_1y7qx")
+
+[node name="Sprite2D" type="Sprite2D" parent="statmenu"]
+z_index = 4
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("30_ug25i")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="statmenu"]
+layout_mode = 0
+offset_left = -392.0
+offset_top = -234.0
+offset_right = -196.0
+offset_bottom = -37.0
+scale = Vector2(1.87175, 1.79843)
+
+[node name="totalenims" type="Label" parent="statmenu/VBoxContainer"]
+z_index = 5
+layout_mode = 2
+text = "Total Enemies Slain: "
+
+[node name="bosseskilled" type="Label" parent="statmenu/VBoxContainer"]
+z_index = 5
+layout_mode = 2
+text = "Forest Liches Slain: "
+
+[node name="gruntskilled" type="Label" parent="statmenu/VBoxContainer"]
+z_index = 5
+layout_mode = 2
+text = "Forest Grunts Slain: "
+
+[node name="gnomeskilled" type="Label" parent="statmenu/VBoxContainer"]
+z_index = 5
+layout_mode = 2
+text = "Forest Gnomes Slain: "
+
+[node name="mageskilled" type="Label" parent="statmenu/VBoxContainer"]
+z_index = 5
+layout_mode = 2
+text = "Forest Mages Slain: "
+
+[node name="summonerskilled" type="Label" parent="statmenu/VBoxContainer"]
+z_index = 5
+layout_mode = 2
+text = "Forest Summoners Slain: "
+
+[node name="batskilled" type="Label" parent="statmenu/VBoxContainer"]
+z_index = 5
+layout_mode = 2
+text = "Forest Bats Slain: "
+
+[node name="OverseerSpeaking" type="Label" parent="statmenu"]
+z_index = 5
+texture_filter = 6
+layout_mode = 0
+offset_left = -399.0
+offset_top = 152.0
+offset_right = 9821.0
+offset_bottom = 2192.0
+scale = Vector2(0.057626, 0.0535931)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 350
+text = "I've been watching you for some time, Sporo, your 
+work has not gone unnoticed...
+"
 autowrap_mode = 3
 
 [node name="forexit" type="Area2D" parent="."]

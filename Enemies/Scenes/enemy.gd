@@ -111,6 +111,7 @@ func take_damage():
 	
 func _on_lifespan_timeout():
 	$AnimationPlayer.play("gruntDeath")
+	Data.grunts += 1
 
 
 func _on_boss_kill_timeout():

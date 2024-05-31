@@ -88,6 +88,7 @@ func death():
 		$AnimationPlayer.play("gnomeDeath")
 		$AnimationPlayer.clear_queue()
 		$CollisionShape2D.disabled = true
+		Data.gnomes += 1
 		doOnce = false
 		if randi_range(0, 50) == 21: #hehehe
 				drop_ammo()

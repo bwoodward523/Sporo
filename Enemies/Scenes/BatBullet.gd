@@ -49,6 +49,7 @@ func death():
 		$BatDamageArea.set_collision_mask_value(1, false)
 		$AnimationPlayer.clear_queue()
 		$AnimationPlayer.play("batDeath")
+		Data.bats += 1
 		isDead = true
 		spawner.enemyKillCount += .5
 		dir = Vector2(0,0)

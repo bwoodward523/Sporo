@@ -29,17 +29,19 @@ func onSlotClicked(slot):
 
 func _input(event):
 	if get_tree().get_current_scene().get_name() != "HubWorld":
-		if event is InputEventKey and Input.is_action_pressed("item_one") and player.item1 != null:
+		print(player.Active_Item)
+		if event is InputEventKey and Input.is_action_pressed("item_one") and player.item1 != null and player.Active_Item != get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot").item:
+			print("making it here?")
 			player.Active_Item = get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot").item
 			print("New Item Selected: ", player.Active_Item.ITEM_NAME)
 			player.get_node("Sprite2D").get_child(0).switch_weapon()
 			player.update_ammo_ui()
-		if event is InputEventKey and Input.is_action_pressed("item_two") and player.item2 != null:
+		if event is InputEventKey and Input.is_action_pressed("item_two") and player.item2 != null and player.Active_Item != get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot2").item:
 			player.Active_Item = get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot2").item
 			print("New Item Selected: ", player.Active_Item.ITEM_NAME)
 			player.get_node("Sprite2D").get_child(0).switch_weapon()
 			player.update_ammo_ui()
-		if event is InputEventKey and Input.is_action_pressed("item_three") and player.item3 != null:	
+		if event is InputEventKey and Input.is_action_pressed("item_three") and player.item3 != null and player.Active_Item != get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot3").item:
 			player.Active_Item = get_node("CanvasLayer/InventoryGui/NinePatchRect/GridContainer/Slot3").item
 			print("New Item Selected: ", player.Active_Item.ITEM_NAME)
 			player.get_node("Sprite2D").get_child(0).switch_weapon()

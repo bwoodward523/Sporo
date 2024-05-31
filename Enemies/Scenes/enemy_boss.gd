@@ -217,6 +217,7 @@ func check_death():
 		$AnimationPlayer.clear_queue()
 		$AnimationPlayer.play("bossDeath")
 		$CollisionShape2D.disabled = true
+		Data.liches += 1
 		disableAllTimers()
 		
 func _on_animation_player_animation_finished(anim_name):

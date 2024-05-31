@@ -33,6 +33,7 @@ func _ready():
 	update_ammo_ui()
 	update_health_ui()
 	$HealthBar.max_value = self.health
+	$statmenu.visible = false
 	$hatmenu.visible = false
 	print("My current scene is: ", get_tree().get_current_scene().get_name())
 	if get_tree().get_current_scene().get_name() == "HubWorld":
@@ -51,7 +52,7 @@ func _ready():
 		item3 = get_item_by_item_id(Data.item3_id)
 		$Sprite2D/hat.texture = get_hat_by_hat_id(Data.hat_id)
 		$Sprite2D/Weapon.visible = true
-		Active_Item = item1
+		#Active_Item = item1
 	if item1 == null:
 		Data.item1_id = 0
 	if item2 == null:
@@ -61,6 +62,7 @@ func _ready():
 	if Data.item3_id == 0 and Data.item2_id == 0 and Data.item1_id == 0 and get_tree().get_current_scene().get_name() == "HubWorld":
 		item1 = load("res://Items/Repo/startingPistol.tres")
 		Data.item1_id = item1.ITEM_ID
+		print(item1.ITEM_ID)
 
 func get_hat_by_hat_id(hatID : int) -> Texture2D:
 	if hatID == 1:
@@ -427,3 +429,11 @@ func _on_item_list_2_item_selected(index):
 	if (tempItem != null):
 		print("Current temp gun: ", tempItem.ITEM_NAME)
 	
+
+
+func _on_overseer_area_entered(area):
+	$statmenu.visible = true
+
+
+func _on_overseer_area_exited(area):
+	$statmenu.visible = false

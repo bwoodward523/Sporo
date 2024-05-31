@@ -35,7 +35,7 @@ func _physics_process(delta):
 func death():
 	if doDeath:
 		doDeath = false
-		
+		Data.summoners += 1
 		rng.randomize()
 		if randi_range(0,3) == 2:
 			drop_item()
