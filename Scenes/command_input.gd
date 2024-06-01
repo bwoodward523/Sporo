@@ -1,30 +1,30 @@
 extends Control
 
 @onready var player = get_parent().get_node("player")
-@onready var slots: Array = $CanvasLayer/InventoryGui/NinePatchRect/GridContainer.get_children()
-
-func _ready():
-	connectSlots()
-	
-
-func connectSlots():
-	for slot in slots:
-		var callable = Callable(onSlotClicked)
-		callable = callable.bind(slot)
-		slot.pressed.connect(callable)
-
-
-
-func onSlotClicked(slot):
-	print(slot.name)
-	var tempSlot1 = player.item1
-	var tempSlot2 = slot.item
-	player.item1 = tempSlot2
-	slot.item =  tempSlot1
-	if(slot.name == "Slot2"):
-		player.item2 = tempSlot1
-	if(slot.name == "Slot3"):
-		player.item3 = tempSlot1
+#@onready var slots: Array = $CanvasLayer/InventoryGui/NinePatchRect/GridContainer.get_children()
+#
+#func _ready():
+	#connectSlots()
+	#
+#
+#func connectSlots():
+	#for slot in slots:
+		#var callable = Callable(onSlotClicked)
+		#callable = callable.bind(slot)
+		#slot.pressed.connect(callable)
+#
+#
+#
+#func onSlotClicked(slot):
+	#print(slot.name)
+	#var tempSlot1 = player.item1
+	#var tempSlot2 = slot.item
+	#player.item1 = tempSlot2
+	#slot.item =  tempSlot1
+	#if(slot.name == "Slot2"):
+		#player.item2 = tempSlot1
+	#if(slot.name == "Slot3"):
+		#player.item3 = tempSlot1
 
 
 func _input(event):

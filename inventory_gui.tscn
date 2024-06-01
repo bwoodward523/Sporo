@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ck7geeut0uvi6"]
+[gd_scene load_steps=5 format=3 uid="uid://ck7geeut0uvi6"]
 
 [ext_resource type="Texture2D" uid="uid://dklkyjer6qq5o" path="res://Assets/inventorywhole.png" id="1_5v3mx"]
 [ext_resource type="Script" path="res://inventory_gui.gd" id="1_krxnm"]
 [ext_resource type="PackedScene" uid="uid://oh5wtp1yij50" path="res://slot.tscn" id="2_5sms7"]
+[ext_resource type="PackedScene" uid="uid://dfv3w4oet47jq" path="res://KeyTooltip.tscn" id="4_fqa3r"]
 
 [node name="InventoryGui" type="Control"]
 layout_mode = 3
@@ -46,10 +47,22 @@ columns = 5
 [node name="Slot" parent="NinePatchRect/GridContainer" instance=ExtResource("2_5sms7")]
 layout_mode = 2
 
+[node name="ButtonBox" parent="NinePatchRect/GridContainer" instance=ExtResource("4_fqa3r")]
+position = Vector2(32.5, 72.82)
+scale = Vector2(0.5, 0.5)
+
 [node name="Slot2" parent="NinePatchRect/GridContainer" instance=ExtResource("2_5sms7")]
 layout_mode = 2
 
+[node name="ButtonBox2" parent="NinePatchRect/GridContainer" instance=ExtResource("4_fqa3r")]
+position = Vector2(102.5, 73.82)
+scale = Vector2(0.5, 0.5)
+
 [node name="Slot3" parent="NinePatchRect/GridContainer" instance=ExtResource("2_5sms7")]
 layout_mode = 2
+
+[node name="ButtonBox3" parent="NinePatchRect/GridContainer" instance=ExtResource("4_fqa3r")]
+position = Vector2(170.5, 72.82)
+scale = Vector2(0.5, 0.5)
 
 [connection signal="pressed" from="NinePatchRect/GridContainer/Slot2" to="." method="_on_slot_2_pressed"]
