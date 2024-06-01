@@ -432,7 +432,8 @@ func _on_item_list_2_item_selected(index):
 
 
 func _on_overseer_area_entered(area):
-	$statmenu.visible = true
+	if get_parent().get_node("overseer").visible:
+		$statmenu.visible = true
 
 
 func _on_overseer_area_exited(area):

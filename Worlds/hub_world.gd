@@ -4,6 +4,8 @@ extends Node2D
 
 func _ready():
 	player.switching.connect(switch_scene)
+	if Data.liches > 0:
+		$overseer.visible = true
 func _process(delta):
 	if Input.is_action_just_pressed("pause"):
 		get_tree().paused = not get_tree().paused
