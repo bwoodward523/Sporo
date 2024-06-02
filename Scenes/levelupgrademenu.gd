@@ -8,5 +8,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	# Display what the current spawining offset is
 	var spawningpercert = Data.spawningoffset*5
 	$VBoxContainer/HBoxContainer/SpawningLabel.text = "Increase spawn rate: +" + str(spawningpercert) + "%,     1000 Coins"

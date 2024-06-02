@@ -27,7 +27,11 @@ var tempItem : Resource
 var cost : int
 var spawnOneVin = true
 
+# This file has gotten so long and it's probably unecessary, I am going to comment it to the best 
+# of my ability O7
+
 func _ready():
+	# When player first created, set health to max, hat to zero, and properly update the rest of the player's stats
 	hat_id = 0
 	self.health = 10
 	update_ammo_ui()
@@ -36,6 +40,7 @@ func _ready():
 	$statmenu.visible = false
 	$hatmenu.visible = false
 	print("My current scene is: ", get_tree().get_current_scene().get_name())
+	# If in the hubworld, read the data from the Data to grab what is in the player's inventory
 	if get_tree().get_current_scene().get_name() == "HubWorld":
 		$EnemiesKilled.visible = false
 		balance = Data.balance
@@ -44,6 +49,7 @@ func _ready():
 		item3 = get_item_by_item_id(Data.item3_id)
 		$Sprite2D/hat.texture = get_hat_by_hat_id(Data.hat_id)
 		$Sprite2D/Weapon.visible = false
+	# If in the main game, also grab what is in the player's inventory from Data
 	else:
 		print("Making it this far?")
 		balance = Data.balance
@@ -53,17 +59,20 @@ func _ready():
 		$Sprite2D/hat.texture = get_hat_by_hat_id(Data.hat_id)
 		$Sprite2D/Weapon.visible = true
 		#Active_Item = item1
+	# If an item comes back as null, set the item ID for the slot as zero
 	if item1 == null:
 		Data.item1_id = 0
 	if item2 == null:
 		Data.item2_id = 0
 	if item3 == null:
 		Data.item3_id = 0
+	# If player's inventory is completely empty, give them the starting pistol in the first slot
 	if Data.item3_id == 0 and Data.item2_id == 0 and Data.item1_id == 0 and get_tree().get_current_scene().get_name() == "HubWorld":
 		item1 = load("res://Items/Repo/startingPistol.tres")
 		Data.item1_id = item1.ITEM_ID
 		print(item1.ITEM_ID)
 
+# Should've just used a SQL db but I hate myself
 func get_hat_by_hat_id(hatID : int) -> Texture2D:
 	if hatID == 1:
 		return load("res://Assets/mushroomhat.png")
@@ -82,6 +91,7 @@ func get_hat_by_hat_id(hatID : int) -> Texture2D:
 	else:
 		return null
 
+# Should've just used a SQL db but I hate myself part 2
 func get_item_by_item_id(itemID : int) -> Resource:
 	if itemID == 1:
 		return load("res://Items/Repo/ak.tres")
@@ -115,12 +125,14 @@ func update_ammo_ui():
 
 func set_ammo_bar():
 	if Active_Item != null:
+		# Update ammo UI according to the real value of the player's ammo
 		$AmmoBar.max_value = Active_Item.MAX_AMMO
 		$AmmoBar.value = Active_Item.MAX_AMMO - Active_Item.CURRENT_AMMO
 
 func set_health_bar() -> void:
 	#var progress_tween = get_tree().create_tween()
 	#progress_tween.tween_property($HealthBar, "value", 10-health, 1.0).set_trans(Tween.TRANS_LINEAR)
+	# set the health bar to what the player's real health is
 	$HealthBar.value = 10-health
 
 func _physics_process(delta):
@@ -131,12 +143,15 @@ func _physics_process(delta):
 				#var vignetteInstance = vignette.instantiate()
 				##vignetteInstance.get_child(0).position = position
 				#add_child(vignetteInstance)
+			# Update progress bar when in the main game
 			$EnemiesKilled.visible = true
 			$EnemiesKilled.max_value = spawner.enemiesUntilBoss
 			$EnemiesKilled.value = spawner.enemyKillCount
 			if !spawner.canSpawnEnemies:
 				$EnemiesKilled.visible = false
+		# Movement
 		var direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
+		# Function that lets the player pick a slot for the item they are trying to purchase
 		if couldBuy:
 			$hatmenu/HatmanSpeaking.text = "Which slot would you like this to go into? Type 1, 2, or 3"
 			if Input.is_action_pressed("item_one"):
@@ -161,13 +176,12 @@ func _physics_process(delta):
 				Data.item3_id = item3.ITEM_ID
 				couldBuy = false
 				$hatmenu/HatmanSpeaking.text = "Thank you for your purchase!"
-		
+		# Move the player
 		velocity = direction * SPEED
 		
 		if Input.is_action_pressed("moveRight"):
 			_animation_player.play("walk")
 			$Sprite2D.flip_h = true
-
 		elif Input.is_action_pressed("moveLeft"):
 			_animation_player.play("walk")
 			$Sprite2D.flip_h = false
@@ -183,10 +197,10 @@ func _physics_process(delta):
 		detect_enemy()
 		pass
 	else:
-		_animation_player.play("RESET")	
+		_animation_player.play("RESET")
 
 func detect_enemy():
-	
+	# Collision detection for the player with it's environment
 	var collisionList: Array
 	#make array of all names of collisions
 	for i in get_slide_collision_count():
@@ -221,6 +235,7 @@ func take_damage():
 	print("PLAYER HP: ", health)
 	check_death()
 		
+# Gets rid of duplicate collisions when enemies/projectiles get stuck in the player
 func delete_duplicate_collisions(collisions: Array):
 	var unique: Array = []
 	for item in collisions:
@@ -273,7 +288,9 @@ func _on_area_2d_area_entered(area):
 
 
 func _on_hatman_area_entered(area):
+	# hehehehe
 	print("I wanna fuck the hatman")
+	# Give the hatman a random text blurb in his dialogue box
 	randText = randi_range(0, 100)
 	if randText < 16:
 		$hatmenu/HatmanSpeaking.text = "Welcome to my shop! I hope you'll find everything you need before venturing into the cave!"
@@ -292,6 +309,7 @@ func _on_hatman_area_entered(area):
 	$hatmenu.visible = true
 
 func _on_hatman_area_exited(area):
+	# Close shop menu when leaving hitbox
 	print("I don't wanna fuck the hatman")
 	$hatmenu/ItemList.deselect_all()
 	$hatmenu/ItemList2.deselect_all()
@@ -300,6 +318,7 @@ func _on_hatman_area_exited(area):
 
 
 func _on_item_list_item_selected(index):
+	# Hat purchasing logic
 	if index == 0:
 		if Data.balance >= 250:
 			Data.balance -= 250
@@ -365,6 +384,7 @@ func _on_item_list_item_selected(index):
 			$hatmenu/HatmanSpeaking.text = "Looks like you need some more coins for this fine piece!"
 	
 func _on_item_list_2_item_selected(index):
+	# Gun purchasing logic
 	print("Can buy 1?: ", couldBuy )
 	print("Balance 1?: ", Data.balance )
 	if index == 0:
@@ -430,7 +450,7 @@ func _on_item_list_2_item_selected(index):
 		print("Current temp gun: ", tempItem.ITEM_NAME)
 	
 
-
+# Menu visibility controllers
 func _on_overseer_area_entered(area):
 	if get_parent().get_node("overseer").visible:
 		$statmenu.visible = true
@@ -448,7 +468,7 @@ func _on_knight_area_entered(area):
 func _on_knight_area_exited(area):
 	$levelupgrademenu.visible = false
 
-
+# Buy spawning upgrades
 func _on_texture_button_pressed():
 	if Data.balance >= 1000:
 		Data.spawningoffset += 1

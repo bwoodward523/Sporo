@@ -8,6 +8,7 @@ func _ready():
 	inventory.open()
 
 func _input(event):
+	# Open/Close inventory
 	if event.is_action_pressed("toggle_inventory"):
 		if inventory.isOpen:
 			inventory.close()

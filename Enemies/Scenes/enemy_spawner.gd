@@ -21,7 +21,13 @@ var enemyAliveArray: Array[PackedScene]
 
 var spawnBoss = false
 func _ready():
-	$Timer.wait_time -= (Data.spawningoffset*0.05)
+	if (Data.spawningoffset*0.05) < 1:
+		$Timer.wait_time -= (Data.spawningoffset*0.05)
+	else:
+		$Timer.wait_time -= (0.95 + (Data.spawningoffset*0.0001))
+		print("success! ", (0.95 + (Data.spawningoffset*0.0001)))
+	print("Offset: ", Data.spawningoffset)
+	print("Wait time: ", $Timer.wait_time)
 func _physics_process(delta):
 	player = get_parent().get_node("player")
 func _on_timer_timeout():

@@ -35,6 +35,7 @@ func _physics_process(delta):
 	if spawner.bandaidNoMoreBoss && addDeathTimer:
 		addDeathTimer = false
 		$BossKill.start(1)
+	# If not dead, check for which state should be played
 	if $AnimationPlayer.current_animation != deathAnimation:
 		if behaviorState == "Searching":
 			dir = (player.position - position).normalized()
@@ -83,6 +84,7 @@ func drop_item():
 	item.add_to_group("items")
 
 func checkForAttack():
+	# If within detection range, begin charge towards player
 	if position.distance_to(player.position) <= DETECTION_RANGE:
 		$AnimationPlayer.play(attackAnimation)
 		stopMovement = true

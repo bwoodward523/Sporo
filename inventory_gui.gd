@@ -4,6 +4,7 @@ signal opened
 signal closed
 var isOpen: bool = false
 
+# Open/close inventory
 func open():
 	$NinePatchRect/GridContainer/ButtonBox/Key.text = "1"
 	$NinePatchRect/GridContainer/ButtonBox2/Key.text = "2"

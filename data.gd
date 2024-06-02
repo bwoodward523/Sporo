@@ -1,7 +1,9 @@
 extends Node
 
+# File Path for stored data
 var save_path = "user://variable.save"
 
+# Data to store, made export variables for testing
 @export var balance : int
 @export var hat : Texture2D
 @export var item1 : Resource
@@ -18,7 +20,6 @@ var save_path = "user://variable.save"
 @export var summoners : int
 @export var mages : int
 @export var spawningoffset : int
-var totalkills = liches+bats+gnomes+grunts+summoners+mages
 
 func _on_game_save():
 	save()
@@ -27,9 +28,11 @@ func _on_game_load():
 	load_data()
 
 func save():
+	# Open Save file
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
 	print("Items saved: ", balance," ", hat_id," ", item1_id," ", item2_id," ", item3_id," ",
 	 liches," ", bats," ", gnomes," ", grunts," ", summoners," ", mages, " ", spawningoffset)
+	# Save values onto the file/overwrite existing stored values
 	file.store_var(balance)
 	file.store_var(hat_id)
 	file.store_var(item1_id)
@@ -43,7 +46,9 @@ func save():
 	file.store_var(mages)
 	file.store_var(spawningoffset)
 func load_data():
+	# Check if files exists
 	if FileAccess.file_exists(save_path):
+		# If file exists, grab all values from file
 		var file = FileAccess.open(save_path, FileAccess.READ)
 		balance = file.get_var()
 		hat_id = file.get_var()
@@ -60,6 +65,7 @@ func load_data():
 		print("Items Loaded: ", balance," ", hat_id," ", item1_id," ", item2_id," ", item3_id," ",
 	 liches," ", bats," ", gnomes," ", grunts," ", summoners," ", mages, " ", spawningoffset)
 	else:
+		# If file dne, set all stored values to zero initially
 		print("No Data Saved")
 		balance = 0
 		hat_id = 0
