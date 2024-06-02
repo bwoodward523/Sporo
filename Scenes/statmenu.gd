@@ -16,10 +16,10 @@ func _process(delta):
 	var mages = Data.mages
 	var sum = Data.summoners
 	
-	$VBoxContainer/batskilled.text = "Forest Bats Slain: " + str(bats)
-	$VBoxContainer/summonerskilled.text = "Forest Summoners Slain: " + str(sum)
-	$VBoxContainer/mageskilled.text = "Forest Mages Slain: " + str(mages)
-	$VBoxContainer/gnomeskilled.text = "Forest Gnomes Slain: " + str(gnomes)
-	$VBoxContainer/gruntskilled.text = "Forest Grunts Slain: " + str(grunts)
-	$VBoxContainer/bosseskilled.text = "Forest Liches Slain: " + str(liches)
-	$VBoxContainer/totalenims.text = "Total Enemies Slain: " + str(total)
+	$HBoxContainer/VBoxContainer/batskilled.text = "Forest Bats Slain: " + str(bats)
+	$HBoxContainer/VBoxContainer/summonerskilled.text = "Forest Summoners Slain: " + str(sum)
+	$HBoxContainer/VBoxContainer/mageskilled.text = "Forest Mages Slain: " + str(mages)
+	$HBoxContainer/VBoxContainer/gnomeskilled.text = "Forest Gnomes Slain: " + str(gnomes)
+	$HBoxContainer/VBoxContainer/gruntskilled.text = "Forest Grunts Slain: " + str(grunts)
+	$HBoxContainer/VBoxContainer/bosseskilled.text = "Forest Liches Slain: " + str(liches)
+	$HBoxContainer/VBoxContainer/totalenims.text = "Total Enemies Slain: " + str(total)

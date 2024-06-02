@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://whd11j441bhe"]
+[gd_scene load_steps=45 format=3 uid="uid://whd11j441bhe"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_200gu"]
 [ext_resource type="PackedScene" uid="uid://thjtpkg3w2xm" path="res://Scenes/rifle.tscn" id="3_8keq0"]
@@ -31,6 +31,10 @@
 [ext_resource type="Texture2D" uid="uid://bs1x1kv63jrea" path="res://Assets/doohickey.png" id="27_a52d8"]
 [ext_resource type="Script" path="res://Scenes/statmenu.gd" id="30_1y7qx"]
 [ext_resource type="Texture2D" uid="uid://c1iafhh6agu46" path="res://Assets/overseermenu.png" id="30_ug25i"]
+[ext_resource type="Script" path="res://Scenes/levelupgrademenu.gd" id="32_gvrvn"]
+[ext_resource type="Texture2D" uid="uid://cs3bxymcarosp" path="res://Assets/knightmenu.png" id="32_uwto3"]
+[ext_resource type="Texture2D" uid="uid://4bww2kshforl" path="res://Assets/plusbutton.png" id="33_wk3fr"]
+[ext_resource type="Texture2D" uid="uid://vatgx2t27or" path="res://Assets/plusbuttonhover.png" id="34_6ue57"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fba2d"]
 radius = 7.0
@@ -462,48 +466,54 @@ z_index = 4
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("30_ug25i")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="statmenu"]
+[node name="HBoxContainer" type="HBoxContainer" parent="statmenu"]
 layout_mode = 0
-offset_left = -392.0
-offset_top = -234.0
-offset_right = -196.0
-offset_bottom = -37.0
-scale = Vector2(1.87175, 1.79843)
+offset_left = -400.0
+offset_top = -232.0
+offset_right = -204.0
+offset_bottom = -47.0
+scale = Vector2(2.03329, 1.87294)
 
-[node name="totalenims" type="Label" parent="statmenu/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="statmenu/HBoxContainer"]
+layout_mode = 2
+
+[node name="totalenims" type="Label" parent="statmenu/HBoxContainer/VBoxContainer"]
 z_index = 5
 layout_mode = 2
 text = "Total Enemies Slain: "
 
-[node name="bosseskilled" type="Label" parent="statmenu/VBoxContainer"]
+[node name="bosseskilled" type="Label" parent="statmenu/HBoxContainer/VBoxContainer"]
 z_index = 5
 layout_mode = 2
 text = "Forest Liches Slain: "
 
-[node name="gruntskilled" type="Label" parent="statmenu/VBoxContainer"]
+[node name="gruntskilled" type="Label" parent="statmenu/HBoxContainer/VBoxContainer"]
 z_index = 5
 layout_mode = 2
 text = "Forest Grunts Slain: "
 
-[node name="gnomeskilled" type="Label" parent="statmenu/VBoxContainer"]
+[node name="gnomeskilled" type="Label" parent="statmenu/HBoxContainer/VBoxContainer"]
 z_index = 5
 layout_mode = 2
 text = "Forest Gnomes Slain: "
 
-[node name="mageskilled" type="Label" parent="statmenu/VBoxContainer"]
+[node name="mageskilled" type="Label" parent="statmenu/HBoxContainer/VBoxContainer"]
 z_index = 5
 layout_mode = 2
 text = "Forest Mages Slain: "
 
-[node name="summonerskilled" type="Label" parent="statmenu/VBoxContainer"]
+[node name="summonerskilled" type="Label" parent="statmenu/HBoxContainer/VBoxContainer"]
 z_index = 5
 layout_mode = 2
 text = "Forest Summoners Slain: "
 
-[node name="batskilled" type="Label" parent="statmenu/VBoxContainer"]
+[node name="batskilled" type="Label" parent="statmenu/HBoxContainer/VBoxContainer"]
 z_index = 5
 layout_mode = 2
 text = "Forest Bats Slain: "
+
+[node name="VScrollBar" type="VScrollBar" parent="statmenu/HBoxContainer"]
+layout_mode = 2
 
 [node name="OverseerSpeaking" type="Label" parent="statmenu"]
 z_index = 5
@@ -521,6 +531,53 @@ work has not gone unnoticed...
 "
 autowrap_mode = 3
 
+[node name="levelupgrademenu" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("32_gvrvn")
+
+[node name="Sprite2D" type="Sprite2D" parent="levelupgrademenu"]
+z_index = 8
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("32_uwto3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="levelupgrademenu"]
+layout_mode = 0
+offset_left = -402.0
+offset_top = -233.0
+offset_right = -362.0
+offset_bottom = -193.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="levelupgrademenu/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="SpawningLabel" type="Label" parent="levelupgrademenu/VBoxContainer/HBoxContainer"]
+z_index = 8
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+
+[node name="TextureButton" type="TextureButton" parent="levelupgrademenu/VBoxContainer/HBoxContainer"]
+z_index = 8
+layout_mode = 2
+texture_normal = ExtResource("33_wk3fr")
+texture_hover = ExtResource("34_6ue57")
+
+[node name="knighttalking" type="Label" parent="levelupgrademenu"]
+z_index = 8
+texture_filter = 6
+offset_left = -399.0
+offset_top = 152.0
+offset_right = 9821.0
+offset_bottom = 2192.0
+scale = Vector2(0.057626, 0.0535931)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 350
+autowrap_mode = 3
+
 [node name="forexit" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="forexit"]
@@ -536,3 +593,4 @@ shape = SubResource("CapsuleShape2D_fba2d")
 [connection signal="item_selected" from="hatmenu/ItemList" to="." method="_on_item_list_item_selected"]
 [connection signal="item_clicked" from="hatmenu/ItemList2" to="." method="_on_item_list_2_item_clicked"]
 [connection signal="item_selected" from="hatmenu/ItemList2" to="." method="_on_item_list_2_item_selected"]
+[connection signal="pressed" from="levelupgrademenu/VBoxContainer/HBoxContainer/TextureButton" to="." method="_on_texture_button_pressed"]

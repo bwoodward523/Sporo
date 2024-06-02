@@ -20,7 +20,8 @@ var bandaidNoMoreBoss = false
 var enemyAliveArray: Array[PackedScene]
 
 var spawnBoss = false
-
+func _ready():
+	$Timer.wait_time -= (Data.spawningoffset*0.05)
 func _physics_process(delta):
 	player = get_parent().get_node("player")
 func _on_timer_timeout():

@@ -438,3 +438,18 @@ func _on_overseer_area_entered(area):
 
 func _on_overseer_area_exited(area):
 	$statmenu.visible = false
+
+
+func _on_knight_area_entered(area):
+	if get_parent().get_node("knight").visible:
+		$levelupgrademenu.visible = true
+
+
+func _on_knight_area_exited(area):
+	$levelupgrademenu.visible = false
+
+
+func _on_texture_button_pressed():
+	if Data.balance >= 1000:
+		Data.spawningoffset += 1
+		Data.balance -= 1000

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bra77fiwvj5m5"]
+
+[ext_resource type="Texture2D" uid="uid://bjggg2s64po41" path="res://Assets/popularknight.png" id="1_37shp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_musg4"]
+size = Vector2(63, 142)
+
+[node name="knight" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_37shp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 6)
+shape = SubResource("RectangleShape2D_musg4")

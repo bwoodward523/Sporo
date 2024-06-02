@@ -17,7 +17,8 @@ var save_path = "user://variable.save"
 @export var grunts : int
 @export var summoners : int
 @export var mages : int
-
+@export var spawningoffset : int
+var totalkills = liches+bats+gnomes+grunts+summoners+mages
 
 func _on_game_save():
 	save()
@@ -28,7 +29,7 @@ func _on_game_load():
 func save():
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
 	print("Items saved: ", balance," ", hat_id," ", item1_id," ", item2_id," ", item3_id," ",
-	 liches," ", bats," ", gnomes," ", grunts," ", summoners," ", mages)
+	 liches," ", bats," ", gnomes," ", grunts," ", summoners," ", mages, " ", spawningoffset)
 	file.store_var(balance)
 	file.store_var(hat_id)
 	file.store_var(item1_id)
@@ -40,6 +41,7 @@ func save():
 	file.store_var(grunts)
 	file.store_var(summoners)
 	file.store_var(mages)
+	file.store_var(spawningoffset)
 func load_data():
 	if FileAccess.file_exists(save_path):
 		var file = FileAccess.open(save_path, FileAccess.READ)
@@ -54,8 +56,9 @@ func load_data():
 		grunts = file.get_var()
 		summoners = file.get_var()
 		mages = file.get_var()
+		spawningoffset = file.get_var()
 		print("Items Loaded: ", balance," ", hat_id," ", item1_id," ", item2_id," ", item3_id," ",
-	 liches," ", bats," ", gnomes," ", grunts," ", summoners," ", mages)
+	 liches," ", bats," ", gnomes," ", grunts," ", summoners," ", mages, " ", spawningoffset)
 	else:
 		print("No Data Saved")
 		balance = 0
@@ -69,3 +72,4 @@ func load_data():
 		grunts = 0
 		summoners = 0
 		mages = 0
+		spawningoffset = 0
