@@ -1,7 +1,7 @@
 extends Resource
 
 class_name ITEM
-
+# Base class for an item
 @export var ITEM_NAME : String
 @export var ITEM_ID : int
 @export var ITEM_TEXTURE : Texture: set = _set_texture, get = _get_texture

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://u2v5svetndce"]
+
+[ext_resource type="Texture2D" uid="uid://bjpx2sq5lfwjx" path="res://Assets/overseer.png" id="1_br435"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ly7u"]
+size = Vector2(40.5, 55)
+
+[node name="overseer" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_br435")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.75, 0.5)
+shape = SubResource("RectangleShape2D_8ly7u")

@@ -17,6 +17,7 @@ func _ready():
 	$Sprite2D.texture = textures[item_type]
 
 func _physics_process(delta):
+	# Pathfinding for coins to search for player
 	if player.position - position < range:
 		dir = (player.position - position).normalized()
 		position += dir * SPEED * delta

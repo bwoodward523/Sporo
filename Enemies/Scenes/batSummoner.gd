@@ -17,9 +17,11 @@ var rng = RandomNumberGenerator.new()
 var justSummoned = false
 var startFleeTimer = true
 func _ready():
+	# Set pausable and set health
 	process_mode = Node.PROCESS_MODE_PAUSABLE
 	$HealthComponent.health = enemy.ENEMY_HEALTH
 func _physics_process(delta):
+	# Movement processing for summoner
 	if justSummoned:
 		velocity = -(player.position - position).normalized() * enemy.ENEMY_SPEED * delta
 		if startFleeTimer:
@@ -33,9 +35,10 @@ func _physics_process(delta):
 		$BossKill.start(1)
 
 func death():
+	# Death routine for summoner
 	if doDeath:
 		doDeath = false
-		
+		Data.summoners += 1
 		rng.randomize()
 		if randi_range(0,3) == 2:
 			drop_item()
@@ -71,6 +74,7 @@ func drop_heart():
 func _on_bat_spawn_rate_timeout():
 	worldBatCount = 0
 	count_bats()
+	# Spawn bats
 	if worldBatCount < maxBatsInWorld and position.distance_to(player.position) <= enemy.ENEMY_DETECTION_RANGE:
 		
 		var batInstance = bat.instantiate()

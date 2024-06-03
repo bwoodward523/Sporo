@@ -7,6 +7,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	# Get balance from Data and display it
 	var balance = Data.balance
 	
 	text = "Balance: "+str(balance)

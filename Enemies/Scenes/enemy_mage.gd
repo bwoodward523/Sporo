@@ -79,6 +79,7 @@ func death():
 		$AnimationPlayer.clear_queue()
 		$CollisionShape2D.disabled = true
 		$Area2D/CollisionShape2D.disabled = true
+		Data.mages += 1
 		doOnce = false
 		if randi_range(0, 50) == 21: #hehehe
 				drop_ammo()

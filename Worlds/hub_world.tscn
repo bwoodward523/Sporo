@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://crwp8oa2k5nyd"]
+[gd_scene load_steps=23 format=3 uid="uid://crwp8oa2k5nyd"]
 
 [ext_resource type="Script" path="res://Worlds/hub_world.gd" id="1_g27cd"]
 [ext_resource type="Texture2D" uid="uid://e2qd8un5hrpe" path="res://Assets/cavefloor1.png" id="1_j853q"]
@@ -12,7 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://ocs2s2wntgfv" path="res://Assets/ResumeHover.png" id="10_tnq8m"]
 [ext_resource type="Texture2D" uid="uid://dqcfi0egkr3ji" path="res://Assets/ReturnToMainMenu.png" id="11_pv44s"]
 [ext_resource type="Texture2D" uid="uid://c4fpdkt2u87wq" path="res://Assets/ReturnToMainMenuHover.png" id="12_32eyx"]
+[ext_resource type="PackedScene" uid="uid://u2v5svetndce" path="res://Scenes/overseer.tscn" id="13_7cmvb"]
 [ext_resource type="AudioStream" uid="uid://wdt6751b0k3f" path="res://Assets/Sounds/2019-08-25_-_8bit-Smooth_Presentation_-_David_Fesliyan.mp3" id="13_k4j7d"]
+[ext_resource type="PackedScene" uid="uid://bra77fiwvj5m5" path="res://knight.tscn" id="14_dpve1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_263ts"]
 texture = ExtResource("1_j853q")
@@ -115,10 +117,20 @@ metadata/_edit_use_anchors_ = true
 visible = false
 
 [node name="hatman" parent="." instance=ExtResource("8_bq13c")]
+visible = false
 position = Vector2(175, 78)
 scale = Vector2(2, 2)
 collision_layer = 5
 collision_mask = 5
+
+[node name="overseer" parent="." instance=ExtResource("13_7cmvb")]
+visible = false
+position = Vector2(353, 117)
+scale = Vector2(2, 2)
+
+[node name="knight" parent="." instance=ExtResource("14_dpve1")]
+visible = false
+position = Vector2(732, 106)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_k4j7d")
@@ -130,3 +142,7 @@ bus = &"music"
 [connection signal="pressed" from="player/Node2D/VBoxContainer/TextureButton2" to="." method="_on_texture_button_2_pressed"]
 [connection signal="area_entered" from="hatman" to="player" method="_on_hatman_area_entered"]
 [connection signal="area_exited" from="hatman" to="player" method="_on_hatman_area_exited"]
+[connection signal="area_entered" from="overseer" to="player" method="_on_overseer_area_entered"]
+[connection signal="area_exited" from="overseer" to="player" method="_on_overseer_area_exited"]
+[connection signal="area_entered" from="knight" to="player" method="_on_knight_area_entered"]
+[connection signal="area_exited" from="knight" to="player" method="_on_knight_area_exited"]

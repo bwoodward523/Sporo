@@ -4,6 +4,7 @@ signal opened
 signal closed
 var isOpen: bool = false
 
+
 func open():
 	
 	isOpen = true

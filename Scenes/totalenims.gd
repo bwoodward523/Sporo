@@ -1,6 +1,5 @@
 extends Label
 
-@onready var parent = get_parent()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,6 +8,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	# Get ammo from Data file and display it
-	var ammo = parent.Active_Item.CURRENT_AMMO
-	text = "Ammo: "+str(ammo)
+	var total = Data.liches + Data.bats + Data.grunts + Data.gnomes + Data.mages + Data.summoners
+	
+	text += str(total)
