@@ -20,6 +20,7 @@ script = ExtResource("1_m1cbs")
 [node name="FPSMeter" type="Label" parent="CanvasLayer"]
 offset_right = 40.0
 offset_bottom = 23.0
+theme_override_font_sizes/font_size = 12
 script = ExtResource("1_kykks")
 
 [node name="InventoryGui" parent="CanvasLayer" instance=ExtResource("2_mevhe")]

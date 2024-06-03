@@ -62,14 +62,21 @@ func _ready():
 	# If an item comes back as null, set the item ID for the slot as zero
 	if item1 == null:
 		Data.item1_id = 0
+	else:
+		$InventoryGui/NinePatchRect/GridContainer/Slot/Contains.texture = item1.ITEM_TEXTURE
 	if item2 == null:
 		Data.item2_id = 0
+	else:
+		$InventoryGui/NinePatchRect/GridContainer/Slot2/Contains.texture = item2.ITEM_TEXTURE
 	if item3 == null:
 		Data.item3_id = 0
+	else: 
+		$InventoryGui/NinePatchRect/GridContainer/Slot3/Contains.texture = item3.ITEM_TEXTURE
 	# If player's inventory is completely empty, give them the starting pistol in the first slot
 	if Data.item3_id == 0 and Data.item2_id == 0 and Data.item1_id == 0 and get_tree().get_current_scene().get_name() == "HubWorld":
 		item1 = load("res://Items/Repo/startingPistol.tres")
 		Data.item1_id = item1.ITEM_ID
+		$InventoryGui/NinePatchRect/GridContainer/Slot/Contains.texture = item1.ITEM_TEXTURE
 		print(item1.ITEM_ID)
 
 # Should've just used a SQL db but I hate myself
@@ -159,7 +166,7 @@ func _physics_process(delta):
 				item1 = tempItem
 				Data.item1 = item1
 				Data.item1_id = item1.ITEM_ID
-				print("Did it work (should be shotgun): ", item1)
+				$InventoryGui/NinePatchRect/GridContainer/Slot/Contains.texture = item1.ITEM_TEXTURE
 				couldBuy = false
 				$hatmenu/HatmanSpeaking.text = "Thank you for your purchase!"
 			elif  Input.is_action_pressed("item_two"):
@@ -167,6 +174,7 @@ func _physics_process(delta):
 				item2 = tempItem
 				Data.item2 = item2
 				Data.item2_id = item2.ITEM_ID
+				$InventoryGui/NinePatchRect/GridContainer/Slot2/Contains.texture = item2.ITEM_TEXTURE
 				couldBuy = false
 				$hatmenu/HatmanSpeaking.text = "Thank you for your purchase!"
 			elif  Input.is_action_pressed("item_three"):
@@ -174,6 +182,7 @@ func _physics_process(delta):
 				item3 = tempItem
 				Data.item3 = item3
 				Data.item3_id = item3.ITEM_ID
+				$InventoryGui/NinePatchRect/GridContainer/Slot3/Contains.texture = item3.ITEM_TEXTURE
 				couldBuy = false
 				$hatmenu/HatmanSpeaking.text = "Thank you for your purchase!"
 		# Move the player
@@ -470,6 +479,6 @@ func _on_knight_area_exited(area):
 
 # Buy spawning upgrades
 func _on_texture_button_pressed():
-	if Data.balance >= 1000:
+	if Data.balance >= (250* (Data.spawningoffset+1)):
 		Data.spawningoffset += 1
-		Data.balance -= 1000
+		Data.balance -= (250* (Data.spawningoffset+1))

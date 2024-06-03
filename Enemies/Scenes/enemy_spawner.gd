@@ -33,7 +33,7 @@ func _physics_process(delta):
 func _on_timer_timeout():
 	var viewport = get_viewport()
 	var rectangle = viewport.get_visible_rect()
-	var rightEnd = rectangle.end
+	var rightEnd = rectangle.end * 3
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 	

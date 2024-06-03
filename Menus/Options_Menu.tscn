@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://di1oa51l1vgi3"]
+[gd_scene load_steps=19 format=3 uid="uid://di1oa51l1vgi3"]
 
 [ext_resource type="Script" path="res://Menus/Options_Menu.gd" id="1_m50vf"]
 [ext_resource type="Texture2D" uid="uid://dajicd1mgcxe4" path="res://Assets/mushroom.png" id="2_33lt5"]
@@ -11,7 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://dcuxkt7yjbyf0" path="res://Assets/Fullscreen.png" id="6_38k7c"]
 [ext_resource type="Texture2D" uid="uid://hf2u4bo8bpk0" path="res://Assets/ReturnToMenu.png" id="6_oevm3"]
 [ext_resource type="Texture2D" uid="uid://cv2icmpcghveh" path="res://Assets/ReturnToMenuHover.png" id="7_brgqe"]
+[ext_resource type="Script" path="res://Menus/music_volume.gd" id="7_kn80r"]
 [ext_resource type="Texture2D" uid="uid://ckgg68njy83to" path="res://Assets/FullscreenHover.png" id="7_uxty7"]
+[ext_resource type="Script" path="res://Menus/sfx_volume.gd" id="8_ubnxd"]
 [ext_resource type="Texture2D" uid="uid://dauqe7qr7myk4" path="res://Assets/Windowed.png" id="8_yxn87"]
 [ext_resource type="Texture2D" uid="uid://x8aekfjdk5vh" path="res://Assets/WindowedHover1.png" id="9_4l166"]
 
@@ -32,7 +34,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.607, 1.607)
+scale = Vector2(0.536954, 0.526021)
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_m50vf")
@@ -132,8 +134,7 @@ text = "Music Volume:"
 
 [node name="music_volume" type="HSlider" parent="MarginContainer/VBoxContainer/Volumebox"]
 layout_mode = 2
-script = ExtResource("2_cvepk")
-bus_name = "music"
+script = ExtResource("7_kn80r")
 
 [node name="SFXLabel" type="Label" parent="MarginContainer/VBoxContainer/Volumebox"]
 layout_mode = 2
@@ -141,8 +142,7 @@ text = "Sound Effects Volume:"
 
 [node name="sfx_volume" type="HSlider" parent="MarginContainer/VBoxContainer/Volumebox"]
 layout_mode = 2
-script = ExtResource("2_cvepk")
-bus_name = "sfx"
+script = ExtResource("8_ubnxd")
 
 [node name="Fullscreen" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

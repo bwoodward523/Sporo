@@ -10,4 +10,5 @@ func _ready():
 func _process(delta):
 	# Display what the current spawining offset is
 	var spawningpercert = Data.spawningoffset*5
-	$VBoxContainer/HBoxContainer/SpawningLabel.text = "Increase spawn rate: +" + str(spawningpercert) + "%,     1000 Coins"
+	var cost = 250 * (Data.spawningoffset + 1)
+	$VBoxContainer/HBoxContainer/SpawningLabel.text = "Increase spawn rate: +" + str(spawningpercert) + "%,     "+str(cost)+" Coins"
