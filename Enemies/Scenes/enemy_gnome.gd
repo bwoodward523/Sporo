@@ -132,9 +132,9 @@ func _on_fire_rate_timeout():
 func multiply_self():
 	canMultiply = false
 	var enemyGnomeInstance = enemyScene.instantiate()
-	var rng = RandomNumberGenerator.new()
-	rng.randomize()
-	enemyGnomeInstance.position = Vector2(position.x + rng.randi_range(-20,20) , position.y +rng.randi_range(-20,20))
+	var rng1 = RandomNumberGenerator.new()
+	rng1.randomize()
+	enemyGnomeInstance.position = Vector2(position.x + rng1.randi_range(-20,20) , position.y +rng1.randi_range(-20,20))
 	enemyGnomeInstance.fromParentGnome = true
 	enemyGnomeInstance.z_index = z_index -1
 

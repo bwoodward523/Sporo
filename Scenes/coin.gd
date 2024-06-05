@@ -8,7 +8,7 @@ var coin_img = preload("res://Assets/tempcoin.png")
 var heart_img = preload("res://Assets/heartdrop.png")
 var ammo_img = preload("res://Assets/ammo pickup.png")
 var dir: Vector2
-var range := Vector2(150,150)
+var range1 := Vector2(150,150)
 var SPEED = 750
 var textures = [coin_img, heart_img, ammo_img]
 
@@ -18,15 +18,16 @@ func _ready():
 
 func _physics_process(delta):
 	# Pathfinding for coins to search for player
-	if player.position - position < range:
+	if player.position - position < range1:
 		dir = (player.position - position).normalized()
 		position += dir * SPEED * delta
 
+@warning_ignore("unused_parameter", "narrowing_conversion")
 func _on_body_entered(body):
 	$Pickup.play()
 	#coin.
 	if item_type == 0:
-		tempbal = randi_range(7,15)
+		tempbal = randi_range(7,15)*(1 + (Data.coinmultiplier*0.1))
 		Data.balance += tempbal
 		print("Coin picked up")
 	#heart
@@ -37,11 +38,11 @@ func _on_body_entered(body):
 		print("Health picked up")
 	#ammo
 	if item_type == 2:
-		temp = player.Active_Item.CURRENT_AMMO + 300
+		temp = player.Active_Item.CURRENT_AMMO + (player.Active_Item.MAX_AMMO * 0.2)
 		if temp > player.Active_Item.MAX_AMMO:
 			player.Active_Item.CURRENT_AMMO = player.Active_Item.MAX_AMMO
 		else:
-			player.Active_Item.CURRENT_AMMO += 300
+			player.Active_Item.CURRENT_AMMO += (player.Active_Item.MAX_AMMO * 0.2)
 		player.update_ammo_ui()
 		print("Ammo picked up")
 

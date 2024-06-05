@@ -28,8 +28,8 @@ func _ready():
 		print("success! ", (0.95 + (Data.spawningoffset*0.0001)))
 	print("Offset: ", Data.spawningoffset)
 	print("Wait time: ", $Timer.wait_time)
-func _physics_process(delta):
-	player = get_parent().get_node("player")
+#func _physics_process(delta):
+	#player = get_parent().get_node("player")
 func _on_timer_timeout():
 	var viewport = get_viewport()
 	var rectangle = viewport.get_visible_rect()
@@ -57,8 +57,9 @@ func _on_timer_timeout():
 		enemyInstance.position = Vector2(player.position.x + 400, player.position.y - 400)
 		spawnBoss = false
 		canSpawnEnemies = false
+		main.add_child(enemyInstance,true)
+		enemiesSpawned += 1
 		bandaidNoMoreBoss = true
-
 	if enemyInstance != null and canSpawnEnemies:
 		dirSpawn = rng.randi_range(1,4) #set which side of screen enemy comes from
 		if dirSpawn == 1: #left
@@ -73,16 +74,15 @@ func _on_timer_timeout():
 		if dirSpawn == 4: # come from below
 			var randWidth = rng.randi_range(player.position.x - rightEnd.x/1.25, player.position.x + rightEnd.x/1.25)
 			enemyInstance.position = Vector2(randWidth, player.position.y + rightEnd.y/1.25)
-
-	main.add_child(enemyInstance,true)
-	enemiesSpawned += 1
-	
+		main.add_child(enemyInstance,true)
+		enemiesSpawned += 1
+		
 	if fmod(enemiesSpawned, 10) == 0 && $Timer.wait_time > 0.1:
 		$Timer.wait_time  -= 0.05
 func _on_count_gnomes_timeout():
 	var gnomeCount = 0
 	var world = get_parent()
-	var gnomeList: Array[PackedScene]
+	#var gnomeList: Array[PackedScene]
 	
 
 	for gnome in world.get_children():

@@ -7,6 +7,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+@warning_ignore("unused_parameter")
 func _process(delta):
 	var total = Data.liches + Data.bats + Data.grunts + Data.gnomes + Data.mages + Data.summoners
 	var liches = Data.liches

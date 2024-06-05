@@ -139,8 +139,10 @@ func shoot():
 		#bulletInstance.rotation = position.angle_to_point(player.global_position)
 		get_parent().add_child(bulletInstance)
 	startParticles = true
+
+@warning_ignore("integer_division")
 func _assign_bullet_direction(bulletNumber: int, dir: Vector2, shots: int, spread:float):
-	var bulletDirection = (get_global_mouse_position() - player.position).normalized()
+	#var bulletDirection = (get_global_mouse_position() - player.position).normalized()
 	var returnDir: Vector2
 	returnDir = dir.rotated(deg_to_rad(bulletNumber*spread - (shots/2 * spread)))
 	return returnDir

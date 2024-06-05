@@ -9,6 +9,7 @@ func add_death_timer(deathAnim: String):
 	timer.timeout.connect(on_timeout)
 	timer.start(timer.wait_time)
 	deathAnimation = deathAnim
+@warning_ignore("unused_parameter")
 func _process(delta):
 	if timer != null:
 		print(timer.time_left)

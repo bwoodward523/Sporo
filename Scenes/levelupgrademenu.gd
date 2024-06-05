@@ -1,5 +1,5 @@
 extends Control
-
+var valuepercent : float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -7,8 +7,12 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+@warning_ignore("unused_parameter")
 func _process(delta):
 	# Display what the current spawining offset is
 	var spawningpercert = Data.spawningoffset*5
 	var cost = 250 * (Data.spawningoffset + 1)
 	$VBoxContainer/HBoxContainer/SpawningLabel.text = "Increase spawn rate: +" + str(spawningpercert) + "%,     "+str(cost)+" Coins"
+	valuepercent = 1+(Data.coinmultiplier*0.1)
+	var cost1 = 250*(Data.coinmultiplier  + 1)
+	$VBoxContainer2/HBoxContainer/CoinValueLabel.text = "Increase coin value: x"+str(valuepercent)+",      "+str(cost1)+" Coins"
