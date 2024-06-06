@@ -10,6 +10,7 @@ func _ready():
 		$knight.visible = true
 	if (Data.liches+Data.bats+Data.grunts+Data.summoners+Data.gnomes+Data.mages) >= 1:
 		$hatman.visible = true
+	$player/bosspointer.visible = false
 @warning_ignore("unused_parameter")
 func _process(delta):
 	# processing for pause game

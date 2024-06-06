@@ -65,24 +65,24 @@ func _ready():
 		Data.item1_id = 0
 	else:
 		$InventoryGui/NinePatchRect/GridContainer/Slot/Contains.texture = item1.ITEM_TEXTURE
+		item1.CURRENT_AMMO = item1.MAX_AMMO
 	if item2 == null:
 		Data.item2_id = 0
 	else:
 		$InventoryGui/NinePatchRect/GridContainer/Slot2/Contains.texture = item2.ITEM_TEXTURE
+		item2.CURRENT_AMMO = item2.MAX_AMMO
 	if item3 == null:
 		Data.item3_id = 0
 	else: 
 		$InventoryGui/NinePatchRect/GridContainer/Slot3/Contains.texture = item3.ITEM_TEXTURE
+		item3.CURRENT_AMMO = item3.MAX_AMMO
 	# If player's inventory is completely empty, give them the starting pistol in the first slot
 	if Data.item3_id == 0 and Data.item2_id == 0 and Data.item1_id == 0 and get_tree().get_current_scene().get_name() == "HubWorld":
 		item1 = load("res://Items/Repo/startingPistol.tres")
 		Data.item1_id = item1.ITEM_ID
 		$InventoryGui/NinePatchRect/GridContainer/Slot/Contains.texture = item1.ITEM_TEXTURE
 		print(item1.ITEM_ID)
-	item1.CURRENT_AMMO = item1.MAX_AMMO
-	item2.CURRENT_AMMO = item2.MAX_AMMO
-	item3.CURRENT_AMMO = item3.MAX_AMMO
-	
+		
 
 # Should've just used a SQL db but I hate myself
 func get_hat_by_hat_id(hatID : int) -> Texture2D:
