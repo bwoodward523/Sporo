@@ -9,14 +9,13 @@ extends Node2D
 @onready var main = get_tree().get_current_scene()
 @onready var player = get_parent().get_node("player")
 @onready var camera = player.get_node("Camera2D")
-@onready var pointer = get_parent().get_node("player/bosspointer")
 var canSpawnGnome = true
 var enemyInstance
 var dirSpawn: int #(1 left) (2 right) (3 up) 4(down)
 var enemiesSpawned = 0
 @export var enemiesUntilBoss = 100
 var enemyKillCount = 0
-var canSpawnEnemies = true
+@onready var canSpawnEnemies = true
 var bandaidNoMoreBoss = false
 var enemyAliveArray: Array[PackedScene]
 var temp1
@@ -55,16 +54,14 @@ func _on_timer_timeout():
 		enemyKillCount = 0
 		enemyInstance = null
 	if spawnBoss and !bandaidNoMoreBoss:
-		pointer.visible = true
 		enemyInstance = enemyBoss.instantiate()
 		enemyInstance.position = Vector2(player.position.x + 400, player.position.y - 400)
 		print("Boss Spawned at: ", enemyInstance.position)
-		spawnBoss = false
-		canSpawnEnemies = false
-		main.add_child(enemyInstance,true)
-		enemiesSpawned += 1
 		temp1 = enemyInstance.position
-		print("Temp set to: ", temp1)
+		spawnBoss = false
+		main.add_child(enemyInstance,true)
+		canSpawnEnemies = false
+		enemiesSpawned += 1
 		bandaidNoMoreBoss = true
 	if enemyInstance != null and canSpawnEnemies:
 		dirSpawn = rng.randi_range(1,4) #set which side of screen enemy comes from
@@ -82,12 +79,6 @@ func _on_timer_timeout():
 			enemyInstance.position = Vector2(randWidth, player.position.y + rightEnd.y/1.25)
 		main.add_child(enemyInstance,true)
 		enemiesSpawned += 1
-	if !canSpawnEnemies:
-		print("shifting")
-		print("Pointer Position: ",player.position)
-		print("temp1 position: ", temp1)
-		print("Current angle: ", rad_to_deg(player.position.angle_to(temp1))," degrees")
-		pointer.rotation_degrees = rad_to_deg(player.position.angle_to(temp1))
 	if fmod(enemiesSpawned, 10) == 0 && $Timer.wait_time > 0.1:
 		$Timer.wait_time  -= 0.05
 func _on_count_gnomes_timeout():

@@ -62,7 +62,7 @@ func drop_ammo():
 	# Bats only drop ammo when killed
 	var item = item_scene.instantiate()
 	item.position = position
-	item.item_type = 2
+	item.item_type = 4
 	main.call_deferred("add_child", item)
 	item.add_to_group("items")
 func _on_bat_damage_area_body_entered(body):

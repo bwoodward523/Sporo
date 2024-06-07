@@ -31,6 +31,7 @@ rendering_quadrant_size = 1
 
 [node name="EnemySpawner" parent="." instance=ExtResource("4_1wl62")]
 process_mode = 1
+enemiesUntilBoss = 10
 
 [node name="player" parent="." instance=ExtResource("3_mh2yx")]
 process_mode = 1
@@ -60,9 +61,8 @@ visible = false
 script = ExtResource("8_05oyh")
 
 [node name="bosspointer" type="Sprite2D" parent="player/pointer"]
-z_index = 7
-position = Vector2(100, 0)
-rotation = 1.5708
+z_index = 8
+position = Vector2(0, -90)
 scale = Vector2(2, 2)
 texture = ExtResource("9_p0kda")
 

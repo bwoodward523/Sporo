@@ -67,19 +67,25 @@ func _physics_process(delta):
 func drop_ammo():
 	var item = item_scene.instantiate()
 	item.position = position
-	item.item_type = 2
+	item.item_type = 4
 	main.call_deferred("add_child", item)
 	item.add_to_group("items")
 func drop_heart():
 	var item = item_scene.instantiate()
 	item.position = position
-	item.item_type = 1
+	item.item_type = 3
 	main.call_deferred("add_child", item)
 	item.add_to_group("items")
 func drop_item():
 	var item = item_scene.instantiate()
 	item.position = position
-	item.item_type = 0
+	var temp = randi_range(0,100)
+	if temp < 50: 
+		item.item_type = 0
+	elif temp < 85:
+		item.item_type = 1
+	else:
+		item.item_type = 2
 	main.call_deferred("add_child", item)
 	item.add_to_group("items")
 
