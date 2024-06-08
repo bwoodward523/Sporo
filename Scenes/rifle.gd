@@ -35,6 +35,7 @@ func _ready():
 			rifle.texture = selectedItem.ITEM_TEXTURE
 
 
+@warning_ignore("unused_parameter")
 func _physics_process(delta):
 	
 	selectedItem = player.Active_Item

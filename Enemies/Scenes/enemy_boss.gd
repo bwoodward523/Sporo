@@ -56,8 +56,6 @@ func disableAllTimers():
 	$ShootLaserWall.set_paused(true)
 	$SnipeReset.set_paused(true)
 	
-func _physics_process(delta):
-	pass
 
 func phase_manager():
 	if phase == "none":
@@ -124,7 +122,7 @@ func _on_shoot_at_player_timeout():
 		$SnipeReset.start(snipeResetTimeSec)
 
 func shootSkyLaser(pos: Vector2):
-	var playerDir = (player.position - position).normalized()
+	#var playerDir = (player.position - position).normalized()
 	var bulletInstance = skyLaser.instantiate()	
 	bulletInstance.position = pos
 	bulletInstance.speed = 500
@@ -152,7 +150,7 @@ func _on_snipe_reset_timeout():
 
 func rotateShoot(deg: float):
 	deg = deg_to_rad(deg)
-	var startingDir = aimDir
+	#var startingDir = aimDir
 	aimDir = aimDir.rotated(deg)
 	var bulletInstance = gnomeBullet.instantiate()
 	bulletInstance.position = position

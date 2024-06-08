@@ -51,8 +51,7 @@ func death():
 	$AudioStreamPlayer2D.play()
 	$AnimationPlayer.clear_queue()
 	$AnimationPlayer.play("summonerDeath")
-	$CollisionShape2D.disabled = true
-	$AreaHurtBox/CollisionShape2D.disabled =true
+	
 func drop_ammo():
 	var item = item_scene.instantiate()
 	item.position = position
@@ -115,7 +114,6 @@ func take_damage():
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "summonerDeath":
 		queue_free()
-	
 
 
 func _on_boss_kill_timeout():
@@ -129,3 +127,5 @@ func _on_timer_timeout():
 
 func _on_lifetime_timeout():
 	$AnimationPlayer.play("summonerDeath")
+	$CollisionShape2D.disabled = true
+	$AreaHurtBox/CollisionShape2D.disabled =true

@@ -15,9 +15,11 @@ func _ready():
 
 
 
+@warning_ignore("unused_parameter")
 func _process(delta):
 	generate_chunk(player.position)
 	
+@warning_ignore("shadowed_variable_base_class", "integer_division")
 func generate_chunk(position):
 	
 	var tile_pos = local_to_map(position)

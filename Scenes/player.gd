@@ -7,9 +7,9 @@ signal switching
 @export var item1 : Resource
 @export var item2 : Resource
 @export var item3 : Resource
+var spawner
 @export var Active_Item : Resource
 @onready var vignette = preload("res://vignette.tscn")
-@onready var spawner = get_parent().get_node("EnemySpawner")
 @onready var _animation_player = $AnimationPlayer
 #@onready var inventory = get_parent().get_node("CommandInput/CanvasLayer/InventoryGui")
 @onready var inventory = get_node("InventoryGui")
@@ -52,6 +52,7 @@ func _ready():
 	# If in the main game, also grab what is in the player's inventory from Data
 	else:
 		print("Making it this far?")
+		spawner = get_parent().get_node("EnemySpawner")
 		balance = Data.balance
 		item1 = get_item_by_item_id(Data.item1_id)
 		item2 = get_item_by_item_id(Data.item2_id)
@@ -78,6 +79,10 @@ func _ready():
 		Data.item1_id = item1.ITEM_ID
 		$InventoryGui/NinePatchRect/GridContainer/Slot/Contains.texture = item1.ITEM_TEXTURE
 		print(item1.ITEM_ID)
+	item1.CURRENT_AMMO = item1.MAX_AMMO
+	item2.CURRENT_AMMO = item2.MAX_AMMO
+	item3.CURRENT_AMMO = item3.MAX_AMMO
+	
 
 # Should've just used a SQL db but I hate myself
 func get_hat_by_hat_id(hatID : int) -> Texture2D:
@@ -142,6 +147,7 @@ func set_health_bar() -> void:
 	# set the health bar to what the player's real health is
 	$HealthBar.value = 10-health
 
+@warning_ignore("unused_parameter")
 func _physics_process(delta):
 	if !isDead:
 		if get_tree().get_current_scene().get_name() == "main":
@@ -210,6 +216,7 @@ func _physics_process(delta):
 
 func detect_enemy():
 	# Collision detection for the player with it's environment
+	@warning_ignore("unassigned_variable")
 	var collisionList: Array
 	#make array of all names of collisions
 	for i in get_slide_collision_count():
@@ -235,8 +242,7 @@ func detect_enemy():
 			#Check if player is dead
 			check_death()
 		if i.contains("levelswitch"):
-			print(i)
-			emit_signal("switching")
+			get_tree().change_scene_to_file("res://Worlds/TestWorld.tscn")
 
 			
 func take_damage():
@@ -296,6 +302,7 @@ func _on_area_2d_area_entered(area):
 		area.queue_free()
 
 
+@warning_ignore("unused_parameter")
 func _on_hatman_area_entered(area):
 	# hehehehe
 	print("I wanna fuck the hatman")
@@ -317,6 +324,7 @@ func _on_hatman_area_entered(area):
 		$hatmenu/HatmanSpeaking.text = "I'm dying, little mushroom. The spores have pierced my heart and I don't have much longer. Please kill the forest wraith and save my soul"
 	$hatmenu.visible = true
 
+@warning_ignore("unused_parameter")
 func _on_hatman_area_exited(area):
 	# Close shop menu when leaving hitbox
 	print("I don't wanna fuck the hatman")
@@ -460,25 +468,35 @@ func _on_item_list_2_item_selected(index):
 	
 
 # Menu visibility controllers
+@warning_ignore("unused_parameter")
 func _on_overseer_area_entered(area):
 	if get_parent().get_node("overseer").visible:
 		$statmenu.visible = true
 
 
+@warning_ignore("unused_parameter")
 func _on_overseer_area_exited(area):
 	$statmenu.visible = false
 
 
+@warning_ignore("unused_parameter")
 func _on_knight_area_entered(area):
 	if get_parent().get_node("knight").visible:
 		$levelupgrademenu.visible = true
 
 
+@warning_ignore("unused_parameter")
 func _on_knight_area_exited(area):
 	$levelupgrademenu.visible = false
 
 # Buy spawning upgrades
 func _on_texture_button_pressed():
 	if Data.balance >= (250* (Data.spawningoffset+1)):
-		Data.spawningoffset += 1
 		Data.balance -= (250* (Data.spawningoffset+1))
+		Data.spawningoffset += 1
+
+
+func _on_value_button_pressed():
+	if Data.balance >= (250* (Data.coinmultiplier+1)):
+		Data.balance -= (250* (Data.coinmultiplier+1))
+		Data.coinmultiplier += 1

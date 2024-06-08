@@ -3,8 +3,6 @@ extends Node2D
 @onready var player = $player
 
 func _ready():
-	# Check to see if playing is attempting to go into the main game
-	player.switching.connect(switch_scene)
 	# Check to see if NPC requirements have been met
 	if Data.liches > 0:
 		$overseer.visible = true
@@ -12,6 +10,7 @@ func _ready():
 		$knight.visible = true
 	if (Data.liches+Data.bats+Data.grunts+Data.summoners+Data.gnomes+Data.mages) >= 1:
 		$hatman.visible = true
+@warning_ignore("unused_parameter")
 func _process(delta):
 	# processing for pause game
 	if Input.is_action_just_pressed("pause"):
@@ -21,9 +20,6 @@ func _process(delta):
 		else:
 			$player/Node2D/VBoxContainer.visible = false
 
-func switch_scene():
-	$TransitionScreen/AnimationPlayer.play("fade_to_black")
-	get_tree().change_scene_to_file("res://Worlds/TestWorld.tscn")
 
 
 

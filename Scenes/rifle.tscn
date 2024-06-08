@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://thjtpkg3w2xm"]
+[gd_scene load_steps=5 format=3 uid="uid://thjtpkg3w2xm"]
 
 [ext_resource type="Script" path="res://Scenes/rifle.gd" id="2_4bwlb"]
+[ext_resource type="Texture2D" uid="uid://5ycxbvc21vhb" path="res://Assets/snubby.png" id="2_myvs6"]
 [ext_resource type="AudioStream" uid="uid://do2u4yrw7ksj1" path="res://Assets/Sounds/lasr.wav" id="3_p252n"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_002ul"]
@@ -13,8 +14,9 @@ shape = SubResource("CapsuleShape2D_002ul")
 disabled = true
 
 [node name="Rifle" type="Sprite2D" parent="."]
-position = Vector2(8, -4)
+position = Vector2(17, -7)
 scale = Vector2(0.808847, 0.551724)
+texture = ExtResource("2_myvs6")
 centered = false
 offset = Vector2(-25.2738, -9.18033)
 flip_h = true

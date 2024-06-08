@@ -20,6 +20,7 @@ var save_path = "user://variable.save"
 @export var summoners : int
 @export var mages : int
 @export var spawningoffset : int
+@export var coinmultiplier : int
 
 func _on_game_save():
 	save()
@@ -31,7 +32,7 @@ func save():
 	# Open Save file
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
 	print("Items saved: ", balance," ", hat_id," ", item1_id," ", item2_id," ", item3_id," ",
-	 liches," ", bats," ", gnomes," ", grunts," ", summoners," ", mages, " ", spawningoffset)
+	 liches," ", bats," ", gnomes," ", grunts," ", summoners," ", mages, " ", spawningoffset, " ", coinmultiplier)
 	# Save values onto the file/overwrite existing stored values
 	file.store_var(balance)
 	file.store_var(hat_id)
@@ -45,6 +46,7 @@ func save():
 	file.store_var(summoners)
 	file.store_var(mages)
 	file.store_var(spawningoffset)
+	file.store_var(coinmultiplier)
 func load_data():
 	# Check if files exists
 	if FileAccess.file_exists(save_path):
@@ -62,8 +64,9 @@ func load_data():
 		summoners = file.get_var()
 		mages = file.get_var()
 		spawningoffset = file.get_var()
+		coinmultiplier = file.get_var()
 		print("Items Loaded: ", balance," ", hat_id," ", item1_id," ", item2_id," ", item3_id," ",
-	 liches," ", bats," ", gnomes," ", grunts," ", summoners," ", mages, " ", spawningoffset)
+	 liches," ", bats," ", gnomes," ", grunts," ", summoners," ", mages, " ", spawningoffset, " ", coinmultiplier)
 	else:
 		# If file dne, set all stored values to zero initially
 		print("No Data Saved")
@@ -79,3 +82,4 @@ func load_data():
 		summoners = 0
 		mages = 0
 		spawningoffset = 0
+		coinmultiplier = 0
