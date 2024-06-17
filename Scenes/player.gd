@@ -22,6 +22,8 @@ var canShoot = false
 var dirFace = 1
 var can_toggle_pause = true
 var hat_id : int
+@export var offset_factor: float = 0.05
+@export var tween_duration: float = 0.1
 
 var randText : int
 @onready var couldBuy = false
@@ -150,15 +152,23 @@ func set_health_bar() -> void:
 	# set the health bar to what the player's real health is
 	$Camera2D/HealthBar.value = 10-health
 
+func update_camera_position(target_pos: Vector2):
+	# Smoothly transition the camera to the target position
+	var tween = camera.create_tween()
+	tween.tween_property(camera, "global_position", target_pos, tween_duration)
 @warning_ignore("unused_parameter")
 func _physics_process(delta):
 	if !isDead:
 		
 		
 		if get_tree().get_current_scene().get_name() == "main":
-			var tween = camera.create_tween()
-			var offset = (center + get_global_mouse_position()) * 0.1
-			tween.tween_property(camera, "position", offset, 1.0)
+			 # Calculate the desired offset based on the mouse position
+			var mouse_pos = get_global_mouse_position()
+			var player_pos = global_position
+			var offset = (mouse_pos - player_pos) * offset_factor
+			# Apply the offset to the camera position
+			var target_pos = player_pos + offset
+			update_camera_position(target_pos)
 			#if !spawner.canSpawnEnemies && spawnOneVin:
 				#spawnOneVin = false
 				#var vignetteInstance = vignette.instantiate()
@@ -227,6 +237,7 @@ func _on_item_rect_changed():
 	
 	if camera != null:
 		camera.global_position = center
+	
 
 func detect_enemy():
 	# Collision detection for the player with it's environment
