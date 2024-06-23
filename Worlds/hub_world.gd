@@ -6,7 +6,7 @@ func _ready():
 	# Check to see if NPC requirements have been met
 	if Data.liches > 0:
 		$overseer.visible = true
-	if (Data.liches+Data.bats+Data.grunts+Data.summoners+Data.gnomes+Data.mages) >= 2000:
+	if (Data.liches+Data.bats+Data.grunts+Data.summoners+Data.gnomes+Data.mages) >= 1500:
 		$knight.visible = true
 	if (Data.liches+Data.bats+Data.grunts+Data.summoners+Data.gnomes+Data.mages) >= 1:
 		$hatman.visible = true

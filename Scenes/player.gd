@@ -156,16 +156,17 @@ func update_camera_position(target_pos: Vector2):
 	# Smoothly transition the camera to the target position
 	var tween = camera.create_tween()
 	tween.tween_property(camera, "global_position", target_pos, tween_duration)
+
+
+
 @warning_ignore("unused_parameter")
 func _physics_process(delta):
 	if !isDead:
-		
-		
 		if get_tree().get_current_scene().get_name() == "main":
 			 # Calculate the desired offset based on the mouse position
 			var mouse_pos = get_global_mouse_position()
 			var player_pos = global_position
-			var offset = (mouse_pos - player_pos) * offset_factor
+			var offset = (mouse_pos - player_pos)* offset_factor
 			# Apply the offset to the camera position
 			var target_pos = player_pos + offset
 			update_camera_position(target_pos)
@@ -213,18 +214,20 @@ func _physics_process(delta):
 		velocity = direction * SPEED
 		
 		if Input.is_action_pressed("moveRight"):
-			_animation_player.play("walk")
+			#_animation_player.play("walk")
 			$Sprite2D.flip_h = true
 		elif Input.is_action_pressed("moveLeft"):
-			_animation_player.play("walk")
+			#_animation_player.play("walk")
 			$Sprite2D.flip_h = false
 		elif Input.is_action_pressed("moveDown"):
-			_animation_player.play("walk")
+			#_animation_player.play("walk")
+			pass
 		elif Input.is_action_pressed("moveUp"):
-			_animation_player.play("walk")
+			#_animation_player.play("walk")
+			pass
 		else:
-			_animation_player.play("RESET")
-			
+			#_animation_player.play("RESET")
+			pass
 		move_and_slide()
 		
 		detect_enemy()
