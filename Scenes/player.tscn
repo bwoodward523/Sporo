@@ -238,7 +238,7 @@ _data = {
 collision_mask = 4
 script = ExtResource("1_200gu")
 health = 15
-SPEED = 600
+SPEED = 475
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.31148, 4.59016)
@@ -284,8 +284,9 @@ shape = SubResource("CapsuleShape2D_fba2d")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.25, 0.25)
+limit_smoothed = true
 
-[node name="InventoryGui" parent="." instance=ExtResource("7_87di0")]
+[node name="InventoryGui" parent="Camera2D" instance=ExtResource("7_87di0")]
 z_index = 8
 anchors_preset = -1
 anchor_left = 0.0
@@ -297,7 +298,7 @@ offset_bottom = 228.0
 grow_horizontal = 1
 scale = Vector2(1.25, 1.25)
 
-[node name="Balance" type="Label" parent="."]
+[node name="Balance" type="Label" parent="Camera2D"]
 light_mask = 4
 visibility_layer = 4
 z_index = 2
@@ -309,7 +310,7 @@ offset_bottom = -495.0
 scale = Vector2(1.43439, 1.56895)
 script = ExtResource("9_fuj7g")
 
-[node name="HealthBar" type="TextureProgressBar" parent="."]
+[node name="HealthBar" type="TextureProgressBar" parent="Camera2D"]
 z_index = 8
 offset_left = -1256.0
 offset_top = -655.0
@@ -322,7 +323,7 @@ texture_under = ExtResource("12_0qqyj")
 texture_progress = ExtResource("13_eetfd")
 radial_initial_angle = 41.7
 
-[node name="AmmoBar" type="TextureProgressBar" parent="."]
+[node name="AmmoBar" type="TextureProgressBar" parent="Camera2D"]
 z_index = 8
 offset_left = -1255.0
 offset_top = -594.0
@@ -335,7 +336,7 @@ texture_under = ExtResource("13_j1elb")
 texture_progress = ExtResource("14_oqau4")
 radial_initial_angle = 41.7
 
-[node name="EnemiesKilled" type="TextureProgressBar" parent="."]
+[node name="EnemiesKilled" type="TextureProgressBar" parent="Camera2D"]
 offset_left = -328.0
 offset_top = -697.0
 offset_right = -200.0

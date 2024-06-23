@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 signal switching
 
+var center : Vector2
 @export var health : int
 @export var balance : int
 @export var item1 : Resource
@@ -16,10 +17,13 @@ var spawner
 @onready var isDead = false
 @onready var randAnimRot = RandomNumberGenerator.new()
 @export var SPEED = 450
+@onready var camera = $Camera2D
 var canShoot = false
 var dirFace = 1
 var can_toggle_pause = true
 var hat_id : int
+@export var offset_factor: float = 0.05
+@export var tween_duration: float = 0.1
 
 var randText : int
 @onready var couldBuy = false
@@ -32,17 +36,18 @@ var spawnOneVin = true
 
 func _ready():
 	# When player first created, set health to max, hat to zero, and properly update the rest of the player's stats
+	center = Vector2(get_viewport_rect().size.x/2, get_viewport_rect().size.y/2)
 	hat_id = 0
 	self.health = 10
 	update_ammo_ui()
 	update_health_ui()
-	$HealthBar.max_value = self.health
+	$Camera2D/HealthBar.max_value = self.health
 	$statmenu.visible = false
 	$hatmenu.visible = false
 	print("My current scene is: ", get_tree().get_current_scene().get_name())
 	# If in the hubworld, read the data from the Data to grab what is in the player's inventory
 	if get_tree().get_current_scene().get_name() == "HubWorld":
-		$EnemiesKilled.visible = false
+		$Camera2D/EnemiesKilled.visible = false
 		balance = Data.balance
 		item1 = get_item_by_item_id(Data.item1_id)
 		item2 = get_item_by_item_id(Data.item2_id)
@@ -64,25 +69,25 @@ func _ready():
 	if item1 == null:
 		Data.item1_id = 0
 	else:
-		$InventoryGui/NinePatchRect/GridContainer/Slot/Contains.texture = item1.ITEM_TEXTURE
+		$Camera2D/InventoryGui/NinePatchRect/GridContainer/Slot/Contains.texture = item1.ITEM_TEXTURE
+		item1.CURRENT_AMMO = item1.MAX_AMMO
 	if item2 == null:
 		Data.item2_id = 0
 	else:
-		$InventoryGui/NinePatchRect/GridContainer/Slot2/Contains.texture = item2.ITEM_TEXTURE
+		$Camera2D/InventoryGui/NinePatchRect/GridContainer/Slot2/Contains.texture = item2.ITEM_TEXTURE
+		item2.CURRENT_AMMO = item2.MAX_AMMO
 	if item3 == null:
 		Data.item3_id = 0
 	else: 
-		$InventoryGui/NinePatchRect/GridContainer/Slot3/Contains.texture = item3.ITEM_TEXTURE
+		$Camera2D/InventoryGui/NinePatchRect/GridContainer/Slot3/Contains.texture = item3.ITEM_TEXTURE
+		item3.CURRENT_AMMO = item3.MAX_AMMO
 	# If player's inventory is completely empty, give them the starting pistol in the first slot
 	if Data.item3_id == 0 and Data.item2_id == 0 and Data.item1_id == 0 and get_tree().get_current_scene().get_name() == "HubWorld":
 		item1 = load("res://Items/Repo/startingPistol.tres")
 		Data.item1_id = item1.ITEM_ID
-		$InventoryGui/NinePatchRect/GridContainer/Slot/Contains.texture = item1.ITEM_TEXTURE
+		$Camera2D/InventoryGui/NinePatchRect/GridContainer/Slot/Contains.texture = item1.ITEM_TEXTURE
 		print(item1.ITEM_ID)
-	item1.CURRENT_AMMO = item1.MAX_AMMO
-	item2.CURRENT_AMMO = item2.MAX_AMMO
-	item3.CURRENT_AMMO = item3.MAX_AMMO
-	
+		
 
 # Should've just used a SQL db but I hate myself
 func get_hat_by_hat_id(hatID : int) -> Texture2D:
@@ -138,30 +143,43 @@ func update_ammo_ui():
 func set_ammo_bar():
 	if Active_Item != null:
 		# Update ammo UI according to the real value of the player's ammo
-		$AmmoBar.max_value = Active_Item.MAX_AMMO
-		$AmmoBar.value = Active_Item.MAX_AMMO - Active_Item.CURRENT_AMMO
+		$Camera2D/AmmoBar.max_value = Active_Item.MAX_AMMO
+		$Camera2D/AmmoBar.value = Active_Item.MAX_AMMO - Active_Item.CURRENT_AMMO
 
 func set_health_bar() -> void:
 	#var progress_tween = get_tree().create_tween()
 	#progress_tween.tween_property($HealthBar, "value", 10-health, 1.0).set_trans(Tween.TRANS_LINEAR)
 	# set the health bar to what the player's real health is
-	$HealthBar.value = 10-health
+	$Camera2D/HealthBar.value = 10-health
 
+func update_camera_position(target_pos: Vector2):
+	# Smoothly transition the camera to the target position
+	var tween = camera.create_tween()
+	tween.tween_property(camera, "global_position", target_pos, tween_duration)
 @warning_ignore("unused_parameter")
 func _physics_process(delta):
 	if !isDead:
+		
+		
 		if get_tree().get_current_scene().get_name() == "main":
+			 # Calculate the desired offset based on the mouse position
+			var mouse_pos = get_global_mouse_position()
+			var player_pos = global_position
+			var offset = (mouse_pos - player_pos) * offset_factor
+			# Apply the offset to the camera position
+			var target_pos = player_pos + offset
+			update_camera_position(target_pos)
 			#if !spawner.canSpawnEnemies && spawnOneVin:
 				#spawnOneVin = false
 				#var vignetteInstance = vignette.instantiate()
 				##vignetteInstance.get_child(0).position = position
 				#add_child(vignetteInstance)
 			# Update progress bar when in the main game
-			$EnemiesKilled.visible = true
-			$EnemiesKilled.max_value = spawner.enemiesUntilBoss
-			$EnemiesKilled.value = spawner.enemyKillCount
+			$Camera2D/EnemiesKilled.visible = true
+			$Camera2D/EnemiesKilled.max_value = spawner.enemiesUntilBoss
+			$Camera2D/EnemiesKilled.value = spawner.enemyKillCount
 			if !spawner.canSpawnEnemies:
-				$EnemiesKilled.visible = false
+				$Camera2D/EnemiesKilled.visible = false
 		# Movement
 		var direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
 		# Function that lets the player pick a slot for the item they are trying to purchase
@@ -172,7 +190,7 @@ func _physics_process(delta):
 				item1 = tempItem
 				Data.item1 = item1
 				Data.item1_id = item1.ITEM_ID
-				$InventoryGui/NinePatchRect/GridContainer/Slot/Contains.texture = item1.ITEM_TEXTURE
+				$Camera2D/InventoryGui/NinePatchRect/GridContainer/Slot/Contains.texture = item1.ITEM_TEXTURE
 				couldBuy = false
 				$hatmenu/HatmanSpeaking.text = "Thank you for your purchase!"
 			elif  Input.is_action_pressed("item_two"):
@@ -180,7 +198,7 @@ func _physics_process(delta):
 				item2 = tempItem
 				Data.item2 = item2
 				Data.item2_id = item2.ITEM_ID
-				$InventoryGui/NinePatchRect/GridContainer/Slot2/Contains.texture = item2.ITEM_TEXTURE
+				$Camera2D/InventoryGui/NinePatchRect/GridContainer/Slot2/Contains.texture = item2.ITEM_TEXTURE
 				couldBuy = false
 				$hatmenu/HatmanSpeaking.text = "Thank you for your purchase!"
 			elif  Input.is_action_pressed("item_three"):
@@ -188,7 +206,7 @@ func _physics_process(delta):
 				item3 = tempItem
 				Data.item3 = item3
 				Data.item3_id = item3.ITEM_ID
-				$InventoryGui/NinePatchRect/GridContainer/Slot3/Contains.texture = item3.ITEM_TEXTURE
+				$Camera2D/InventoryGui/NinePatchRect/GridContainer/Slot3/Contains.texture = item3.ITEM_TEXTURE
 				couldBuy = false
 				$hatmenu/HatmanSpeaking.text = "Thank you for your purchase!"
 		# Move the player
@@ -213,6 +231,13 @@ func _physics_process(delta):
 		pass
 	else:
 		_animation_player.play("RESET")
+
+func _on_item_rect_changed():
+	center = Vector2(get_viewport_rect().size.x/2, get_viewport_rect().size.y/2)
+	
+	if camera != null:
+		camera.global_position = center
+	
 
 func detect_enemy():
 	# Collision detection for the player with it's environment

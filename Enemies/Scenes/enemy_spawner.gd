@@ -15,9 +15,10 @@ var dirSpawn: int #(1 left) (2 right) (3 up) 4(down)
 var enemiesSpawned = 0
 @export var enemiesUntilBoss = 100
 var enemyKillCount = 0
-var canSpawnEnemies = true
+@onready var canSpawnEnemies = true
 var bandaidNoMoreBoss = false
 var enemyAliveArray: Array[PackedScene]
+var temp1
 
 var spawnBoss = false
 func _ready():
@@ -55,9 +56,11 @@ func _on_timer_timeout():
 	if spawnBoss and !bandaidNoMoreBoss:
 		enemyInstance = enemyBoss.instantiate()
 		enemyInstance.position = Vector2(player.position.x + 400, player.position.y - 400)
+		print("Boss Spawned at: ", enemyInstance.position)
+		temp1 = enemyInstance.position
 		spawnBoss = false
-		canSpawnEnemies = false
 		main.add_child(enemyInstance,true)
+		canSpawnEnemies = false
 		enemiesSpawned += 1
 		bandaidNoMoreBoss = true
 	if enemyInstance != null and canSpawnEnemies:
@@ -76,7 +79,6 @@ func _on_timer_timeout():
 			enemyInstance.position = Vector2(randWidth, player.position.y + rightEnd.y/1.25)
 		main.add_child(enemyInstance,true)
 		enemiesSpawned += 1
-		
 	if fmod(enemiesSpawned, 10) == 0 && $Timer.wait_time > 0.1:
 		$Timer.wait_time  -= 0.05
 func _on_count_gnomes_timeout():

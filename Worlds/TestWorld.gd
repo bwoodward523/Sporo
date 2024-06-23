@@ -12,6 +12,12 @@ func _process(delta):
 			$player/Node2D/VBoxContainer.visible = true
 		else:
 			$player/Node2D/VBoxContainer.visible = false
+			
+	if $EnemySpawner.bandaidNoMoreBoss:
+		$player/pointer.visible = true
+		print("What the hell is this: ", $EnemySpawner.temp1)
+		var bigblackmonkeyballs = $EnemySpawner.temp1
+		$player/pointer.snap_to_boss(bigblackmonkeyballs)
 	#for i in 5:
 		#if rng.randi_range(1, 2) == 2:
 			#var instance = raindrop.instantiate()
